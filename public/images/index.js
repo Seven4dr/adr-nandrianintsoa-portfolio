@@ -8,7 +8,7 @@ import emihack from './emihack.jpeg';
 import home from './home.png';
 import produits from './produits.jpg';
 import mobile from './mobile.jpg';
-import dashboard from './dasboard.JPG';
+import dashboard from './dasboard.jpg';
 import order from './order.JPG';
 import annexe1 from './annexe_info1.png';
 import annexe2 from './annexe_info2.png';
