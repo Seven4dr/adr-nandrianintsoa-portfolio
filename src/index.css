@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-custom-gradient;
+}
+
+.dark body {
+  @apply bg-dark-particle;
+}
