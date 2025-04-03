@@ -45,7 +45,7 @@ const Projects = () => {
       id: 4,
       title: "Gestion des épidémies incluant Big Data et IA",
       image: epi1,
-      technologies: ["REACT", "EXPRESS", "MongoDB"],
+      technologies: ["REACT", "FLASK"],
       screenshots: [
         epi2,
         epi4
@@ -64,7 +64,7 @@ const Projects = () => {
   ];
 
   return (
-    <div className="bg-black text-white py-16 px-4 md:px-8 lg:px-16">
+    <div className="text-white py-16 px-4 md:px-8 lg:px-16">
       {/* Main title */}
       <h1 
         className="text-4xl font-bold text-center mb-12 uppercase tracking-wider text-white"

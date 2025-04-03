@@ -100,7 +100,7 @@ const Experiences = () => {
 
   return (
     <div className="container mx-auto px-4 py-8  text-white">
-      <h2 className="text-4xl font-bold text-center mb-12 uppercase tracking-wider">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 sm:mb-8 md:mb-12 uppercase tracking-wider">
         Expériences Professionnelles
       </h2>
       
