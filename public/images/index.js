@@ -9,7 +9,7 @@ import home from './home.png';
 import produits from './produits.jpg';
 import mobile from './mobile.jpg';
 import dashboard from './dasboard.jpg';
-import order from './order.JPG';
+import order from './order.jpg';
 import annexe1 from './annexe_info1.png';
 import annexe2 from './annexe_info2.png';
 import epi1 from './epi1.jpg';
