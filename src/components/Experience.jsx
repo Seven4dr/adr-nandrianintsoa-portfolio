@@ -99,14 +99,14 @@ const Experiences = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-black text-white">
+    <div className="container mx-auto px-4 py-8  text-white">
       <h2 className="text-4xl font-bold text-center mb-12 uppercase tracking-wider">
         Expériences Professionnelles
       </h2>
       
       <div className="relative">
         {/* Ligne verticale - responsive */}
-        <div className="absolute left-1/2 md:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-600 hidden md:block"></div>
+        <div className="absolute left-1/2 md:left-1/2 transform -translate-x-1/2 h-full w-0.5 hidden md:block"></div>
         
         {experiences.map((exp, index) => (
           <div key={index} className="mb-16 relative" data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}>

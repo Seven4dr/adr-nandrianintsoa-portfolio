@@ -16,6 +16,7 @@ import epi1 from './epi1.jpg';
 import epi2 from './epi2.jpg';
 import epi3 from './epi3.jpg';
 import epi4 from './epi4.jpg';
+import portfolio from './portfolio.jpg';
 
 
 export {
@@ -36,6 +37,7 @@ export {
     epi1,
     epi2,
     epi3,
-    epi4
+    epi4,
+    portfolio
 
 };

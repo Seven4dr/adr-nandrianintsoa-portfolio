@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { annexe1, annexe2, dashboard, epi1, epi2, epi4, home, mobile, order, produits } from '../../public/images';
+import { annexe1, annexe2, dashboard, epi1, epi2, epi4, home, mobile, order, portfolio, produits } from '../../public/images';
 
 const Projects = () => {
   useEffect(() => {
@@ -50,7 +50,17 @@ const Projects = () => {
         epi2,
         epi4
       ]
-    }
+    },
+    {
+      id: 5,
+      title: "Mon Portfolio",
+      image: portfolio,
+      technologies: ["REACT", "TAILWINDCSS"],
+      screenshots: [
+       
+      ]
+    },
+
   ];
 
   return (

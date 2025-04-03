@@ -1,19 +1,14 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import Particles from 'react-tsparticles'
-import { loadSlim } from 'tsparticles-slim'
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
 import PortfolioHeader from '../components/Header'
 import Competences from '../components/Competences'
 import Experiences from '../components/Experience'
 import Projects from '../components/Projects'
+import NetworkBackground from '../components/particleBg'
 
 const Home = () => {
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
-  }, []);
-
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -25,80 +20,18 @@ const Home = () => {
 
   return (
     <div className="relative min-h-screen">
-      {/* Animation en arrière-plan avec z-index très négatif */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          background: {
-            color: {
-              value: "#000000",
-            },
-          },
-          fpsLimit: 60,
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.3,
-              width: 1,
-              triangles: {
-                enable: true,
-                opacity: 0.05
-              }
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outModes: {
-                default: "out",
-              },
-              random: true,
-              speed: 0.3,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 800,
-              },
-              value: 80,
-            },
-            opacity: {
-              value: 0.5,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 1, max: 2 },
-            },
-          },
-          detectRetina: true,
-        }}
-        style={{
-          position: "fixed",
-          width: "100%",
-          height: "100%",
-          zIndex: -100, // z-index très négatif pour être sûr
-          top: 0,
-          left: 0,
-        }}
-      />
+      {/* Custom Network Background */}
+      <NetworkBackground/>
       
-      {/* Contenu avec z-index positif pour s'assurer qu'il soit visible */}
+      {/* Main Content */}
       <div className="relative z-10">
         <PortfolioHeader/>
         <Competences/>
         <Experiences/>
         <Projects/>
         
-        {/* Footer avec copyright */}
-        <footer className="py-8 px-4 bg-black text-white border-t border-gray-800 relative z-10">
+        {/* Footer */}
+        <footer className="py-8 px-4 text-white border-t border-gray-800 relative z-10 bg-black bg-opacity-30 backdrop-blur-sm">
           <div className="container mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="mb-6 md:mb-0">
