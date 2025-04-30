@@ -2,17 +2,30 @@ import React, { useEffect } from 'react';
 import Typewriter from 'typewriter-effect';
 import { FaFacebook, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import { sary } from '../../public/images';
-import AOS from 'aos'; // Importez AOS
-import 'aos/dist/aos.css'; // Importez le CSS d'AOS
+// Import direct du fichier CV
+import cvFile from '../../public/images/cv.pdf';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const PortfolioHeader = () => {
     // Initialisez AOS avec useEffect
     useEffect(() => {
         AOS.init({
-            duration: 1000, // Durée de l'animation en millisecondes
-            once: true, // L'animation ne se joue qu'une seule fois
+            duration: 1000,
+            once: true,
         });
     }, []);
+
+    // Fonction pour gérer le téléchargement du CV
+    const handleDownloadCV = () => {
+        // Utiliser l'URL du fichier importé
+        const link = document.createElement('a');
+        link.href = cvFile;
+        link.download = 'cv.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <div className="flex items-center min-h-[63vh] px-4 py-8">
@@ -44,18 +57,18 @@ const PortfolioHeader = () => {
                                 />
                             </h1>
                             <p className="text-base md:text-lg text-white max-w-xl mx-auto md:mx-0">
-                                Passionné par JavaScript, je maîtrise ses écosystèmes et frameworks avec une expertise technique et créative.
+                            Développeur expérimenté spécialisé dans la création d'applications web performantes et évolutives. Mon expertise technique me permet de transformer des concepts en solutions concrètes et fonctionnelles.
                             </p>
                         </div>
 
                         {/* Social and CV Button avec animation */}
                         <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 justify-center md:justify-start" data-aos="fade-up">
-                            <a
-                                href="#"
-                                className="bg-amber-400 text-black px-8 py-3 rounded-full hover:bg-amber-450 transition font-semibold shadow-lg w-full sm:w-auto text-center"
+                            <button
+                                onClick={handleDownloadCV}
+                                className="bg-amber-400 text-black px-8 py-3 rounded-full hover:bg-amber-500 transition font-semibold shadow-lg w-full sm:w-auto text-center"
                             >
                                 Télécharger CV
-                            </a>
+                            </button>
                             <div className="flex space-x-6">
                                 <a href="#" className="text-amber-50 hover:text-amber-300 transition">
                                     <FaFacebook size={22} />

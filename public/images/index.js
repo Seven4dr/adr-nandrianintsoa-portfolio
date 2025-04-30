@@ -17,6 +17,7 @@ import epi2 from './epi2.jpg';
 import epi3 from './epi3.jpg';
 import epi4 from './epi4.jpg';
 import portfolio from './portfolio.jpg';
+import cvFile from './cv.pdf'; // Added missing import statement
 
 
 export {
@@ -38,6 +39,7 @@ export {
     epi2,
     epi3,
     epi4,
-    portfolio
+    portfolio, 
+    cvFile
 
 };
