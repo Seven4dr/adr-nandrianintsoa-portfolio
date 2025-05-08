@@ -109,7 +109,7 @@ const Home = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center">
                   <div className="mb-6 md:mb-0">
                     <p className="text-gray-400 font-bold">
-                      © 2025 AdrNadrianintsoa
+                      © 2025 AdrNandrianintsoa
                     </p>
                   </div>
                   
