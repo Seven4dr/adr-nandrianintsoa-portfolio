@@ -87,7 +87,6 @@ const Home = () => {
                 <div style={loaderStyles.spinnerCircle}></div>
               </div>
             </div>
-            <h2 className="text-xl font-bold text-white mt-6">Nadrianintsoa</h2>
             <p className="text-amber-400 mt-2">Chargement de mon portfolio...</p>
           </div>
         </div>
@@ -100,7 +99,8 @@ const Home = () => {
           <div className="relative z-10">
             <PortfolioHeader />
             <Competences />
-            <Experiences />
+            {/* EXPERIENCE SY PROJET MISY MI'DÉBORDE */}
+            <Experiences />  
             <Projects />
             
             {/* Footer */}

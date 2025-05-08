@@ -5,15 +5,12 @@ import {
   FaJsSquare, 
   FaPython, 
   FaJava, 
-  FaFileCode, 
   FaPhp, 
   FaHtml5, 
   FaCss3Alt, 
   FaReact, 
   FaAngular, 
   FaNodeJs, 
-  FaGithub, 
-  FaGitlab, 
   FaBootstrap,
   FaGitAlt
 } from 'react-icons/fa';
@@ -27,7 +24,6 @@ import {
   SiPostgresql, 
   SiMysql, 
   SiTailwindcss,
-  SiFigma
 } from 'react-icons/si';
 
 // Use absolute paths for public assets
@@ -50,7 +46,6 @@ const Competences = () => {
     { icon: <FaJsSquare className="text-yellow-500" />, name: 'JavaScript' },
     { icon: <FaPython className="text-blue-600" />, name: 'Python' },
     { icon: <FaJava className="text-red-600" />, name: 'Java' },
-    { icon: <FaFileCode className="text-blue-500" />, name: 'C#' },
     { icon: <FaPhp className="text-purple-600" />, name: 'PHP' },
     { icon: <FaReact className="text-blue-400" />, name: 'React' },
     { icon: <FaAngular className="text-red-600" />, name: 'Angular' },
