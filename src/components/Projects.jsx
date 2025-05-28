@@ -21,7 +21,7 @@ const Projects = () => {
       id: 1,
       title: "Mise en place d'un tableau de bord pour le suivi du patrimoine numérique sur Perfectnodes",
       image: home,
-      technologies: ["REACT", "TAILWINDCSS"],
+      technologies: ["REACT","EXPRESS", "TAILWINDCSS"],
       screenshots: [
         annexe1,
         annexe2
