@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { annexe1, annexe2, dashboard, epi1, epi2, epi4, home, mobile, order, portfolio, produits } from '../../public/images';
+import { alarm1, alarm2, alarm4, annexe1, annexe2, dashboard, epi1, epi2, epi4, home, mobile, order, portfolio, produits } from '../../public/images';
 import { FaCode, FaEye, FaTimes } from 'react-icons/fa';
 
 const Projects = () => {
@@ -37,6 +37,7 @@ const Projects = () => {
         order
       ]
     },
+   
     {
       id: 3,
       title: "Suivi d'Activité de Navigateur de PC",
@@ -44,8 +45,18 @@ const Projects = () => {
       technologies: ["FLUTTER", "EXPRESS"],
       screenshots: []
     },
+     { id: 4,
+    title: "Application mobile Alarm en Flutter",
+    image: alarm1, // tu peux remplacer par une image spécifique de ton projet, par ex. alarm1
+    technologies: ["FLUTTER", "DART", "MOBILE"],
+    screenshots: [
+      
+      alarm2,
+      alarm4,
+    ]
+    },
     {
-      id: 4,
+      id: 5,
       title: "Gestion des épidémies incluant Big Data et IA",
       image: epi1,
       technologies: ["REACT", "FLASK"],
@@ -55,7 +66,7 @@ const Projects = () => {
       ]
     },
     {
-      id: 5,
+      id: 6,
       title: "Mon Portfolio",
       image: portfolio,
       technologies: ["REACT", "TAILWINDCSS"],
