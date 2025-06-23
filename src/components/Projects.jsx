@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { alarm2, dashboard, epi1, home, mobile, portfolio } from '../../public/images';
+import { alarm2, dashboard, epi1, home, mobile} from '../../public/images';
 import { FaCode, FaEye, FaTimes } from 'react-icons/fa';
 
 const Projects = () => {
@@ -52,13 +52,7 @@ const Projects = () => {
       technologies: ["REACT", "FLASK"],
       screenshots: []
     },
-    {
-      id: 6,
-      title: "Mon Portfolio",
-      image: portfolio,
-      technologies: ["REACT", "TAILWINDCSS"],
-      screenshots: []
-    },
+
   ];
 
   const openImage = (imageSrc) => {
