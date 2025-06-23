@@ -7,13 +7,26 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      backgroundImage: {
-
-        'dark-particle': 'linear-gradient(to bottom right, #0f0f1a, #1a1a2e, #16213e)'
+      colors: {
+        navy: '#0a192f',
+        slate: {
+          900: '#0f172a',
+          800: '#1e293b',
+        },
+        emerald: {
+          400: '#34d399',
+        },
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        mono: ['Fira Code', 'monospace'],
+      },
+      // ❌ Supprimer les anciens dégradés inutiles
+      backgroundImage: {},
+
       zIndex: {
         '-10': '-10',
-      }
+      },
     },
   },
   plugins: [],

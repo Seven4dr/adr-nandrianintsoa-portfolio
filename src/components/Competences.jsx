@@ -1,116 +1,133 @@
-import React from 'react';
-import { 
-  FaJsSquare, 
-  FaPython, 
-  FaJava, 
-  FaPhp, 
-  FaHtml5, 
-  FaCss3Alt, 
-  FaReact, 
-  FaAngular, 
-  FaNodeJs, 
-  FaBootstrap,
-  FaGitAlt
-} from 'react-icons/fa';
-import { 
-  SiNextdotjs, 
-  SiFlutter, 
-  SiNestjs, 
-  SiExpress, 
-  SiLaravel, 
-  SiSpringboot, 
-  SiPostgresql, 
-  SiMysql, 
-  SiTailwindcss,
-} from 'react-icons/si';
-
-// Use absolute paths for public assets
-const figma = '/images/figma.png';
-const adobxd = '/images/adobxd.png';
+import React, { useState } from 'react';
 
 const Competences = () => {
+  const [activeCategory, setActiveCategory] = useState(0);
+
   const skillCategories = [
     {
       title: "Frontend",
+      shortTitle: "Frontend",
       skills: [
-        { icon: <FaHtml5 className="text-orange-500" />, name: "HTML5" },
-        { icon: <FaCss3Alt className="text-blue-500" />, name: "CSS3" },
-        { icon: <FaBootstrap className="text-purple-500" />, name: "Bootstrap" },
-        { icon: <SiTailwindcss className="text-blue-500" />, name: "Tailwind" },
-        { icon: <FaJsSquare className="text-yellow-500" />, name: "JavaScript" },
-        { icon: <FaReact className="text-blue-400" />, name: "React" },
-        { icon: <FaAngular className="text-red-600" />, name: "Angular" },
-        { icon: <SiNextdotjs className="text-white" />, name: "Next.js" },
-        { icon: <SiFlutter className="text-blue-400" />, name: "Flutter" }
+        { name: "HTML5", color: "bg-orange-500 hover:bg-orange-400 text-white" },
+        { name: "CSS3", color: "bg-blue-500 hover:bg-blue-400 text-white" },
+        { name: "Bootstrap", color: "bg-purple-600 hover:bg-purple-500 text-white" },
+        { name: "Tailwind", color: "bg-blue-400 hover:bg-blue-300 text-white" },
+        { name: "JavaScript", color: "bg-yellow-400 hover:bg-yellow-300 text-gray-900" },
+        { name: "React", color: "bg-blue-600 hover:bg-blue-500 text-white" },
+        { name: "Angular", color: "bg-red-600 hover:bg-red-500 text-white" },
+        { name: "Next.js", color: "bg-gray-800 hover:bg-gray-700 text-white" },
+        { name: "Flutter", color: "bg-blue-400 hover:bg-blue-300 text-white" }
       ]
     },
     {
       title: "Backend",
+      shortTitle: "Backend",
       skills: [
-        { icon: <FaPython className="text-blue-600" />, name: "Python" },
-        { icon: <FaJava className="text-red-600" />, name: "Java" },
-        { icon: <FaPhp className="text-purple-600" />, name: "PHP" },
-        { icon: <FaNodeJs className="text-green-600" />, name: "Node.js" },
-        { icon: <SiNestjs className="text-red-500" />, name: "NestJS" },
-        { icon: <SiExpress className="text-white" />, name: "Express" },
-        { icon: <SiLaravel className="text-red-500" />, name: "Laravel" },
-        { icon: <SiSpringboot className="text-green-600" />, name: "Spring Boot" }
+        { name: "Python", color: "bg-blue-600 hover:bg-blue-500 text-white" },
+        { name: "Java", color: "bg-red-600 hover:bg-red-500 text-white" },
+        { name: "PHP", color: "bg-blue-800 hover:bg-blue-700 text-white" },
+        { name: "Node.js", color: "bg-green-600 hover:bg-green-500 text-white" },
+        { name: "NestJS", color: "bg-red-500 hover:bg-red-400 text-white" },
+        { name: "Express", color: "bg-gray-300 hover:bg-gray-200 text-gray-900" },
+        { name: "Laravel", color: "bg-red-500 hover:bg-red-400 text-white" },
+        { name: "Spring Boot", color: "bg-green-600 hover:bg-green-500 text-white" }
       ]
     },
     {
       title: "Base de Données",
+      shortTitle: "BD",
       skills: [
-        { icon: <SiPostgresql className="text-blue-700" />, name: "PostgreSQL" },
-        { icon: <SiMysql className="text-blue-500" />, name: "MySQL" }
+        { name: "PostgreSQL", color: "bg-blue-700 hover:bg-blue-600 text-white" },
+        { name: "MySQL", color: "bg-blue-500 hover:bg-blue-400 text-white" }
       ]
     },
     {
       title: "Outils",
+      shortTitle: "Outils",
       skills: [
-        { icon: <img src={figma} alt="Figma" className="w-8 h-8" />, name: "Figma" },
-        { icon: <img src={adobxd} alt="Adobe XD" className="w-12 h-8" />, name: "Adobe XD" },
-        { icon: <FaGitAlt className="text-orange-500" />, name: "Git" }
+        { name: "Figma", color: "bg-purple-500 hover:bg-purple-400 text-white" },
+        { name: "Git", color: "bg-orange-500 hover:bg-orange-400 text-white" }
       ]
     }
   ];
 
-  return (
-    <div className="px-4 min-h-screen">
-     <div className="max-w-7xl mx-auto mb-12 px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-10 text-white tracking-wide">
-          MES COMPETENCES
-        </h2>
-      </div>
+  const currentCategory = skillCategories[activeCategory];
 
-      
-      {/* Grid 2x2 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {skillCategories.map((category, categoryIndex) => (
-          <div 
-            key={categoryIndex}
-            className="bg-slate-800/40 border border-slate-700/50 rounded-2xl p-6 hover:bg-slate-800/60 transition-all duration-300"
-          >
-            <h3 className="text-2xl font-bold text-center mb-6 text-white/90 border-b border-slate-600/50 pb-3">
-              {category.title}
-            </h3>
-            
-            <div className="grid grid-cols-3 gap-4 place-items-center">
-              {category.skills.map((skill, skillIndex) => (
-                <div 
-                  key={skillIndex} 
-                  className="flex flex-col items-center p-3 rounded-lg bg-slate-700/30 hover:bg-slate-700/50 transition-all duration-300 border border-slate-600/30 hover:scale-105 min-w-[80px]"
-                >
-                  <div className="text-3xl mb-2">
-                    {skill.icon}
-                  </div>
-                  <span className="text-xs text-white/80 text-center font-medium">
-                    {skill.name}
-                  </span>
-                </div>
-              ))}
-            </div>
+  return (
+    <div className="min-h-screen bg-gray-900 px-4 py-8 w-full">
+      <div className="w-full max-w-6xl mx-auto">
+        {/* Titre principal */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider">
+            MES COMPÉTENCES
+          </h2>
+          <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+        </div>
+
+        {/* Menu de navigation */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2 mb-4 justify-center">
+            {skillCategories.map((category, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveCategory(index)}
+                className={`px-4 py-2 text-sm font-mono rounded transition-all duration-300 border ${
+                  activeCategory === index 
+                    ? 'bg-emerald-400/10 border-emerald-400 text-emerald-400' 
+                    : 'border-slate-600 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/50'
+                }`}
+              >
+                {category.shortTitle}
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Header de section */}
+        <div className="border-l-4 border-emerald-400 pl-4 mb-6">
+          <h3 className="text-xl font-bold text-slate-200">
+            {currentCategory.title}
+          </h3>
+          <p className="text-slate-400 text-sm">
+            {currentCategory.skills.length} technologies disponibles
+          </p>
+        </div>
+
+        {/* Liste des compétences en flex wrap, style bouton coloré */}
+        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+          {currentCategory.skills.map((skill, skillIndex) => (
+            <button
+              key={skillIndex}
+              className={`px-4 py-2 rounded-md font-mono text-sm cursor-pointer transition-colors duration-300 ${skill.color}`}
+              type="button"
+              aria-label={skill.name}
+            >
+              {skill.name}
+            </button>
+          ))}
+        </div>
+
+        {/* Stats en bas */}
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {skillCategories.map((category, index) => (
+            <div 
+              key={index}
+              className={`p-4 bg-slate-800 rounded border transition-all duration-300 cursor-pointer ${
+                activeCategory === index 
+                  ? 'border-emerald-400 bg-emerald-400/5' 
+                  : 'border-slate-700 hover:border-emerald-400/50'
+              }`}
+              onClick={() => setActiveCategory(index)}
+            >
+              <div className="text-2xl font-bold text-slate-200">
+                {category.skills.length}
+              </div>
+              <div className="text-slate-400 text-sm">
+                {category.shortTitle}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
