@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FaMobileAlt, FaBook, FaUserPlus, FaCar, FaChartLine, FaServer, FaCalendarAlt, FaTrophy, FaRobot, FaCube, FaChartBar, FaGraduationCap } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { emihack, madigicom, manasoa } from '../../public/images';
+
+// Import des images (vous devrez les remplacer par vos vraies images)
+ // Remplacez par votre vraie image
 
 const Experiences = () => {
     const [activeExperience, setActiveExperience] = useState(0);
 
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            mirror: false
-        });
-    }, []);
-
     const experiences = [
         {
-            icon: <FaBook className="text-2xl text-emerald-400" />,
+            icon: <FaBook className="text-xl text-emerald-400" />,
             title: "Gestion de Bibliothèque",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Java",
@@ -26,7 +19,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaUserPlus className="text-2xl text-emerald-400" />,
+            icon: <FaUserPlus className="text-xl text-emerald-400" />,
             title: "Gestion d'Inscription - EMIT",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "JavaScript / PHP",
@@ -35,7 +28,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaCar className="text-2xl text-emerald-400" />,
+            icon: <FaCar className="text-xl text-emerald-400" />,
             title: "Gestion de vente de Voiture",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "C#",
@@ -44,7 +37,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaChartLine className="text-2xl text-emerald-400" />,
+            icon: <FaChartLine className="text-xl text-emerald-400" />,
             title: "Tableau de bord de suivi du patrimoine numerique - Perfectnodes",
             ecole: null,
             technologies: "ReactJS / Express / Tailwindcss",
@@ -56,7 +49,7 @@ const Experiences = () => {
             }
         },
         {
-            icon: <FaGraduationCap className="text-2xl text-emerald-400" />,
+            icon: <FaGraduationCap className="text-xl text-emerald-400" />,
             title: "Gestion de note-EMIT",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Angular / Express",
@@ -65,7 +58,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaServer className="text-2xl text-emerald-400" />,
+            icon: <FaServer className="text-xl text-emerald-400" />,
             title: "Gestion de l'espace commercial - Manasoa varotra",
             ecole: null,
             technologies: "React / NestJS",
@@ -77,7 +70,7 @@ const Experiences = () => {
             }
         },
         {
-            icon: <FaMobileAlt className="text-2xl text-emerald-400" />,
+            icon: <FaMobileAlt className="text-xl text-emerald-400" />,
             title: "Suivi d'Activité de Navigateur de PC (Projet IoT)",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Flutter / Express",
@@ -86,7 +79,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaTrophy className="text-2xl text-emerald-400" />,
+            icon: <FaTrophy className="text-xl text-emerald-400" />,
             title: "Emihack - TOP 3 (3ème place)",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Flask / ReactJS",
@@ -102,107 +95,120 @@ const Experiences = () => {
     ];
 
     return (
-       <div className="min-h-screen bg-gray-900 px-4 py-8 w-full">
-
-            <div className="w-full max-w-6xl mx-auto">
+        <div className="min-h-screen bg-gray-900 w-full">
+            <div className="w-full max-w-none px-4 sm:px-6 lg:px-8 py-8">
                 {/* Title */}
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
                         MES EXPÉRIENCES
                     </h2>
-                    <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+                    <div className="w-24 sm:w-32 h-0.5 bg-emerald-400 mx-auto"></div>
                 </div>
 
-                {/* Experience List */}
-                <div className="relative">
-                    <div className="absolute left-8 top-0 h-full w-0.5 bg-emerald-400/30 hidden md:block"></div>
-                    <div className="space-y-8">
+                {/* Timeline */}
+                <div className="relative max-w-6xl mx-auto">
+                    {/* Main vertical line */}
+                    <div className="absolute left-4 sm:left-6 lg:left-8 top-0 bottom-0 w-0.5 bg-emerald-400 opacity-40"></div>
+                    
+                    <div className="space-y-0">
                         {experiences.map((exp, index) => (
-                            <div
-                                key={index}
-                                className={`relative pl-16 md:pl-20 pr-4 group ${activeExperience === index ? 'bg-slate-800/20' : ''} rounded-lg transition-all duration-300`}
-                                onClick={() => setActiveExperience(index)}
-                                data-aos="fade-up"
-                                data-aos-delay={index * 100}
-                            >
-                                {/* Timeline Node */}
-                                <div className="absolute left-6 md:left-7 top-4 w-4 h-4 rounded-full bg-emerald-400 border-2 border-slate-900 group-hover:scale-125 transition-transform duration-300"></div>
-
-                                <div className="flex items-start gap-4">
-                                    <div className="text-lg group-hover:scale-110 transition-transform duration-200">
-                                        {exp.icon}
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex justify-between items-start">
-                                            <h3 className="text-lg font-bold text-slate-200 group-hover:text-emerald-400 transition-colors duration-200">
-                                                {exp.title}
-                                            </h3>
-                                            <span className="text-xs text-slate-400 flex items-center gap-1">
-                                                <FaCalendarAlt className="text-emerald-400" />
-                                                {exp.date}
-                                            </span>
-                                        </div>
-
-                                        {exp.ecole && (
-                                            <p className="text-sm text-slate-400 mt-1">{exp.ecole}</p>
-                                        )}
-
-                                        {exp.companyLogo && (
-                                            <div className="mt-2">
-                                                <img
-                                                    src={exp.companyLogo.image}
-                                                    alt={exp.companyLogo?.name || ' '}
-                                                    className="h-8 object-contain"
-                                                />
+                            <div key={index} className="relative">
+                                {/* Timeline node */}
+                                <div className="absolute left-2 sm:left-4 lg:left-6 top-6 sm:top-8 w-5 h-5 rounded-full bg-emerald-400 border-4 border-gray-900 z-10 shadow-lg shadow-emerald-400/50"></div>
+                                
+                                {/* Content card */}
+                                <div className="ml-10 sm:ml-12 lg:ml-16 pb-6 sm:pb-8">
+                                    <div 
+                                        className={`bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-opacity-70 transition-all duration-300 cursor-pointer border border-slate-700 ${
+                                            activeExperience === index ? 'ring-2 ring-emerald-400' : ''
+                                        }`}
+                                        onClick={() => setActiveExperience(index)}
+                                    >
+                                        <div className="flex flex-col sm:flex-row items-start gap-4">
+                                            <div className="p-3 bg-slate-700 rounded-lg flex-shrink-0">
+                                                {exp.icon}
                                             </div>
-                                        )}
+                                            
+                                            <div className="flex-1 w-full">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2 gap-2">
+                                                    <h3 className="text-lg sm:text-xl font-bold text-slate-200 leading-tight">
+                                                        {exp.title}
+                                                    </h3>
+                                                    <span className="text-xs text-emerald-300 flex items-center gap-1 sm:ml-4">
+                                                        <FaCalendarAlt className="text-emerald-400" />
+                                                        {exp.date}
+                                                    </span>
+                                                </div>
 
-                                        <p className="text-sm text-slate-400 mt-2">{exp.description}</p>
+                                                {exp.ecole && (
+                                                    <p className="text-sm text-slate-400 mb-3 opacity-80">{exp.ecole}</p>
+                                                )}
 
-                                        {exp.features && (
-                                            <ul className="mt-3 space-y-1 text-sm text-slate-400">
-                                                {exp.features.map((feature, i) => (
-                                                    <li key={i} className="flex items-center">
-                                                        {exp.featureIcons[i]}
-                                                        <span>{feature}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        )}
+                                                {exp.companyLogo && (
+                                                    <div className="mb-3">
+                                                        <img
+                                                            src={exp.companyLogo.image}
+                                                            alt={exp.companyLogo.name || ''}
+                                                            className="h-8 object-contain"
+                                                        />
+                                                    </div>
+                                                )}
 
-                                        <div className="mt-3 flex flex-wrap gap-2">
-                                            {exp.technologies.split('/').map((tech, i) => (
-                                                <span
-                                                    key={i}
-                                                    className="px-2 py-1 bg-slate-800 text-slate-300 text-xs rounded-sm group-hover:bg-emerald-400 group-hover:text-slate-900 transition-all duration-200"
-                                                >
-                                                    {tech.trim()}
-                                                </span>
-                                            ))}
+                                                <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+                                                    {exp.description}
+                                                </p>
+
+                                                {exp.features && (
+                                                    <ul className="mb-4 space-y-2 text-sm text-slate-300">
+                                                        {exp.features.map((feature, i) => (
+                                                            <li key={i} className="flex items-center">
+                                                                {exp.featureIcons && exp.featureIcons[i]}
+                                                                <span>{feature}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+
+                                                <div className="flex flex-wrap gap-2">
+                                                    {exp.technologies.split('/').map((tech, i) => (
+                                                        <span
+                                                            key={i}
+                                                            className="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full hover:bg-emerald-400 hover:text-slate-900 transition-all duration-200"
+                                                        >
+                                                            {tech.trim()}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                {/* Connecting line to next item */}
+                                {index < experiences.length - 1 && (
+                                    <div className="absolute left-4 sm:left-6 lg:left-8 top-12 sm:top-16 w-0.5 h-6 sm:h-8 bg-emerald-400 opacity-40"></div>
+                                )}
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* Stats */}
-                <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
-                    <div className="p-4 bg-slate-800 rounded border border-slate-700">
-                        <div className="text-2xl font-bold text-slate-200 font-mono">
+                <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+                    <div className="p-4 sm:p-6 bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg border border-slate-700">
+                        <div className="text-2xl sm:text-3xl font-bold text-slate-200 font-mono">
                             {experiences.length}
                         </div>
                         <div className="text-sm text-slate-400 font-mono">Projets</div>
                     </div>
-                    <div className="p-4 bg-slate-800 rounded border border-slate-700">
-                        <div className="text-2xl font-bold text-slate-200 font-mono">
+                    <div className="p-4 sm:p-6 bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg border border-slate-700">
+                        <div className="text-2xl sm:text-3xl font-bold text-slate-200 font-mono">
                             {experiences.filter(exp => !exp.ecole).length}
                         </div>
                         <div className="text-sm text-slate-400 font-mono">Stages</div>
                     </div>
-                    <div className="p-4 bg-slate-800 rounded border border-slate-700">
-                        <div className="text-2xl font-bold text-slate-200 font-mono">
+                    <div className="p-4 sm:p-6 bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg border border-slate-700 sm:col-span-2 lg:col-span-1">
+                        <div className="text-2xl sm:text-3xl font-bold text-slate-200 font-mono">
                             {new Set(experiences.flatMap(exp => exp.technologies.split('/').map(t => t.trim()))).size}
                         </div>
                         <div className="text-sm text-slate-400 font-mono">Technologies</div>

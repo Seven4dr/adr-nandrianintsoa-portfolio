@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import{ useEffect, useState } from 'react';
 import Typewriter from 'typewriter-effect';
 import { FaLinkedin, FaGithub, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
 import cvFile from '../../public/images/cv.pdf';
@@ -29,7 +29,7 @@ const PortfolioHeader = () => {
   };
 
   return (
-<section className="min-h-screen bg-gray-900 px-6 py-12 flex items-center justify-center w-full">
+<section className=" bg-gray-900 px-6 py-12 flex items-center justify-center w-full">
       <div className="w-full max-w-5xl mx-auto">
         <div className="space-y-8 text-left">
           {/* Greeting */}
@@ -47,10 +47,10 @@ const PortfolioHeader = () => {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
             }`}
           >
-            <h1 className="text-3xl md:text-5xl font-extrabold text-slate-100 leading-tight select-none">
+            <h1 className="text-3xl md:text-7xl font-extrabold text-slate-100 leading-tight select-none">
               <Typewriter
                 options={{
-                  strings: ['Nandrianintsoa', 'Fullstack & Artificial Intelligence Developer'],
+                  strings: ['Nandrianintsoa', 'Fullstack & AI Developer'],
                   autoStart: true,
                   loop: true,
                   delay: 100,

@@ -67,15 +67,12 @@ const Projects = () => {
     <div className="w-full py-12 sm:py-16 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
       <div className="container mx-auto max-w-6xl">
         {/* Main title with animation */}
-        <h2 
-          className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 uppercase tracking-wide"
-          data-aos="fade-down"
-        >
-          <span className="relative inline-block pb-2">
-            Mes Projets
-            {/* <span className="absolute bottom-0 left-0 w-full h-0.5 bg-emerald-400"></span> */}
-          </span>
-        </h2>
+          <div className="text-center mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
+                  MES PROJETS
+              </h2>
+            <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+    </div>
         
         {/* Projects Grid - Responsive layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">

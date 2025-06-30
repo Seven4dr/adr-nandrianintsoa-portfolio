@@ -54,11 +54,11 @@ const Competences = () => {
   const currentCategory = skillCategories[activeCategory];
 
   return (
-    <div className="min-h-screen bg-gray-900 px-4 py-8 w-full">
+    <div className=" bg-gray-900 px-4 py-8 w-full">
       <div className="w-full max-w-6xl mx-auto">
         {/* Titre principal */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
             MES COMPÉTENCES
           </h2>
           <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
