@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
@@ -7,7 +9,10 @@ import Competences from '../components/Competences';
 import Experiences from '../components/Experience';
 import Projects from '../components/Projects';
 import Background from './Backgound';
-import SplashCursor from '../components/SplashCursor'; // Import SplashCursor
+import SplashCursor from '../components/SplashCursor';
+
+// Register GSAP ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 // Composant pour l'icône de localisation
 const LocationIcon = () => (
@@ -59,9 +64,107 @@ const Home = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, [activeSection, menuItems]);
 
+  // GSAP ScrollTrigger animations
+  useEffect(() => {
+    if (!loading) {
+      // Timeline for competences section with scrub
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#competences',
+          start: 'top 90%',
+          end: 'bottom 30%',
+          scrub: 1,
+        },
+      });
+
+      tl.fromTo(
+        '#competences',
+        { opacity: 0, y: 100, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out' }
+      )
+        .fromTo(
+          '#competences .competence-item',
+          { opacity: 0, x: -50, stagger: 0.2 },
+          { opacity: 1, x: 0, stagger: 0.2, duration: 0.8, ease: 'power2.out' },
+          '-=0.5'
+        );
+
+      gsap.fromTo(
+        '.portfolio-header',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.portfolio-header',
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '#experience',
+        { opacity: 0, y: 100, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#experience',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        '#projets',
+        { opacity: 0, y: 100, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '#projets',
+            start: 'top 75%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        'footer',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: 'footer',
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [loading]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
 
   return (
     <>
@@ -74,10 +177,9 @@ const Home = () => {
         </div>
       ) : (
         <Background variant="default">
-          {/* Add SplashCursor here */}
           <SplashCursor
             SIM_RESOLUTION={128}
-            DYE_RESOLUTION={720} // Lowered for better performance; adjust as needed
+            DYE_RESOLUTION={720}
             DENSITY_DISSIPATION={3.5}
             VELOCITY_DISSIPATION={2}
             PRESSURE={0.1}
@@ -87,7 +189,7 @@ const Home = () => {
             SPLAT_FORCE={6000}
             SHADING={true}
             COLOR_UPDATE_SPEED={10}
-            BACK_COLOR={{ r: 0.1, g: 0, b: 0.2 }} // Adjusted to match your purple theme
+            BACK_COLOR={{ r: 0.1, g: 0, b: 0.2, a: 0.3 }} // Reduced opacity
             TRANSPARENT={true}
           />
           <header
@@ -104,7 +206,6 @@ const Home = () => {
           >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-20">
-                {/* Logo avec effet de glow */}
                 <div className="flex-shrink-0 group">
                   <h1
                     className="text-2xl font-mono font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 bg-clip-text text-transparent
@@ -114,8 +215,6 @@ const Home = () => {
                     adr-nandrianintsoa
                   </h1>
                 </div>
-
-                {/* Navigation principale */}
                 <nav className="hidden md:flex items-center space-x-2">
                   {menuItems.map((item, index) => (
                     <a
@@ -142,7 +241,6 @@ const Home = () => {
                     </a>
                   ))}
                 </nav>
-
                 <div className="flex items-center space-x-6">
                   <div
                     className="hidden md:flex items-center space-x-3 px-4 py-2 rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50
@@ -154,7 +252,6 @@ const Home = () => {
                       Madagascar
                     </span>
                   </div>
-
                   <button
                     onClick={toggleMobileMenu}
                     className="md:hidden relative p-3 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50
@@ -178,7 +275,6 @@ const Home = () => {
                   </button>
                 </div>
               </div>
-
               <div
                 className={`md:hidden transition-all duration-300 overflow-hidden
                 ${mobileMenuOpen ? 'max-h-80 opacity-100 pb-4' : 'max-h-0 opacity-0 pointer-events-none'}`}
@@ -190,7 +286,6 @@ const Home = () => {
                     <LocationIcon />
                     <span className="text-sm text-gray-400 font-mono">Madagascar</span>
                   </div>
-
                   {menuItems.map((item, index) => (
                     <a
                       key={item.name}
@@ -216,9 +311,10 @@ const Home = () => {
               </div>
             </div>
           </header>
-
-          <main className=" bg-gray-900 min-h-screen">
-            <PortfolioHeader />
+          <main className="pt-20 bg-gray-900 min-h-screen">
+            <div className="portfolio-header">
+              <PortfolioHeader />
+            </div>
             <section id="competences" data-aos="fade-up">
               <Competences />
             </section>
@@ -228,7 +324,6 @@ const Home = () => {
             <section id="projets" data-aos="fade-up">
               <Projects />
             </section>
-
             <footer
               className="py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 border-t border-purple-500/20"
             >
@@ -239,7 +334,6 @@ const Home = () => {
                   </p>
                   <LocationIcon />
                 </div>
-
                 <div className="flex items-center space-x-4">
                   <a
                     href="https://github.com/nandrianintsoa"
