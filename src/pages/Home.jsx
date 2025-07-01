@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
@@ -7,12 +7,13 @@ import Competences from '../components/Competences';
 import Experiences from '../components/Experience';
 import Projects from '../components/Projects';
 import Background from './Backgound';
+import SplashCursor from '../components/SplashCursor'; // Import SplashCursor
 
 // Composant pour l'icône de localisation
 const LocationIcon = () => (
   <div className="flex items-center space-x-2">
     <FaMapMarkerAlt className="text-xl text-gray-400" />
-    <span className="text-xs text-gray-400 font-mono">Madagascar</span>
+    <span className="text-xs text-gray-400 font-mono">Fianarantsoa</span>
   </div>
 );
 
@@ -73,8 +74,24 @@ const Home = () => {
         </div>
       ) : (
         <Background variant="default">
+          {/* Add SplashCursor here */}
+          <SplashCursor
+            SIM_RESOLUTION={128}
+            DYE_RESOLUTION={720} // Lowered for better performance; adjust as needed
+            DENSITY_DISSIPATION={3.5}
+            VELOCITY_DISSIPATION={2}
+            PRESSURE={0.1}
+            PRESSURE_ITERATIONS={20}
+            CURL={3}
+            SPLAT_RADIUS={0.2}
+            SPLAT_FORCE={6000}
+            SHADING={true}
+            COLOR_UPDATE_SPEED={10}
+            BACK_COLOR={{ r: 0.1, g: 0, b: 0.2 }} // Adjusted to match your purple theme
+            TRANSPARENT={true}
+          />
           <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out
+            className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out
               ${scrolled
                 ? 'bg-gray-900/95 backdrop-blur-xl border-b border-purple-500/30 shadow-2xl shadow-purple-500/10'
                 : 'bg-gray-900/20 backdrop-blur-md border-b border-gray-800/30'
@@ -114,12 +131,10 @@ const Home = () => {
                       }}
                     >
                       <span className="relative z-10">{item.name}</span>
-                      {/* Underline animé */}
                       <div
                         className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300
                         ${activeSection === item.href ? 'w-4/5' : 'w-0 group-hover:w-4/5'}`}
                       ></div>
-                      {/* Effet de brillance au hover */}
                       <div
                         className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-600/0 via-purple-600/5 to-purple-600/0
                         opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -128,9 +143,7 @@ const Home = () => {
                   ))}
                 </nav>
 
-                {/* Section droite avec icône de localisation */}
                 <div className="flex items-center space-x-6">
-                  {/* Icône de localisation */}
                   <div
                     className="hidden md:flex items-center space-x-3 px-4 py-2 rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50
                     hover:bg-gray-800/50 hover:border-gray-600/50 transition-all duration-300 group"
@@ -142,7 +155,6 @@ const Home = () => {
                     </span>
                   </div>
 
-                  {/* Bouton menu mobile */}
                   <button
                     onClick={toggleMobileMenu}
                     className="md:hidden relative p-3 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50
@@ -151,7 +163,7 @@ const Home = () => {
                   >
                     <div className="w-6 h-6 flex flex-col justify-center items-center">
                       <div
-                        className={`w-5 h-0.5 bg-gray-300 group-hover:bg-purpleandoli
+                        className={`w-5 h-0.5 bg-gray-300 group-hover:bg-purple-400
                         ${mobileMenuOpen ? 'rotate-45 translate-y-0.5' : 'mb-1'}`}
                       />
                       <div
@@ -167,14 +179,11 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* Menu mobile amélioré */}
               <div
                 className={`md:hidden transition-all duration-300 overflow-hidden
                 ${mobileMenuOpen ? 'max-h-80 opacity-100 pb-4' : 'max-h-0 opacity-0 pointer-events-none'}`}
               >
- توافق
                 <div className="px-2 pt-4 space-y-2">
-                  {/* Icône de localisation mobile */}
                   <div
                     className="flex items-center justify-center space-x-3 px-4 py-3 mb-4 rounded-xl bg-gray-800/30 backdrop-blur-sm border border-gray-700/50"
                   >
@@ -182,35 +191,33 @@ const Home = () => {
                     <span className="text-sm text-gray-400 font-mono">Madagascar</span>
                   </div>
 
-                 {menuItems.map((item, index) => (
-                  <a
-                    key={item.name} // Use item.name as the key for uniqueness
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`relative block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300 group
-                      ${activeSection === item.href
-                        ? 'text-purple-400 bg-purple-500/10 border border-purple-500/30'
-                        : 'text-gray-300 hover:text-white hover:bg-gray-800/50 border border-transparent'
-                      }`}
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                    }}
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    {/* Underline pour mobile */}
-                    <div
-                      className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300
-                      ${activeSection === item.href ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`}
-                    ></div>
-                  </a>
-                ))}
+                  {menuItems.map((item, index) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`relative block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300 group
+                        ${activeSection === item.href
+                          ? 'text-purple-400 bg-purple-500/10 border border-purple-500/30'
+                          : 'text-gray-300 hover:text-white hover:bg-gray-800/50 border border-transparent'
+                        }`}
+                      style={{
+                        animationDelay: `${index * 100}ms`,
+                      }}
+                    >
+                      <span className="relative z-10">{item.name}</span>
+                      <div
+                        className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300
+                        ${activeSection === item.href ? 'w-1/2' : 'w-0 group-hover:w-1/2'}`}
+                      ></div>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
           </header>
 
-          {/* Main Content */}
-          <main className="pt-20 bg-gray-900 min-h-screen">
+          <main className=" bg-gray-900 min-h-screen">
             <PortfolioHeader />
             <section id="competences" data-aos="fade-up">
               <Competences />

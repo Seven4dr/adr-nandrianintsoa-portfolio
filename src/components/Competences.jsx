@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 
 const Competences = () => {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -61,7 +61,7 @@ const Competences = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
             MES COMPÉTENCES
           </h2>
-          <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+          <div className="w-32 h-0.5 bg-purple-400 mx-auto"></div>
         </div>
 
         {/* Menu de navigation */}
@@ -73,8 +73,8 @@ const Competences = () => {
                 onClick={() => setActiveCategory(index)}
                 className={`px-4 py-2 text-sm font-mono rounded transition-all duration-300 border ${
                   activeCategory === index 
-                    ? 'bg-emerald-400/10 border-emerald-400 text-emerald-400' 
-                    : 'border-slate-600 text-slate-400 hover:text-emerald-400 hover:border-emerald-400/50'
+                    ? 'bg-purple-400/10 border-purple-400 text-purple-400' 
+                    : 'border-slate-600 text-slate-400 hover:text-purple-400 hover:border-purple-400/50'
                 }`}
               >
                 {category.shortTitle}
@@ -84,7 +84,7 @@ const Competences = () => {
         </div>
 
         {/* Header de section */}
-        <div className="border-l-4 border-emerald-400 pl-4 mb-6">
+        <div className="border-l-4 border-purple-400 pl-4 mb-6">
           <h3 className="text-xl font-bold text-slate-200">
             {currentCategory.title}
           </h3>
@@ -114,8 +114,8 @@ const Competences = () => {
               key={index}
               className={`p-4 bg-slate-800 rounded border transition-all duration-300 cursor-pointer ${
                 activeCategory === index 
-                  ? 'border-emerald-400 bg-emerald-400/5' 
-                  : 'border-slate-700 hover:border-emerald-400/50'
+                  ? 'border-purple-400 bg-purple-400/5' 
+                  : 'border-slate-700 hover:border-purple-400/50'
               }`}
               onClick={() => setActiveCategory(index)}
             >

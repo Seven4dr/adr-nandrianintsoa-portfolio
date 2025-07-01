@@ -71,7 +71,7 @@ const Projects = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
                   MES PROJETS
               </h2>
-            <div className="w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+            <div className="w-32 h-0.5 bg-purple-400 mx-auto"></div>
     </div>
         
         {/* Projects Grid - Responsive layout */}
@@ -85,7 +85,7 @@ const Projects = () => {
             >
               {/* Project container with hover effect */}
               <div 
-                className="bg-gray-900 bg-opacity-80 p-4 sm:p-5 rounded-lg border-l-2 border-emerald-400 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                className="bg-gray-900 bg-opacity-80 p-4 sm:p-5 rounded-lg border-l-2 border-purple-400 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
               >
                 {/* Project main image with hover effect and green glowing contour */}
                 <div 
@@ -98,10 +98,10 @@ const Projects = () => {
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105 ring-2 ring-emerald-400/50 group-hover:ring-4 group-hover:ring-emerald-400/70"
+                      className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-105 ring-2 ring-purple-400/50 group-hover:ring-4 group-hover:ring-purple-400/70"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
-                      <span className="bg-emerald-400 text-gray-900 p-2 rounded-full">
+                      <span className="bg-purple-400 text-gray-900 p-2 rounded-full">
                         <FaEye className="text-lg" />
                       </span>
                     </div>
@@ -123,10 +123,10 @@ const Projects = () => {
                           <img 
                             src={screenshot} 
                             alt={`${project.title} screenshot ${idx + 1}`}
-                            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 ring-2 ring-emerald-400/50 group-hover:ring-4 group-hover:ring-emerald-400/70"
+                            className="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110 ring-2 ring-purple-400/50 group-hover:ring-4 group-hover:ring-purple-400/70"
                           />
                           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100">
-                            <span className="bg-emerald-400 text-gray-900 p-2 rounded-full">
+                            <span className="bg-purple-400 text-gray-900 p-2 rounded-full">
                               <FaEye className="text-sm" />
                             </span>
                           </div>
@@ -138,7 +138,7 @@ const Projects = () => {
                 
                 {/* Project title - Responsive font size */}
                 <h3 
-                  className="text-lg sm:text-xl font-bold mb-3 line-clamp-2 transition-colors duration-300 hover:text-emerald-400"
+                  className="text-lg sm:text-xl font-bold mb-3 line-clamp-2 transition-colors duration-300 hover:text-purple-400"
                   data-aos="fade-up"
                   data-aos-delay={200}
                 >
@@ -150,7 +150,7 @@ const Projects = () => {
                   {project.technologies.map((tech, idx) => (
                     <span 
                       key={idx} 
-                      className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs flex items-center transition-all duration-300 hover:bg-emerald-400 hover:text-gray-900"
+                      className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs flex items-center transition-all duration-300 hover:bg-purple-400 hover:text-gray-900"
                       data-aos="zoom-in"
                       data-aos-delay={250 + (idx * 50)}
                     >
@@ -170,7 +170,7 @@ const Projects = () => {
         <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4" onClick={closeImage}>
           <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <button 
-              className="absolute -top-10 right-0 bg-gray-800 text-white p-2 rounded-full hover:bg-emerald-400 hover:text-gray-900 transition-colors duration-300"
+              className="absolute -top-10 right-0 bg-gray-800 text-white p-2 rounded-full hover:bg-purple-400 hover:text-gray-900 transition-colors duration-300"
               onClick={closeImage}
             >
               <FaTimes />
@@ -178,7 +178,7 @@ const Projects = () => {
             <img 
               src={selectedImage} 
               alt="Projet agrandi" 
-              className="w-full h-auto rounded-lg shadow-2xl ring-2 ring-emerald-400/50"
+              className="w-full h-auto rounded-lg shadow-2xl ring-2 ring-purple-400/50"
             />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { FaMobileAlt, FaBook, FaUserPlus, FaCar, FaChartLine, FaServer, FaCalendarAlt, FaTrophy, FaRobot, FaCube, FaChartBar, FaGraduationCap } from 'react-icons/fa';
 import { emihack, madigicom, manasoa } from '../../public/images';
 
@@ -10,7 +10,7 @@ const Experiences = () => {
 
     const experiences = [
         {
-            icon: <FaBook className="text-xl text-emerald-400" />,
+            icon: <FaBook className="text-xl text-purple-400" />,
             title: "Gestion de Bibliothèque",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Java",
@@ -19,7 +19,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaUserPlus className="text-xl text-emerald-400" />,
+            icon: <FaUserPlus className="text-xl text-purple-400" />,
             title: "Gestion d'Inscription - EMIT",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "JavaScript / PHP",
@@ -28,7 +28,7 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaCar className="text-xl text-emerald-400" />,
+            icon: <FaCar className="text-xl text-purple-400" />,
             title: "Gestion de vente de Voiture",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "C#",
@@ -37,8 +37,8 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaChartLine className="text-xl text-emerald-400" />,
-            title: "Tableau de bord de suivi du patrimoine numerique - Perfectnodes",
+            icon: <FaChartLine className="text-xl text-purple-400" />,
+            title: "Tableau de bord de suivi du patrimoine numerique - Perfectnodes (Plateform de portefeuille virtuelle)",
             ecole: null,
             technologies: "ReactJS / Express / Tailwindcss",
             date: "19 Juin - 19 Août 2023",
@@ -49,17 +49,17 @@ const Experiences = () => {
             }
         },
         {
-            icon: <FaGraduationCap className="text-xl text-emerald-400" />,
+            icon: <FaGraduationCap className="text-xl text-purple-400" />,
             title: "Gestion de note-EMIT",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
-            technologies: "Angular / Express",
+            technologies: "Angular / Express / Bootstrap",
             date: "2024",
             description: "Développement d'une application facilitant la gestion des notes et le suivi disciplinaire des élèves, optimisant ainsi le processus de compilation des relevés de notes.",
             companyLogo: null
         },
         {
-            icon: <FaServer className="text-xl text-emerald-400" />,
-            title: "Gestion de l'espace commercial - Manasoa varotra",
+            icon: <FaServer className="text-xl text-purple-400" />,
+            title: "Gestion de l'espace commercial - Manasoa varotra (e-commerce)",
             ecole: null,
             technologies: "React / NestJS",
             date: "24 Juin - 24 Sept 2024",
@@ -70,7 +70,7 @@ const Experiences = () => {
             }
         },
         {
-            icon: <FaMobileAlt className="text-xl text-emerald-400" />,
+            icon: <FaMobileAlt className="text-xl text-purple-400" />,
             title: "Suivi d'Activité de Navigateur de PC (Projet IoT)",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
             technologies: "Flutter / Express",
@@ -79,10 +79,10 @@ const Experiences = () => {
             companyLogo: null
         },
         {
-            icon: <FaTrophy className="text-xl text-emerald-400" />,
+            icon: <FaTrophy className="text-xl text-purple-400" />,
             title: "Emihack - TOP 3 (3ème place)",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
-            technologies: "Flask / ReactJS",
+            technologies: "ReactJS / Flask / Tailwindcss",
             date: "1 Mars 2025",
             description: "HACKATON organisé par notre établissement sur le thème 'Gestion des épidémies incluant Big Data et IA'. Notre solution propose un ChatBot pour tester les symptômes, une visualisation 3D et un tableau de bord analytique complet.",
             companyLogo: {
@@ -90,7 +90,7 @@ const Experiences = () => {
                 image: emihack
             },
             features: ["ChatBot pour tester les symptômes", "Modélisation 3D", "Dashboard analytique"],
-            featureIcons: [<FaRobot className="mr-2 text-emerald-400" />, <FaCube className="mr-2 text-emerald-400" />, <FaChartBar className="mr-2 text-emerald-400" />]
+            featureIcons: [<FaRobot className="mr-2 text-purple-400" />, <FaCube className="mr-2 text-purple-400" />, <FaChartBar className="mr-2 text-purple-400" />]
         }
     ];
 
@@ -102,25 +102,25 @@ const Experiences = () => {
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
                         MES EXPÉRIENCES
                     </h2>
-                    <div className="w-24 sm:w-32 h-0.5 bg-emerald-400 mx-auto"></div>
+                    <div className="w-24 sm:w-32 h-0.5 bg-purple-400 mx-auto"></div>
                 </div>
 
                 {/* Timeline */}
                 <div className="relative max-w-6xl mx-auto">
                     {/* Main vertical line */}
-                    <div className="absolute left-4 sm:left-6 lg:left-8 top-0 bottom-0 w-0.5 bg-emerald-400 opacity-40"></div>
+                    <div className="absolute left-4 sm:left-6 lg:left-8 top-0 bottom-0 w-0.5 bg-purple-400 opacity-40"></div>
                     
                     <div className="space-y-0">
                         {experiences.map((exp, index) => (
                             <div key={index} className="relative">
                                 {/* Timeline node */}
-                                <div className="absolute left-2 sm:left-4 lg:left-6 top-6 sm:top-8 w-5 h-5 rounded-full bg-emerald-400 border-4 border-gray-900 z-10 shadow-lg shadow-emerald-400/50"></div>
+                                <div className="absolute left-2 sm:left-4 lg:left-6 top-6 sm:top-8 w-5 h-5 rounded-full bg-purple-400 border-4 border-gray-900 z-10 shadow-lg shadow-purple-400/50"></div>
                                 
                                 {/* Content card */}
                                 <div className="ml-10 sm:ml-12 lg:ml-16 pb-6 sm:pb-8">
                                     <div 
                                         className={`bg-slate-800 bg-opacity-50 backdrop-blur-sm rounded-lg p-4 sm:p-6 hover:bg-opacity-70 transition-all duration-300 cursor-pointer border border-slate-700 ${
-                                            activeExperience === index ? 'ring-2 ring-emerald-400' : ''
+                                            activeExperience === index ? 'ring-2 ring-purple-400' : ''
                                         }`}
                                         onClick={() => setActiveExperience(index)}
                                     >
@@ -134,8 +134,8 @@ const Experiences = () => {
                                                     <h3 className="text-lg sm:text-xl font-bold text-slate-200 leading-tight">
                                                         {exp.title}
                                                     </h3>
-                                                    <span className="text-xs text-emerald-300 flex items-center gap-1 sm:ml-4">
-                                                        <FaCalendarAlt className="text-emerald-400" />
+                                                    <span className="text-xs text-purple-300 flex items-center gap-1 sm:ml-4">
+                                                        <FaCalendarAlt className="text-purple-400" />
                                                         {exp.date}
                                                     </span>
                                                 </div>
@@ -173,7 +173,7 @@ const Experiences = () => {
                                                     {exp.technologies.split('/').map((tech, i) => (
                                                         <span
                                                             key={i}
-                                                            className="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full hover:bg-emerald-400 hover:text-slate-900 transition-all duration-200"
+                                                            className="px-2 sm:px-3 py-1 bg-slate-700 text-slate-300 text-xs rounded-full hover:bg-purple-400 hover:text-slate-900 transition-all duration-200"
                                                         >
                                                             {tech.trim()}
                                                         </span>
@@ -186,7 +186,7 @@ const Experiences = () => {
                                 
                                 {/* Connecting line to next item */}
                                 {index < experiences.length - 1 && (
-                                    <div className="absolute left-4 sm:left-6 lg:left-8 top-12 sm:top-16 w-0.5 h-6 sm:h-8 bg-emerald-400 opacity-40"></div>
+                                    <div className="absolute left-4 sm:left-6 lg:left-8 top-12 sm:top-16 w-0.5 h-6 sm:h-8 bg-purple-400 opacity-40"></div>
                                 )}
                             </div>
                         ))}
