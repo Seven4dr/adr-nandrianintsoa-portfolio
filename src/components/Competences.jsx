@@ -1,4 +1,10 @@
-import  { useState } from 'react';
+import { useState } from 'react';
+import { 
+  FaHtml5, FaCss3Alt, FaBootstrap, FaReact, FaAngular, FaNodeJs, FaPython, FaJava, FaPhp, FaGitAlt, FaFigma 
+} from 'react-icons/fa6'; // Icônes FontAwesome
+import { 
+  SiTailwindcss, SiNextdotjs, SiFlutter, SiNestjs, SiExpress, SiLaravel, SiSpring, SiPostgresql, SiMysql, SiJavascript 
+} from 'react-icons/si'; // Icônes Simple Icons
 
 const Competences = () => {
   const [activeCategory, setActiveCategory] = useState(0);
@@ -8,45 +14,45 @@ const Competences = () => {
       title: "Frontend",
       shortTitle: "Frontend",
       skills: [
-        { name: "HTML5", color: "bg-orange-500 hover:bg-orange-400 text-white" },
-        { name: "CSS3", color: "bg-blue-500 hover:bg-blue-400 text-white" },
-        { name: "Bootstrap", color: "bg-purple-600 hover:bg-purple-500 text-white" },
-        { name: "Tailwind", color: "bg-blue-400 hover:bg-blue-300 text-white" },
-        { name: "JavaScript", color: "bg-yellow-400 hover:bg-yellow-300 text-gray-900" },
-        { name: "React", color: "bg-blue-600 hover:bg-blue-500 text-white" },
-        { name: "Angular", color: "bg-red-600 hover:bg-red-500 text-white" },
-        { name: "Next.js", color: "bg-gray-800 hover:bg-gray-700 text-white" },
-        { name: "Flutter", color: "bg-blue-400 hover:bg-blue-300 text-white" }
+        { name: "HTML5", color: "bg-orange-500 hover:bg-orange-400 text-white", icon: <FaHtml5 /> },
+        { name: "CSS3", color: "bg-blue-500 hover:bg-blue-400 text-white", icon: <FaCss3Alt /> },
+        { name: "Bootstrap", color: "bg-purple-600 hover:bg-purple-500 text-white", icon: <FaBootstrap /> },
+        { name: "Tailwind", color: "bg-blue-400 hover:bg-blue-300 text-white", icon: <SiTailwindcss /> },
+        { name: "JavaScript", color: "bg-yellow-400 hover:bg-yellow-300 text-gray-900", icon: <SiJavascript /> },
+        { name: "React", color: "bg-blue-600 hover:bg-blue-500 text-white", icon: <FaReact /> },
+        { name: "Angular", color: "bg-red-600 hover:bg-red-500 text-white", icon: <FaAngular /> },
+        { name: "Next.js", color: "bg-gray-800 hover:bg-gray-700 text-white", icon: <SiNextdotjs /> },
+        { name: "Flutter", color: "bg-blue-400 hover:bg-blue-300 text-white", icon: <SiFlutter /> }
       ]
     },
     {
       title: "Backend",
       shortTitle: "Backend",
       skills: [
-        { name: "Python", color: "bg-blue-600 hover:bg-blue-500 text-white" },
-        { name: "Java", color: "bg-red-600 hover:bg-red-500 text-white" },
-        { name: "PHP", color: "bg-blue-800 hover:bg-blue-700 text-white" },
-        { name: "Node.js", color: "bg-green-600 hover:bg-green-500 text-white" },
-        { name: "NestJS", color: "bg-red-500 hover:bg-red-400 text-white" },
-        { name: "Express", color: "bg-gray-300 hover:bg-gray-200 text-gray-900" },
-        { name: "Laravel", color: "bg-red-500 hover:bg-red-400 text-white" },
-        { name: "Spring Boot", color: "bg-green-600 hover:bg-green-500 text-white" }
+        { name: "Python", color: "bg-blue-600 hover:bg-blue-500 text-white", icon: <FaPython /> },
+        { name: "Java", color: "bg-red-600 hover:bg-red-500 text-white", icon: <FaJava /> },
+        { name: "PHP", color: "bg-blue-800 hover:bg-blue-700 text-white", icon: <FaPhp /> },
+        { name: "Node.js", color: "bg-green-600 hover:bg-green-500 text-white", icon: <FaNodeJs /> },
+        { name: "NestJS", color: "bg-red-500 hover:bg-red-400 text-white", icon: <SiNestjs /> },
+        { name: "Express", color: "bg-gray-300 hover:bg-gray-200 text-gray-900", icon: <SiExpress /> },
+        { name: "Laravel", color: "bg-red-500 hover:bg-red-400 text-white", icon: <SiLaravel /> },
+        { name: "Spring Boot", color: "bg-green-600 hover:bg-green-500 text-white", icon: <SiSpring /> }
       ]
     },
     {
       title: "Base de Données",
       shortTitle: "BD",
       skills: [
-        { name: "PostgreSQL", color: "bg-blue-700 hover:bg-blue-600 text-white" },
-        { name: "MySQL", color: "bg-blue-500 hover:bg-blue-400 text-white" }
+        { name: "PostgreSQL", color: "bg-blue-700 hover:bg-blue-600 text-white", icon: <SiPostgresql /> },
+        { name: "MySQL", color: "bg-blue-500 hover:bg-blue-400 text-white", icon: <SiMysql /> }
       ]
     },
     {
       title: "Outils",
       shortTitle: "Outils",
       skills: [
-        { name: "Figma", color: "bg-purple-500 hover:bg-purple-400 text-white" },
-        { name: "Git", color: "bg-orange-500 hover:bg-orange-400 text-white" }
+        { name: "Figma", color: "bg-purple-500 hover:bg-purple-400 text-white", icon: <FaFigma /> },
+        { name: "Git", color: "bg-orange-500 hover:bg-orange-400 text-white", icon: <FaGitAlt /> }
       ]
     }
   ];
@@ -54,7 +60,7 @@ const Competences = () => {
   const currentCategory = skillCategories[activeCategory];
 
   return (
-    <div className=" bg-gray-900 px-4 py-8 w-full">
+    <div className="bg-gray-900 px-4 py-8 w-full">
       <div className="w-full max-w-6xl mx-auto">
         {/* Titre principal */}
         <div className="text-center mb-12">
@@ -93,16 +99,17 @@ const Competences = () => {
           </p>
         </div>
 
-        {/* Liste des compétences en flex wrap, style bouton coloré */}
+        {/* Liste des compétences avec icônes */}
         <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           {currentCategory.skills.map((skill, skillIndex) => (
             <button
               key={skillIndex}
-              className={`px-4 py-2 rounded-md font-mono text-sm cursor-pointer transition-colors duration-300 ${skill.color}`}
+              className={`competence-item px-4 py-2 rounded-md font-mono text-sm cursor-pointer transition-colors duration-300 flex items-center gap-2 ${skill.color}`}
               type="button"
               aria-label={skill.name}
             >
-              {skill.name}
+              <span className="text-lg">{skill.icon}</span>
+              <span>{skill.name}</span>
             </button>
           ))}
         </div>

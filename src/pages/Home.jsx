@@ -1,18 +1,12 @@
 import { useState, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
-import PortfolioHeader from '../components/Introd';
+import PortfolioHeader from '../components/PortfolioHeader';
 import Competences from '../components/Competences';
 import Experiences from '../components/Experience';
 import Projects from '../components/Projects';
 import Background from './Backgound';
-import SplashCursor from '../components/SplashCursor';
-
-// Register GSAP ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 // Composant pour l'icône de localisation
 const LocationIcon = () => (
@@ -23,7 +17,7 @@ const LocationIcon = () => (
 );
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Changé de true à false
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -35,10 +29,19 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    AOS.init({ duration: 800, once: true });
+    // Configuration AOS optimisée
+    AOS.init({ 
+      duration: 600, // Réduit de 800 à 600
+      once: true, 
+      easing: 'ease-out-cubic',
+      offset: 50, // Démarre l'animation plus tôt
+      delay: 0 // Supprime le délai global
+    });
+    
     document.documentElement.classList.add('dark');
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
+    
+    // Suppression du timer de chargement
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -46,10 +49,12 @@ const Home = () => {
       setScrolled(window.scrollY > 10);
 
       const scrollPosition = window.scrollY + 200;
-      const sections = menuItems.map((item) => {
-        const el = document.querySelector(item.href);
-        return el ? { ...item, top: el.getBoundingClientRect().top + window.scrollY } : null;
-      }).filter(Boolean);
+      const sections = menuItems
+        .map((item) => {
+          const el = document.querySelector(item.href);
+          return el ? { ...item, top: el.getBoundingClientRect().top + window.scrollY } : null;
+        })
+        .filter(Boolean);
 
       const current = sections.findLast
         ? sections.findLast((section) => scrollPosition >= section.top)
@@ -64,107 +69,9 @@ const Home = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, [activeSection, menuItems]);
 
-  // GSAP ScrollTrigger animations
-  useEffect(() => {
-    if (!loading) {
-      // Timeline for competences section with scrub
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: '#competences',
-          start: 'top 90%',
-          end: 'bottom 30%',
-          scrub: 1,
-        },
-      });
-
-      tl.fromTo(
-        '#competences',
-        { opacity: 0, y: 100, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 1, ease: 'power3.out' }
-      )
-        .fromTo(
-          '#competences .competence-item',
-          { opacity: 0, x: -50, stagger: 0.2 },
-          { opacity: 1, x: 0, stagger: 0.2, duration: 0.8, ease: 'power2.out' },
-          '-=0.5'
-        );
-
-      gsap.fromTo(
-        '.portfolio-header',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.portfolio-header',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '#experience',
-        { opacity: 0, y: 100, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#experience',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '#projets',
-        { opacity: 0, y: 100, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1.2,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '#projets',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        'footer',
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: 'footer',
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [loading]);
-
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
-
 
   return (
     <>
@@ -177,23 +84,8 @@ const Home = () => {
         </div>
       ) : (
         <Background variant="default">
-          <SplashCursor
-            SIM_RESOLUTION={128}
-            DYE_RESOLUTION={720}
-            DENSITY_DISSIPATION={3.5}
-            VELOCITY_DISSIPATION={2}
-            PRESSURE={0.1}
-            PRESSURE_ITERATIONS={20}
-            CURL={3}
-            SPLAT_RADIUS={0.2}
-            SPLAT_FORCE={6000}
-            SHADING={true}
-            COLOR_UPDATE_SPEED={10}
-            BACK_COLOR={{ r: 0.1, g: 0, b: 0.2, a: 0.3 }} // Reduced opacity
-            TRANSPARENT={true}
-          />
           <header
-            className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out
+            className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out
               ${scrolled
                 ? 'bg-gray-900/95 backdrop-blur-xl border-b border-purple-500/30 shadow-2xl shadow-purple-500/10'
                 : 'bg-gray-900/20 backdrop-blur-md border-b border-gray-800/30'
@@ -225,9 +117,6 @@ const Home = () => {
                           ? 'text-purple-400 bg-purple-500/10 shadow-lg shadow-purple-500/20'
                           : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
                         }`}
-                      style={{
-                        animationDelay: `${index * 100}ms`,
-                      }}
                     >
                       <span className="relative z-10">{item.name}</span>
                       <div
@@ -260,7 +149,7 @@ const Home = () => {
                   >
                     <div className="w-6 h-6 flex flex-col justify-center items-center">
                       <div
-                        className={`w-5 h-0.5 bg-gray-300 group-hover:bg-purple-400
+                        className={`w-5 h-0.5 bg-gray-300 group-hover:bg-purple-400 transition-all duration-300
                         ${mobileMenuOpen ? 'rotate-45 translate-y-0.5' : 'mb-1'}`}
                       />
                       <div
@@ -296,9 +185,6 @@ const Home = () => {
                           ? 'text-purple-400 bg-purple-500/10 border border-purple-500/30'
                           : 'text-gray-300 hover:text-white hover:bg-gray-800/50 border border-transparent'
                         }`}
-                      style={{
-                        animationDelay: `${index * 100}ms`,
-                      }}
                     >
                       <span className="relative z-10">{item.name}</span>
                       <div
@@ -315,13 +201,13 @@ const Home = () => {
             <div className="portfolio-header">
               <PortfolioHeader />
             </div>
-            <section id="competences" data-aos="fade-up">
+            <section id="competences" data-aos="fade-up" data-aos-duration="600">
               <Competences />
             </section>
-            <section id="experience" data-aos="fade-up">
+            <section id="experience" data-aos="fade-up" data-aos-duration="600">
               <Experiences />
             </section>
-            <section id="projets" data-aos="fade-up">
+            <section id="projets" data-aos="fade-up" data-aos-duration="600">
               <Projects />
             </section>
             <footer
@@ -336,7 +222,7 @@ const Home = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                   <a
-                    href="https://github.com/nandrianintsoa"
+                    href="https://github.com/Seven4dr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 bg-gray-800/50 rounded-xl text-purple-400 hover:bg-purple-600 hover:text-white

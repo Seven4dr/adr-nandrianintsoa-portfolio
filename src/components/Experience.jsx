@@ -22,7 +22,7 @@ const Experiences = () => {
             icon: <FaUserPlus className="text-xl text-purple-400" />,
             title: "Gestion d'Inscription - EMIT",
             ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
-            technologies: "JavaScript / PHP",
+            technologies: "JavaScript / PHP / Css",
             date: "2023",
             description: "Plateforme web de gestion des inscriptions conçue pour l'école EMIT. Implémentation d'un formulaire d'inscription en ligne complet avec validation des données, gestion des dossiers étudiants, système de paiement intégré et tableau de bord administratif personnalisé.",
             companyLogo: null
@@ -40,7 +40,7 @@ const Experiences = () => {
             icon: <FaChartLine className="text-xl text-purple-400" />,
             title: "Tableau de bord de suivi du patrimoine numerique - Perfectnodes (Plateform de portefeuille virtuelle)",
             ecole: null,
-            technologies: "ReactJS / Express / Tailwindcss",
+            technologies: "ReactJS/ TS / Express / Tailwindcss",
             date: "19 Juin - 19 Août 2023",
             description: "Développement d'un tableau de bord pour Perfectnodes durant un stage de L2. Création d'une interface interactive visualisant les métriques de patrimoine numérique, avec des graphiques de performance en temps réel et un système de rapport personnalisable.",
             companyLogo: {
@@ -61,7 +61,7 @@ const Experiences = () => {
             icon: <FaServer className="text-xl text-purple-400" />,
             title: "Gestion de l'espace commercial - Manasoa varotra (e-commerce)",
             ecole: null,
-            technologies: "React / NestJS",
+            technologies: "React / NestJS /Tailwindcss",
             date: "24 Juin - 24 Sept 2024",
             description: "Application web développée pour Manasoa Varotra pendant un stage de L3. Solution complète de gestion des espaces commerciaux, incluant le suivi des locations, un système de réservation avancé, analyse de l'occupation des espaces et un tableau de bord administratif détaillé.",
             companyLogo: {
@@ -95,7 +95,7 @@ const Experiences = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-900 w-full">
+        <div className="min-h-screen  w-full">
             <div className="w-full max-w-none px-4 sm:px-6 lg:px-8 py-8">
                 {/* Title */}
                 <div className="text-center mb-12">
