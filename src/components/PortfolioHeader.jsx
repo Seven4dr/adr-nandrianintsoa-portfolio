@@ -225,9 +225,10 @@ const PortfolioHeader = () => {
 
         <div className="intersection-glow"></div>
 
-        <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20">
-          <div className="space-y-6 sm:space-y-8 text-left w-full lg:w-2/3">
-            <div className="text-purple-400 font-extrabold mt-4 text-xs sm:text-sm md:text-base" data-aos="fade-up">
+        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between main-content relative z-10">
+          <div className="space-y-6 text-left w-full lg:w-2/3">
+            {/* Texte d'introduction repositionné plus bas */}
+            <div className="intro-text text-purple-400 font-extrabold mt-16 sm:mt-20 md:mt-24 lg:mt-8" data-aos="fade-up">
               Bonjour, je suis Nandrianintsoa
             </div>
 
