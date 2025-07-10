@@ -99,7 +99,7 @@ const Experiences = () => {
             <div className="w-full max-w-none px-4 sm:px-6 lg:px-8 py-8">
                 {/* Title */}
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-mono">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-200 mb-4 tracking-wider font-extrabold">
                         MES EXPÉRIENCES
                     </h2>
                     <div className="w-24 sm:w-32 h-0.5 bg-purple-400 mx-auto"></div>

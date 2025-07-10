@@ -1,17 +1,11 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { TextPlugin } from 'gsap/TextPlugin';
 import { FaLinkedin, FaGithub, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-
-// Enregistrer le plugin TextPlugin
-gsap.registerPlugin(TextPlugin);
+import { cvFile, robo } from '../../public/images';
 
 const PortfolioHeader = () => {
-  const nameRef = useRef(null);
-  const cursorRef = useRef(null);
-  const timelineRef = useRef(null);
   const marqueeRef = useRef(null);
   const marqueeRef2 = useRef(null);
 
@@ -22,69 +16,38 @@ const PortfolioHeader = () => {
       easing: 'ease-out-cubic',
     });
 
-    if (nameRef.current && cursorRef.current) {
-      const texts = ['Nandrianintsoa', 'Fullstack & AI Developer'];
-
-      const masterTimeline = gsap.timeline({ repeat: -1 });
-
-      gsap.to(cursorRef.current, {
-        opacity: 0.3,
-        duration: 0.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "power2.inOut",
-      });
-
-      const createTypewriterSequence = () => {
-        const tl = gsap.timeline();
-        texts.forEach((text) => {
-          tl.to(nameRef.current, {
-            duration: text.length * 0.08,
-            text: { value: text, delimiter: "" },
-            ease: "none",
-          })
-            .to({}, { duration: 1.5 })
-            .to(nameRef.current, {
-              duration: text.length * 0.03,
-              text: { value: "", delimiter: "" },
-              ease: "none",
-            })
-            .to({}, { duration: 0.3 });
-        });
-        return tl;
-      };
-
-      masterTimeline.add(createTypewriterSequence());
-      timelineRef.current = masterTimeline;
-
-      return () => {
-        if (timelineRef.current) timelineRef.current.kill();
-      };
-    }
-  }, []);
-
-  useEffect(() => {
     if (marqueeRef.current && marqueeRef2.current) {
       gsap.set([marqueeRef.current, marqueeRef2.current], { x: 0 });
 
       gsap.to(marqueeRef.current, {
-        x: "-50%",
+        x: '-50%',
         duration: 15,
         repeat: -1,
-        ease: "none",
+        ease: 'none',
       });
 
       gsap.to(marqueeRef2.current, {
-        x: "50%",
+        x: '50%',
         duration: 12,
         repeat: -1,
-        ease: "none",
+        ease: 'none',
       });
     }
   }, []);
 
   const handleDownloadCV = () => {
-    console.log('Téléchargement du CV...');
+    try {
+      const link = document.createElement('a');
+      link.href = cvFile;
+      link.download = 'Nandrianintsoa_CV.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      console.log('Téléchargement du CV initié avec succès');
+    } catch (error) {
+      console.error('Erreur lors du téléchargement du CV:', error);
+      window.open(cvFile, '_blank');
+    }
   };
 
   const marqueeContent1 = (
@@ -104,7 +67,7 @@ const PortfolioHeader = () => {
       <span className="mx-4 font-mono text-green-400">@nandrianintsoa</span>
       <span className="mx-2">•</span>
       <span className="mx-4 text-shadow-green">Open to Opportunities</span>
-      <span className="mx-4 font-mono text-green-400 italic">Let’s Collaborate</span>
+      <span className="mx-4 font-mono text-green-400 italic">Let's Collaborate</span>
       <span className="mx-2">•</span>
     </>
   );
@@ -148,6 +111,47 @@ const PortfolioHeader = () => {
             z-index: 5;
             pointer-events: none;
           }
+          .robo-image {
+            position: relative;
+            filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.8)) 
+                    drop-shadow(0 0 25px rgba(52, 211, 153, 0.6))
+                    drop-shadow(0 0 35px rgba(59, 130, 246, 0.4));
+            transition: filter 0.3s ease, transform 0.3s ease;
+          }
+          .robo-image:hover {
+            filter: drop-shadow(0 0 20px rgba(192, 132, 252, 1)) 
+                    drop-shadow(0 0 30px rgba(52, 211, 153, 0.8))
+                    drop-shadow(0 0 40px rgba(59, 130, 246, 0.6));
+            transform: scale(1.05);
+          }
+          .robo-image::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+              rgba(192, 132, 252, 0.4), 
+              rgba(52, 211, 153, 0.4), 
+              rgba(59, 130, 246, 0.4),
+              rgba(192, 132, 252, 0.4));
+            border-radius: 0.5rem;
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(2px);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+          }
+          @keyframes glow-pulse {
+            0% {
+              opacity: 0.7;
+              filter: blur(2px);
+            }
+            100% {
+              opacity: 1;
+              filter: blur(4px);
+            }
+          }
           @media (max-width: 640px) {
             .marquee-container {
               height: 2.5rem;
@@ -156,6 +160,10 @@ const PortfolioHeader = () => {
             .marquee-content {
               font-size: 0.65rem;
               padding: 0 0.5rem;
+            }
+            .robo-image {
+              width: 60px;
+              height: 60px;
             }
           }
           @media (min-width: 641px) and (max-width: 1024px) {
@@ -167,11 +175,20 @@ const PortfolioHeader = () => {
               font-size: 0.8rem;
               padding: 0 0.75rem;
             }
+            .robo-image {
+              width: 80px;
+              height: 80px;
+            }
+          }
+          @media (min-width: 1025px) {
+            .robo-image {
+              width: 100px;
+              height: 100px;
+            }
           }
         `}
       </style>
       <section className="bg-gray-900 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 flex items-center justify-center w-full min-h-screen relative overflow-hidden">
-        {/* Marquee 1 - Haut gauche vers bas droit */}
         <div
           className="marquee-container"
           style={{
@@ -189,7 +206,6 @@ const PortfolioHeader = () => {
           </div>
         </div>
 
-        {/* Marquee 2 - Bas gauche vers haut droit */}
         <div
           className="marquee-container"
           style={{
@@ -207,29 +223,34 @@ const PortfolioHeader = () => {
           </div>
         </div>
 
-        {/* Effet de glow à l'intersection */}
         <div className="intersection-glow"></div>
 
         <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 relative z-20">
-          {/* Left Content: Text and Buttons */}
           <div className="space-y-6 sm:space-y-8 text-left w-full lg:w-2/3">
-            <div className="text-purple-400 font-mono text-xs sm:text-sm md:text-base" data-aos="fade-up">
-              Bonjour, je suis
+            <div className="text-purple-400 font-extrabold mt-4 text-xs sm:text-sm md:text-base" data-aos="fade-up">
+              Bonjour, je suis Nandrianintsoa
             </div>
 
-            <div data-aos="fade-up" data-aos-delay="100">
-              <div className="relative">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-slate-100 leading-tight select-none min-h-[1.2em] flex items-center">
-                  <span
-                    ref={nameRef}
-                    className="bg-gradient-to-r from-slate-100 via-purple-200 to-slate-100 bg-clip-text text-transparent"
-                  ></span>
-                  <span ref={cursorRef} className="text-purple-400 ml-1 font-thin opacity-60" style={{ fontSize: '0.9em' }}>
-                    |
+            <div className="flex items-center justify-between gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="100">
+              <div className="relative flex-1">
+                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-100 leading-tight select-none min-h-[1.2em] text-left font-extrabold tracking-tight">
+                  <span className="bg-gradient-to-r from-slate-100 via-purple-200 to-slate-100 bg-clip-text text-transparent">
+                    FullStack & AI
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-slate-100 via-purple-200 to-slate-100 bg-clip-text text-transparent">
+                    Developer
                   </span>
                 </h1>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-xl opacity-30 -z-10"></div>
               </div>
+              <img
+                src={robo}
+                alt="Robo Illustration"
+                className="robo-image flex-shrink-0"
+                data-aos="fade-left"
+                data-aos-delay="150"
+              />
             </div>
 
             <div data-aos="fade-up" data-aos-delay="200">
@@ -272,22 +293,22 @@ const PortfolioHeader = () => {
             <div className="flex items-center gap-4 sm:gap-6 justify-start" data-aos="fade-up" data-aos-delay="500">
               {[
                 {
-                  href: "https://github.com/Seven4dr",
+                  href: 'https://github.com/Seven4dr',
                   icon: <FaGithub className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: "GitHub",
-                  color: "hover:text-green-400",
+                  label: 'GitHub',
+                  color: 'hover:text-green-400',
                 },
                 {
-                  href: "https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326",
+                  href: 'https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326',
                   icon: <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: "LinkedIn",
-                  color: "hover:text-blue-400",
+                  label: 'LinkedIn',
+                  color: 'hover:text-blue-400',
                 },
                 {
-                  href: "mailto:adrnandrianinstoa272@gmail.com",
+                  href: 'mailto:adrnandrianinstoa272@gmail.com',
                   icon: <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: "Email",
-                  color: "hover:text-purple-400",
+                  label: 'Email',
+                  color: 'hover:text-purple-400',
                 },
               ].map(({ href, icon, label, color }) => (
                 <a

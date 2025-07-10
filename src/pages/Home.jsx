@@ -104,7 +104,7 @@ const Home = () => {
                     hover:from-purple-300 hover:via-pink-300 hover:to-purple-400 transition-all duration-300
                     group-hover:drop-shadow-[0_0_10px_rgba(168,85,247,0.5)] cursor-pointer"
                   >
-                    adr-nandrianintsoa
+                    @adrnandrianintsoa
                   </h1>
                 </div>
                 <nav className="hidden md:flex items-center space-x-2">
