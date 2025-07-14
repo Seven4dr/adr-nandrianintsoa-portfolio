@@ -24,7 +24,8 @@ import alarm3 from './alarm3.jpg';
 import alarm4 from './alarm4.jpg';
 import cvFile from './cv.pdf'; // Added missing import statement
 import predictia from './predictia.jpg'; // Added missing import statement
-import robo from './robo.png'; // Added missing import statement
+import robo from './robo.png';
+import Robo3D from './Robo3D.gif' // Added missing import statement
 
 
 export {
@@ -54,6 +55,7 @@ export {
     alarm4,
     cvFile,
     predictia,
-    robo
+    robo,
+    Robo3D
 
 };

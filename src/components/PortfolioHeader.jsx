@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { FaLinkedin, FaGithub, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { cvFile, robo } from '../../public/images';
+import { cvFile,  Robo3D } from '../../public/images';
 
 const PortfolioHeader = () => {
   const marqueeRef = useRef(null);
@@ -246,7 +246,7 @@ const PortfolioHeader = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-xl opacity-30 -z-10"></div>
               </div>
               <img
-                src={robo}
+                src={Robo3D}
                 alt="Robo Illustration"
                 className="robo-image flex-shrink-0"
                 data-aos="fade-left"
