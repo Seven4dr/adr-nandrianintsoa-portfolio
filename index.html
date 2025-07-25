@@ -1,68 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/na.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Basic SEO -->
+    <!-- Title -->
     <title>Nandrianintsoa | Fullstack & AI Developer</title>
+
+    <!-- Meta Description -->
     <meta
       name="description"
       content="Développeur Fullstack & AI passionné par les interfaces modernes et les solutions intelligentes. Spécialisé dans la création d'applications web performantes et évolutives."
     />
+
+    <!-- Meta Keywords (optionnel, peu utilisé aujourd'hui) -->
     <meta
       name="keywords"
-      content="Nandrianintsoa, Fullstack Developer, AI Developer, React, Node.js, TypeScript, Développement Web, Madagascar, IA, Intelligence Artificielle"
+      content="Nandrianintsoa, Fullstack Developer, AI Developer, React, Node.js, TypeScript, Développement Web, Madagascar, Intelligence Artificielle, IA"
     />
+
+    <!-- Author -->
     <meta name="author" content="Nandrianintsoa Adr" />
+
+    <!-- Robots -->
     <meta name="robots" content="index, follow" />
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.nandrianintsoa.netlify.app" />
+    <link rel="canonical" href="https://nandrianintsoa.netlify.app/" />
 
-    <!-- Open Graph Meta Tags -->
+    <!-- Favicon -->
+    <link rel="icon" href="/na.png" type="image/png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="Nandrianintsoa | Fullstack & AI Developer" />
     <meta
       property="og:description"
-      content="Je conçois des expériences numériques exceptionnelles. Développeur Fullstack & AI passionné par les interfaces modernes et les solutions intelligentes."
+      content="Développeur Fullstack & AI passionné par les interfaces modernes et les solutions intelligentes."
     />
-    <meta property="og:image" content="https://www.nandrianintsoa.netlify.app/na.png" />
-    <meta property="og:url" content="https://www.nandrianintsoa.netlify.app" />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://nandrianintsoa.netlify.app/" />
+    <meta property="og:image" content="https://nandrianintsoa.netlify.app/na.png" />
 
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Nandrianintsoa | Fullstack & AI Developer" />
     <meta
       name="twitter:description"
-      content="Développeur Fullstack & AI spécialisé dans les applications web modernes et les solutions intelligentes. Découvrez mes projets !"
+      content="Développeur Fullstack & AI passionné par les interfaces modernes et les solutions intelligentes."
     />
-    <meta name="twitter:image" content="https://www.nandrianintsoa.netlify.app/na.png" />
+    <meta name="twitter:image" content="https://nandrianintsoa.netlify.app/na.png" />
 
-    <!-- Sitemap -->
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-
-    <!-- Theme color -->
-    <meta name="theme-color" content="#003f5c" />
-
-    <!-- Fonts (optional) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Structured Data (JSON-LD) -->
+    <!-- Structured Data JSON-LD (Person Schema) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Nandrianintsoa",
-        "alternateName": "Andrianirina",
-        "url": "https://www.nandrianintsoa.netlify.app",
-        "image": "https://www.nandrianintsoa.netlify.app/na.png",
+        "name": "Nandrianintsoa Adr",
+        "url": "https://nandrianintsoa.netlify.app/",
+        "image": "https://nandrianintsoa.netlify.app/na.png",
         "jobTitle": "Fullstack & AI Developer",
         "sameAs": [
           "https://github.com/Seven4dr",
@@ -75,19 +71,20 @@
       }
     </script>
 
-    <!-- Google Analytics (facultatif) -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-XXXXXXX");
-    </script>
-    -->
+    <!-- Preconnect fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#003f5c" />
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
