@@ -26,6 +26,7 @@ import cvFile from './cv.pdf'; // Added missing import statement
 import predictia from './predictia.jpg'; // Added missing import statement
 import robo from './robo.png';
 import Robo3D from './Robo3D.gif' // Added missing import statement
+import bi from './bi.svg' // Added missing import statement
 
 
 export {
@@ -56,6 +57,7 @@ export {
     cvFile,
     predictia,
     robo,
-    Robo3D
+    Robo3D,
+    bi
 
 };
