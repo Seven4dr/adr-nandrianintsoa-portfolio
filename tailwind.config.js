@@ -18,7 +18,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Sora', 'sans-serif'],  // <-- ici la modification
         mono: ['Fira Code', 'monospace'],
       },
       // ❌ Supprimer les anciens dégradés inutiles

@@ -1,338 +1,536 @@
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { FaLinkedin, FaGithub, FaEnvelope, FaExternalLinkAlt } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { cvFile,  Robo3D } from '../../public/images';
+"use client"
+
+import { useState, useEffect } from "react"
+import { FaLinkedin, FaGithub, FaEnvelope, FaDownload } from "react-icons/fa"
+
+// Simuler l'import du CV - remplacez par votre vrai chemin
+const cvFile = "/cv/Nandrianintsoa_CV.pdf"
 
 const PortfolioHeader = () => {
-  const marqueeRef = useRef(null);
-  const marqueeRef2 = useRef(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: 'ease-out-cubic',
-    });
-
-    if (marqueeRef.current && marqueeRef2.current) {
-      gsap.set([marqueeRef.current, marqueeRef2.current], { x: 0 });
-
-      gsap.to(marqueeRef.current, {
-        x: '-50%',
-        duration: 15,
-        repeat: -1,
-        ease: 'none',
-      });
-
-      gsap.to(marqueeRef2.current, {
-        x: '50%',
-        duration: 12,
-        repeat: -1,
-        ease: 'none',
-      });
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      })
     }
-  }, []);
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   const handleDownloadCV = () => {
     try {
-      const link = document.createElement('a');
-      link.href = cvFile;
-      link.download = 'Nandrianintsoa_CV.pdf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      console.log('Téléchargement du CV initié avec succès');
+      const link = document.createElement("a")
+      link.href = cvFile
+      link.download = "Nandrianintsoa_CV.pdf"
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      console.log("Téléchargement du CV initié avec succès")
     } catch (error) {
-      console.error('Erreur lors du téléchargement du CV:', error);
-      window.open(cvFile, '_blank');
+      console.error("Erreur lors du téléchargement du CV:", error)
+      window.open(cvFile, "_blank")
     }
-  };
-
-  const marqueeContent1 = (
-    <>
-      <span className="mx-4 text-shadow-purple">Fullstack Developer</span>
-      <span className="mx-4 font-mono text-yellow-300">Javascipt & Python</span>
-      <span className="mx-2">•</span>
-      <span className="mx-4 text-shadow-purple">AI Solutions</span>
-      <span className="mx-4 font-mono text-yellow-300 italic">Web Performance</span>
-      <span className="mx-2">•</span>
-    </>
-  );
-
-  const marqueeContent2 = (
-    <>
-      <span className="mx-4 text-shadow-green">Nandrianintsoa</span>
-      <span className="mx-4 font-mono text-green-400">@nandrianintsoa</span>
-      <span className="mx-2">•</span>
-      <span className="mx-4 text-shadow-green">Open to Opportunities</span>
-      <span className="mx-4 font-mono text-green-400 italic">Let's Collaborate</span>
-      <span className="mx-2">•</span>
-    </>
-  );
+  }
 
   return (
     <>
       <style>
         {`
-          .text-shadow-purple {
-            text-shadow: 0 0 8px rgba(192, 132, 252, 0.5), 0 0 12px rgba(192, 132, 252, 0.3);
+          @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+          
+          * {
+            font-family: 'Sora', sans-serif;
           }
-          .text-shadow-green {
-            text-shadow: 0 0 8px rgba(52, 211, 153, 0.5), 0 0 12px rgba(52, 211, 153, 0.3);
-          }
-          .marquee-container {
-            position: absolute;
-            width: 100vw;
-            height: 3.5rem;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            z-index: 10;
-          }
-          .marquee-content {
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            font-weight: 700;
-            font-size: 0.9rem;
-            padding: 0 1rem;
-            width: 200%;
-          }
-          .intersection-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-            transform: translate(-50%, -50%);
-            z-index: 5;
-            pointer-events: none;
-          }
-          .robo-image {
+
+          .portfolio-header {
             position: relative;
-            filter: drop-shadow(0 0 15px rgba(192, 132, 252, 0.8)) 
-                    drop-shadow(0 0 25px rgba(52, 211, 153, 0.6))
-                    drop-shadow(0 0 35px rgba(59, 130, 246, 0.4));
-            transition: filter 0.3s ease, transform 0.3s ease;
+            min-height: 100vh;
+            background: #111827;
+            overflow: hidden;
           }
-          .robo-image:hover {
-            filter: drop-shadow(0 0 20px rgba(192, 132, 252, 1)) 
-                    drop-shadow(0 0 30px rgba(52, 211, 153, 0.8))
-                    drop-shadow(0 0 40px rgba(59, 130, 246, 0.6));
-            transform: scale(1.05);
+
+          .grid-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
           }
-          .robo-image::before {
+
+          .content-wrapper {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+          }
+
+          .hero-content {
+            width: 100%;
+            max-width: 800px;
+          }
+
+          .text-content {
+            width: 100%;
+            text-align: left;
+          }
+
+          .greeting {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #ec4899;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+          }
+
+          .main-title {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #a855f7;
+            opacity: 0;
+            transform: translateY(80px);
+            animation: slideInUp 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+            letter-spacing: -0.02em;
+          }
+
+          .main-title .highlight {
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+          }
+
+          .subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #f472b6;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+            position: relative;
+          }
+
+          .subtitle::before {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, 
-              rgba(192, 132, 252, 0.4), 
-              rgba(52, 211, 153, 0.4), 
-              rgba(59, 130, 246, 0.4),
-              rgba(192, 132, 252, 0.4));
-            border-radius: 0.5rem;
-            z-index: -1;
-            opacity: 0.7;
-            filter: blur(2px);
-            animation: glow-pulse 2s ease-in-out infinite alternate;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            border-radius: 2px;
+            opacity: 0;
+            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
           }
-          @keyframes glow-pulse {
-            0% {
-              opacity: 0.7;
-              filter: blur(2px);
+
+          .description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e2e8f0;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+            font-weight: 400;
+          }
+
+          .description .highlight {
+            background: linear-gradient(135deg, #ec4899, #a855f7, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease-in-out infinite;
+          }
+
+          .cta-section {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
+          }
+
+          .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.3rem 2.8rem;
+            background: linear-gradient(135deg, #ec4899, #a855f7);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(236, 72, 153, 0.3);
+            transform: translateY(0);
+          }
+
+          .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          .download-btn:hover::before {
+            left: 100%;
+          }
+
+          .download-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(236, 72, 153, 0.4);
+            background: linear-gradient(135deg, #f472b6, #c084fc);
+          }
+
+          .download-btn svg {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          .download-btn:hover svg {
+            transform: translateY(-2px);
+          }
+
+          .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+          }
+
+          .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(236, 72, 153, 0.2);
+            border-radius: 16px;
+            color: #cbd5e1;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+          }
+
+          .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(168, 85, 247, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+
+          .social-link:hover::before {
+            opacity: 1;
+          }
+
+          .social-link:hover {
+            transform: translateY(-8px) scale(1.1);
+            background: rgba(236, 72, 153, 0.15);
+            border-color: rgba(236, 72, 153, 0.6);
+            color: #ec4899;
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+          }
+
+          .social-link:nth-child(2):hover {
+            color: #a855f7;
+            border-color: rgba(168, 85, 247, 0.6);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.3);
+          }
+
+          .social-link:nth-child(3):hover {
+            color: #f472b6;
+            border-color: rgba(244, 114, 182, 0.6);
+            box-shadow: 0 15px 40px rgba(244, 114, 182, 0.3);
+          }
+
+          /* GSAP-style Animations */
+          @keyframes slideInLeft {
+            from {
+              opacity: 0;
+              transform: translateX(-80px);
             }
-            100% {
+            to {
               opacity: 1;
-              filter: blur(4px);
+              transform: translateX(0);
             }
           }
-          @media (max-width: 640px) {
-            .marquee-container {
-              height: 2.5rem;
-              width: 100vw;
+
+          @keyframes slideInUp {
+            from {
+              opacity: 0;
+              transform: translateY(100px);
             }
-            .marquee-content {
-              font-size: 0.65rem;
-              padding: 0 0.5rem;
-            }
-            .robo-image {
-              width: 60px;
-              height: 60px;
+            to {
+              opacity: 1;
+              transform: translateY(0);
             }
           }
-          @media (min-width: 641px) and (max-width: 1024px) {
-            .marquee-container {
-              height: 3rem;
-              width: 100vw;
+
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(50px);
             }
-            .marquee-content {
-              font-size: 0.8rem;
-              padding: 0 0.75rem;
-            }
-            .robo-image {
-              width: 80px;
-              height: 80px;
+            to {
+              opacity: 1;
+              transform: translateY(0);
             }
           }
-          @media (min-width: 1025px) {
-            .robo-image {
-              width: 100px;
-              height: 100px;
+
+          @keyframes gradientShift {
+            0%, 100% {
+              background-position: 0% 50%;
+            }
+            50% {
+              background-position: 100% 50%;
+            }
+          }
+
+          .mouse-follower {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.06) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+
+          /* Floating elements */
+          .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+          }
+
+          .floating-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #ec4899, #a855f7);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatDot 8s ease-in-out infinite;
+          }
+
+          .floating-dot:nth-child(1) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+          }
+
+          .floating-dot:nth-child(2) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+          }
+
+          .floating-dot:nth-child(3) {
+            top: 80%;
+            left: 25%;
+            animation-delay: 4s;
+          }
+
+          .floating-dot:nth-child(4) {
+            top: 30%;
+            right: 35%;
+            animation-delay: 1s;
+          }
+
+          @keyframes floatDot {
+            0%, 100% {
+              transform: translateY(0px);
+              opacity: 0.6;
+            }
+            50% {
+              transform: translateY(-20px);
+              opacity: 1;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .content-wrapper {
+              padding: 2rem 1rem;
+            }
+            
+            .download-btn {
+              width: 100%;
+              justify-content: center;
+              padding: 1.2rem 2rem;
+            }
+            
+            .social-links {
+              gap: 1rem;
+              justify-content: center;
+            }
+            
+            .social-link {
+              width: 55px;
+              height: 55px;
+            }
+            
+            .description {
+              font-size: 1.1rem;
+              margin-bottom: 2rem;
+            }
+            
+            .subtitle {
+              font-size: 1.4rem;
+            }
+
+            .subtitle::before {
+              left: -15px;
+              height: 30px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .greeting {
+              font-size: 1.1rem;
+            }
+            
+            .subtitle {
+              font-size: 1.2rem;
+            }
+            
+            .description {
+              font-size: 1rem;
+            }
+
+            .text-content {
+              text-align: center;
+            }
+
+            .cta-section {
+              justify-content: center;
+            }
+
+            .subtitle::before {
+              display: none;
             }
           }
         `}
       </style>
-      <section className="bg-gray-900 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 flex items-center justify-center w-full min-h-screen relative overflow-hidden">
-        <div
-          className="marquee-container"
-          style={{
-            top: '10%',
-            left: '0',
-            transform: 'rotate(6deg)',
-            transformOrigin: 'center',
-          }}
-        >
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600 flex items-center w-full h-full shadow-lg shadow-purple-500/20">
-            <div ref={marqueeRef} className="marquee-content text-white">
-              {marqueeContent1}
-              {marqueeContent1}
-            </div>
-          </div>
+
+      <section className="portfolio-header">
+        {/* Background Effects */}
+        <div className="grid-background"></div>
+
+        <div className="floating-elements">
+          <div className="floating-dot"></div>
+          <div className="floating-dot"></div>
+          <div className="floating-dot"></div>
+          <div className="floating-dot"></div>
         </div>
 
+        {/* Mouse Follower */}
         <div
-          className="marquee-container"
+          className="mouse-follower"
           style={{
-            bottom: '10%',
-            left: '0',
-            transform: 'rotate(-6deg)',
-            transformOrigin: 'center',
+            transform: `translate(${mousePosition.x - 150}px, ${mousePosition.y - 150}px)`,
           }}
-        >
-          <div className="bg-gradient-to-r from-green-600 to-purple-600 flex items-center w-full h-full shadow-lg shadow-green-500/20">
-            <div ref={marqueeRef2} className="marquee-content text-white">
-              {marqueeContent2}
-              {marqueeContent2}
-            </div>
-          </div>
-        </div>
+        ></div>
 
-        <div className="intersection-glow"></div>
+        <div className="content-wrapper">
+          <div className="hero-content">
+            <div className="text-content">
+              <div className="greeting">Bonjour, je suis Nandrianintsoa</div>
 
-        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between main-content relative z-10">
-          <div className="space-y-6 text-left w-full lg:w-2/3">
-            {/* Texte d'introduction repositionné plus bas */}
-            <div className="intro-text text-purple-400 font-extrabold mt-16 sm:mt-20 md:mt-24 lg:mt-8" data-aos="fade-up">
-              Bonjour, je suis Nandrianintsoa
-            </div>
+              <h1 className="main-title">
+                <span className="highlight">FullStack, AI & BI</span>
+                <br />Developer
+                
+              </h1>
 
-            <div className="flex items-center justify-between gap-4 lg:gap-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="relative flex-1">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-slate-100 leading-tight select-none min-h-[1.2em] text-left font-extrabold tracking-tight">
-                  <span className="bg-gradient-to-r from-slate-100 via-purple-200 to-slate-100 bg-clip-text text-transparent">
-                    FullStack & AI
-                  </span>
-                  <br />
-                  <span className="bg-gradient-to-r from-slate-100 via-purple-200 to-slate-100 bg-clip-text text-transparent">
-                    Developer
-                  </span>
-                </h1>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-xl opacity-30 -z-10"></div>
-              </div>
-              <img
-                src={Robo3D}
-                alt="Robo Illustration"
-                className="robo-image flex-shrink-0"
-                data-aos="fade-left"
-                data-aos-delay="150"
-              />
-            </div>
+              <h2 className="subtitle">Je conçois des expériences numériques exceptionnelles</h2>
 
-            <div data-aos="fade-up" data-aos-delay="200">
-              <div className="relative">
-                <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-light max-w-lg">
-                  <span className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">
-                    Je conçois des expériences numériques exceptionnelles.
-                  </span>
-                </h2>
-                <div className="absolute -left-4 top-1/2 w-2 h-8 bg-gradient-to-b from-green-400 to-blue-400 rounded-full transform -translate-y-1/2"></div>
-              </div>
-            </div>
-
-            <div data-aos="fade-up" data-aos-delay="300" className="max-w-xl">
-              <p className="text-slate-400 text-sm sm:text-base md:text-lg leading-relaxed">
-                Développeur{' '}
-                <span className="relative">
-                  <span className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-bold">
-                    Fullstack & AI Developer
-                  </span>
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 opacity-60"></span>
-                </span>{' '}
-                passionné par les interfaces modernes et les solutions intelligentes. Spécialisé dans la création d'applications web performantes et évolutives.
+              <p className="description">
+                Développeur <span className="highlight">Fullstack, AI & Business Intelligence</span> passionné par les
+                interfaces modernes et les solutions intelligentes. Spécialisé dans la création d'applications web
+                performantes, l'intelligence artificielle et l'analyse de données pour des insights métier stratégiques.
               </p>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-start" data-aos="fade-up" data-aos-delay="400">
-              <button
-                onClick={handleDownloadCV}
-                className="group relative px-6 sm:px-7 py-3 sm:py-3.5 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 text-white font-mono text-xs sm:text-sm rounded-lg
-                           hover:shadow-lg hover:shadow-purple-400/25 hover:scale-105
-                           transition-all duration-300 flex items-center justify-center gap-2 overflow-hidden w-full sm:w-auto"
-                aria-label="Télécharger CV"
-              >
-                <span className="relative z-10 font-bold">Télécharger CV</span>
-                <FaExternalLinkAlt className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-              </button>
-            </div>
+              <div className="cta-section">
+                <button onClick={handleDownloadCV} className="download-btn" aria-label="Télécharger CV">
+                  <FaDownload />
+                  Télécharger CV
+                </button>
+              </div>
 
-            <div className="flex items-center gap-4 sm:gap-6 justify-start" data-aos="fade-up" data-aos-delay="500">
-              {[
-                {
-                  href: 'https://github.com/Seven4dr',
-                  icon: <FaGithub className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: 'GitHub',
-                  color: 'hover:text-green-400',
-                },
-                {
-                  href: 'https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326',
-                  icon: <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: 'LinkedIn',
-                  color: 'hover:text-blue-400',
-                },
-                {
-                  href: 'mailto:adrnandrianinstoa272@gmail.com',
-                  icon: <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6" />,
-                  label: 'Email',
-                  color: 'hover:text-purple-400',
-                },
-              ].map(({ href, icon, label, color }) => (
+              <div className="social-links">
                 <a
-                  key={label}
-                  href={href}
-                  className={`text-slate-400 ${color} hover:scale-110 transition-all duration-300 p-2 rounded-lg hover:bg-slate-800/50 relative group`}
+                  href="https://github.com/Seven4dr"
+                  className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
+                  aria-label="GitHub"
                 >
-                  {icon}
-                  <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
+                  <FaGithub size={24} />
                 </a>
-              ))}
+                <a
+                  href="https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326"
+                  className="social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin size={24} />
+                </a>
+                <a href="mailto:adrnandrianinstoa272@gmail.com" className="social-link" aria-label="Email">
+                  <FaEnvelope size={24} />
+                </a>
+              </div>
             </div>
           </div>
-
-          <div className="absolute top-10 sm:top-20 right-10 sm:right-20 w-32 sm:w-48 md:w-64 lg:w-72 h-32 sm:h-48 md:h-64 lg:h-72 bg-gradient-to-br from-green-400/10 via-blue-400/10 to-purple-400/10 rounded-full blur-3xl opacity-50 -z-10"></div>
-          <div className="absolute bottom-10 sm:bottom-20 left-10 sm:left-20 w-40 sm:w-64 md:w-80 lg:w-96 h-40 sm:h-64 md:h-80 lg:h-96 bg-gradient-to-tr from-purple-400/10 via-blue-400/10 to-green-400/10 rounded-full blur-3xl opacity-30 -z-10"></div>
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default PortfolioHeader;
+export default PortfolioHeader
