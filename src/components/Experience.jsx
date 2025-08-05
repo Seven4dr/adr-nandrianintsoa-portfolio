@@ -22,6 +22,7 @@ import {
   Award,
   MapPin,
 } from "lucide-react"
+import { madigicom, manasoa } from "../../public/images"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -34,7 +35,7 @@ const Experiences = () => {
 
   const experiences = [
     {
-      icon: <BookOpen className="w-6 h-6 text-purple-400" />,
+      icon: <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400" />,
       title: "Gestion de Bibliothèque",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "Java",
@@ -46,7 +47,7 @@ const Experiences = () => {
       category: "academic",
     },
     {
-      icon: <UserPlus className="w-6 h-6 text-purple-400" />,
+      icon: <UserPlus className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400" />,
       title: "Gestion d'Inscription - EMIT",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "JavaScript / PHP / CSS",
@@ -58,7 +59,7 @@ const Experiences = () => {
       category: "academic",
     },
     {
-      icon: <Car className="w-6 h-6 text-purple-400" />,
+      icon: <Car className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400" />,
       title: "Gestion de vente de Voiture",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "C#",
@@ -70,23 +71,23 @@ const Experiences = () => {
       category: "academic",
     },
     {
-      icon: <TrendingUp className="w-6 h-6 text-blue-400" />,
+      icon: <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-400" />,
       title: "Tableau de bord de suivi du patrimoine numérique - Perfectnodes",
       ecole: null,
       company: "MaDiGiCom",
-      technologies: "ReactJS / TypeScript / Express / Tailwind CSS",
+      technologies: "React / TypeScript / Express / Tailwind CSS",
       date: "19 Juin - 19 Août 2023",
       type: "Stage L2",
       description:
         "Développement d'un tableau de bord pour Perfectnodes durant un stage de L2. Création d'une interface interactive visualisant les métriques de patrimoine numérique, avec des graphiques de performance en temps réel et un système de rapport personnalisable.",
       companyLogo: {
         name: "MaDiGiCom",
-        placeholder: "/placeholder.svg?height=40&width=120&text=MaDiGiCom",
+        placeholder: madigicom,
       },
       category: "internship",
     },
     {
-      icon: <GraduationCap className="w-6 h-6 text-purple-400" />,
+      icon: <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400" />,
       title: "Gestion de note - EMIT",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "Angular / Express / Bootstrap",
@@ -98,7 +99,7 @@ const Experiences = () => {
       category: "academic",
     },
     {
-      icon: <Server className="w-6 h-6 text-green-400" />,
+      icon: <Server className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-green-400" />,
       title: "Gestion de l'espace commercial - Manasoa varotra",
       ecole: null,
       company: "MANASOA",
@@ -109,24 +110,24 @@ const Experiences = () => {
         "Application web développée pour Manasoa Varotra pendant un stage de L3. Solution complète de gestion des espaces commerciaux, incluant le suivi des locations, un système de réservation avancé, analyse de l'occupation des espaces et un tableau de bord administratif détaillé.",
       companyLogo: {
         name: "MANASOA",
-        placeholder: "/placeholder.svg?height=40&width=120&text=MANASOA",
+        placeholder: manasoa,
       },
       category: "internship",
     },
     {
-      icon: <Smartphone className="w-6 h-6 text-purple-400" />,
-      title: "Suivi d'Activité de Navigateur de PC (Projet IoT)",
+      icon: <Smartphone className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400" />,
+      title: "Suivi d'Activité de Navigateur de PC",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "Flutter / Express",
       date: "Février - Mai 2025",
-      type: "Projet IoT",
+      type: "Projet Académique",
       description:
         "Application mobile innovante de suivi d'activité de navigateur à distance. Développement d'une solution IOT permettant le tracking en temps réel, la collecte et l'analyse des habitudes de navigation, avec une synchronisation cross-plateforme et une attention particulière à la sécurité et confidentialité des données.",
       companyLogo: null,
       category: "academic",
     },
     {
-      icon: <Trophy className="w-6 h-6 text-yellow-400" />,
+      icon: <Trophy className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-yellow-400" />,
       title: "Emihack - TOP 3 (3ème place)",
       ecole: "ECOLE DE MANAGEMENT ET D'INNOVATION TECHNOLOGIQUE",
       technologies: "ReactJS / Flask / Tailwind CSS",
@@ -140,9 +141,9 @@ const Experiences = () => {
       },
       features: ["ChatBot pour tester les symptômes", "Modélisation 3D", "Dashboard analytique"],
       featureIcons: [
-        <Bot key="bot" className="w-4 h-4 text-purple-400" />,
-        <Cube key="cube" className="w-4 h-4 text-purple-400" />,
-        <BarChart3 key="barChart3" className="w-4 h-4 text-purple-400" />,
+        <Bot key="bot" className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />,
+        <Cube key="cube" className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />,
+        <BarChart3 key="barChart3" className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />,
       ],
       category: "competition",
     },
@@ -164,13 +165,13 @@ const Experiences = () => {
   const getCategoryIcon = (category) => {
     switch (category) {
       case "internship":
-        return <Briefcase className="w-4 h-4" />
+        return <Briefcase className="w-3 h-3 sm:w-4 sm:h-4" />
       case "competition":
-        return <Award className="w-4 h-4" />
+        return <Award className="w-3 h-3 sm:w-4 sm:h-4" />
       case "academic":
-        return <GraduationCap className="w-4 h-4" />
+        return <GraduationCap className="w-3 h-3 sm:w-4 sm:h-4" />
       default:
-        return <Code2 className="w-4 h-4" />
+        return <Code2 className="w-3 h-3 sm:w-4 sm:h-4" />
     }
   }
 
@@ -284,7 +285,10 @@ const Experiences = () => {
   }
 
   return (
-    <div ref={containerRef} className="bg-gray-900 min-h-screen px-4 py-16 w-full relative overflow-hidden">
+    <div
+      ref={containerRef}
+      className="bg-gray-900 min-h-screen px-3 sm:px-4 lg:px-6 py-8 sm:py-12 lg:py-16 w-full relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20"></div>
@@ -293,103 +297,114 @@ const Experiences = () => {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Titre principal */}
-        <div ref={titleRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
-              <Briefcase className="w-6 h-6 text-white" />
+        <div ref={titleRef} className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+              <Briefcase className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">MES EXPÉRIENCES</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight">
+              MES EXPÉRIENCES
+            </h2>
           </div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
             Découvrez mon parcours professionnel et académique à travers mes projets et expériences
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mt-6 rounded-full"></div>
+          <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
 
         {/* Timeline */}
-        <div ref={timelineRef} className="relative max-w-6xl mx-auto mb-16">
-          {/* Ligne principale verticale */}
-          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-600 via-blue-600 to-purple-600 rounded-full timeline-line opacity-60"></div>
+        <div ref={timelineRef} className="relative max-w-6xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+          {/* Ligne principale verticale - cachée sur mobile */}
+          <div className="hidden sm:block absolute left-4 sm:left-6 lg:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-purple-600 via-blue-600 to-purple-600 rounded-full timeline-line opacity-60"></div>
 
-          <div className="space-y-8">
+          <div className="space-y-4 sm:space-y-6 lg:space-y-8">
             {experiences.map((exp, index) => (
               <div key={index} className={`timeline-item timeline-item-${index} relative`}>
-                {/* Noeud de timeline */}
-                <div className="absolute left-6 top-8 w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 border-4 border-gray-900 z-10 shadow-lg shadow-purple-500/50 flex items-center justify-center">
-                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                {/* Noeud de timeline - adapté pour mobile */}
+                <div className="hidden sm:block absolute left-2.5 sm:left-4.5 lg:left-6 top-6 sm:top-8 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 border-2 sm:border-4 border-gray-900 z-10 shadow-lg shadow-purple-500/50 flex items-center justify-center">
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 bg-white rounded-full animate-pulse"></div>
                 </div>
 
                 {/* Carte de contenu */}
-                <div className="ml-20">
+                <div className="sm:ml-12 lg:ml-20">
                   <div
-                    className={`group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 cursor-pointer ${
-                      activeExperience === index ? "ring-2 ring-purple-400 border-purple-400/50" : ""
+                    className={`group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:border-purple-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1 cursor-pointer ${
+                      activeExperience === index ? "ring-1 sm:ring-2 ring-purple-400 border-purple-400/50" : ""
                     }`}
                     onClick={() => handleExperienceClick(index)}
                   >
                     {/* Effet de brillance au survol */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
+                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
 
                     <div className="relative z-10">
                       {/* En-tête */}
-                      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
-                        <div className="flex items-start gap-4">
-                          <div className="p-3 bg-gray-700/50 rounded-xl flex-shrink-0 group-hover:bg-purple-600/20 transition-colors duration-300">
+                      <div className="flex flex-col gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="p-2 sm:p-2.5 lg:p-3 bg-gray-700/50 rounded-lg sm:rounded-xl flex-shrink-0 group-hover:bg-purple-600/20 transition-colors duration-300">
                             {exp.icon}
                           </div>
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-2">
-                              <h3 className="text-xl font-bold text-white leading-tight">{exp.title}</h3>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                              <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white leading-tight">
+                                {exp.title}
+                              </h3>
                               <div
-                                className={`px-2 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getCategoryColor(
+                                className={`self-start px-2 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getCategoryColor(
                                   exp.category,
-                                )} flex items-center gap-1`}
+                                )} flex items-center gap-1 flex-shrink-0`}
                               >
                                 {getCategoryIcon(exp.category)}
-                                {exp.type}
+                                <span className="hidden sm:inline">{exp.type}</span>
                               </div>
                             </div>
+
                             {exp.ecole && (
-                              <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
-                                <Building2 className="w-4 h-4" />
-                                <span>{exp.ecole}</span>
+                              <div className="flex items-start gap-2 text-xs sm:text-sm text-gray-400 mb-2">
+                                <Building2 className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0 mt-0.5" />
+                                <span className="leading-tight">{exp.ecole}</span>
                               </div>
                             )}
+
                             {exp.company && (
-                              <div className="flex items-center gap-2 text-sm text-blue-400 mb-2">
-                                <MapPin className="w-4 h-4" />
+                              <div className="flex items-center gap-2 text-xs sm:text-sm text-blue-400 mb-2">
+                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                                 <span>{exp.company}</span>
                               </div>
                             )}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 text-purple-300 flex-shrink-0">
-                          <Calendar className="w-4 h-4" />
-                          <span className="text-sm font-medium">{exp.date}</span>
+
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-purple-300 flex-shrink-0">
+                            <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="text-xs sm:text-sm font-medium">{exp.date}</span>
+                          </div>
                         </div>
                       </div>
 
                       {/* Logo de l'entreprise */}
                       {exp.companyLogo && (
-                        <div className="mb-4">
+                        <div className="mb-3 sm:mb-4">
                           <img
                             src={exp.companyLogo.placeholder || "/placeholder.svg"}
                             alt={exp.companyLogo.name || ""}
-                            className="h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                            className="h-6 sm:h-8 lg:h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                           />
                         </div>
                       )}
 
                       {/* Description */}
-                      <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
+                      <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 leading-relaxed">
+                        {exp.description}
+                      </p>
 
                       {/* Fonctionnalités spéciales */}
                       {exp.features && (
-                        <div className="mb-4">
-                          <h4 className="text-sm font-semibold text-white mb-2">Fonctionnalités clés :</h4>
-                          <ul className="space-y-2">
+                        <div className="mb-3 sm:mb-4">
+                          <h4 className="text-xs sm:text-sm font-semibold text-white mb-2">Fonctionnalités clés :</h4>
+                          <ul className="space-y-1.5 sm:space-y-2">
                             {exp.features.map((feature, i) => (
-                              <li key={i} className="flex items-center gap-2 text-sm text-gray-300">
+                              <li key={i} className="flex items-center gap-2 text-xs sm:text-sm text-gray-300">
                                 {exp.featureIcons && exp.featureIcons[i]}
                                 <span>{feature}</span>
                               </li>
@@ -399,11 +414,11 @@ const Experiences = () => {
                       )}
 
                       {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {exp.technologies.split("/").map((tech, i) => (
                           <span
                             key={i}
-                            className="px-3 py-1 bg-gray-700/50 text-gray-300 text-xs rounded-full hover:bg-purple-600/20 hover:text-purple-300 transition-all duration-200 border border-gray-600/50"
+                            className="px-2 sm:px-3 py-1 bg-gray-700/50 text-gray-300 text-xs rounded-full hover:bg-purple-600/20 hover:text-purple-300 transition-all duration-200 border border-gray-600/50"
                           >
                             {tech.trim()}
                           </span>
@@ -418,57 +433,57 @@ const Experiences = () => {
         </div>
 
         {/* Statistiques */}
-        <div ref={statsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
+        <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0">
+                <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">{experiences.length}</div>
-                <div className="text-sm text-gray-400">Projets</div>
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">{experiences.length}</div>
+                <div className="text-xs sm:text-sm text-gray-400">Projets</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0">
+                <Briefcase className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {experiences.filter((exp) => exp.category === "internship").length}
                 </div>
-                <div className="text-sm text-gray-400">Stages</div>
+                <div className="text-xs sm:text-sm text-gray-400">Stages</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center">
-                <Award className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-yellow-500 to-orange-600 flex items-center justify-center flex-shrink-0">
+                <Award className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {experiences.filter((exp) => exp.category === "competition").length}
                 </div>
-                <div className="text-sm text-gray-400">Compétitions</div>
+                <div className="text-xs sm:text-sm text-gray-400">Compétitions</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {new Set(experiences.flatMap((exp) => exp.technologies.split("/").map((t) => t.trim()))).size}
                 </div>
-                <div className="text-sm text-gray-400">Technologies</div>
+                <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
               </div>
             </div>
           </div>
@@ -479,6 +494,3 @@ const Experiences = () => {
 }
 
 export default Experiences
-
-
-// https://v0.dev/chat/react-skill-dashboard-ftF6O9eRF7B lien mitohy projet

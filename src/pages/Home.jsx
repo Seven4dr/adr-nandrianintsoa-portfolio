@@ -184,9 +184,9 @@ const Home = () => {
             {/* Section Marquee */}
           <section
           id="marquee"
-          className="min-h-[200px] w-full z-15 relative opacity-0 translate-y-5 
+          className="min-h-[170px] w-full z-15 relative opacity-0 translate-y-5 
                     animate-[fadeInUp_0.6s_ease-out_0.2s_forwards] 
-                    mt-4 mb-4 sm:mt-2 sm:mb-2"
+                    mt-4 mb-4  sm:mt-2 sm:mb-2"
           data-aos="fade-up"
           data-aos-duration="600"
         >
@@ -225,7 +225,7 @@ const Home = () => {
             <footer className="py-12 px-4 bg-gradient-to-br from-gray-900 to-gray-800 border-t border-purple-500/20">
               <div className="container mx-auto flex flex-col md:flex-row justify-between items-center max-w-6xl">
                 <div className="flex items-center space-x-4 mb-6 md:mb-0">
-                  <p className="font-bold text-sm text-purple-400 font-mono">© 2025 AdrNandrianintsoa</p>
+                  <p className=" text-sm text-purple-400 ">© 2025 AdrNandrianintsoa</p>
                   <LocationIcon />
                 </div>
 

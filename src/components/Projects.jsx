@@ -6,9 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import {
   Eye,
   X,
-  ExternalLink,
   Github,
-  Play,
   ChevronLeft,
   ChevronRight,
   Folder,
@@ -22,6 +20,7 @@ import {
   Monitor,
   Bell,
 } from "lucide-react"
+import { alarm2, epi4, home, mobile, predictia, produits } from "../../public/images"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -40,7 +39,7 @@ const Projects = () => {
       id: 1,
       title: "Tableau de bord patrimoine numérique",
       subtitle: "Dashboard Perfectnodes",
-      image: "/placeholder.svg?height=400&width=600&text=Dashboard+Patrimoine",
+      image: home,
       technologies: ["REACT", "EXPRESS", "TAILWINDCSS"],
       category: "Dashboard",
       status: "Terminé",
@@ -54,14 +53,14 @@ const Projects = () => {
         "Alertes personnalisées",
         "Export de données",
       ],
-      icon: <BarChart3 className="w-6 h-6" />,
+      icon: <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-blue-600 to-cyan-600",
     },
     {
       id: 2,
       title: "Plateforme e-commerce complète",
       subtitle: "Gestion espace commercial",
-      image: "/placeholder.svg?height=400&width=600&text=E-commerce+Platform",
+      image: produits,
       technologies: ["REACT", "NEST", "TAILWINDCSS"],
       category: "E-commerce",
       status: "En cours",
@@ -73,19 +72,18 @@ const Projects = () => {
         "Analytics avancés",
         "Interface d'administration",
         "Gestion des stocks",
-        "CRM intégré",
       ],
-      icon: <Database className="w-6 h-6" />,
+      icon: <Database className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-green-600 to-emerald-600",
     },
     {
       id: 3,
       title: "Monitoring navigateur PC",
       subtitle: "Suivi d'activité",
-      image: "/placeholder.svg?height=400&width=600&text=Browser+Monitoring",
+      image: mobile,
       technologies: ["FLUTTER", "EXPRESS"],
       category: "Monitoring",
-      status: "Terminé",
+      status: "En cours",
       description:
         "Application de monitoring pour suivre l'activité des navigateurs web avec des rapports détaillés d'utilisation. Outil professionnel pour l'analyse comportementale et la productivité.",
       features: [
@@ -96,35 +94,28 @@ const Projects = () => {
         "Analytics comportementales",
         "Export de données",
       ],
-      icon: <Monitor className="w-6 h-6" />,
+      icon: <Monitor className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-purple-600 to-indigo-600",
     },
     {
       id: 4,
       title: "Application mobile Alarm",
       subtitle: "Flutter App",
-      image: "/placeholder.svg?height=400&width=600&text=Mobile+Alarm+App",
+      image: alarm2,
       technologies: ["FLUTTER", "DART", "MOBILE"],
       category: "Mobile",
       status: "Terminé",
       description:
         "Application mobile d'alarme avec interface moderne et fonctionnalités avancées de personnalisation. Solution complète pour la gestion des alarmes et rappels.",
-      features: [
-        "Alarmes multiples",
-        "Interface moderne",
-        "Personnalisation avancée",
-        "Notifications push",
-        "Widgets personnalisés",
-        "Synchronisation cloud",
-      ],
-      icon: <Bell className="w-6 h-6" />,
+      features: ["Alarmes multiples", "Interface moderne", "Personnalisation avancée", "Notifications push"],
+      icon: <Bell className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-orange-600 to-red-600",
     },
     {
       id: 5,
       title: "Gestion épidémies IA",
       subtitle: "Big Data & Intelligence Artificielle",
-      image: "/placeholder.svg?height=400&width=600&text=AI+Epidemic+Management",
+      image: epi4,
       technologies: ["REACT", "FLASK", "IA"],
       category: "IA & Big Data",
       status: "Terminé",
@@ -138,17 +129,17 @@ const Projects = () => {
         "Alertes automatiques",
         "Rapports épidémiologiques",
       ],
-      icon: <Brain className="w-6 h-6" />,
+      icon: <Brain className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-pink-600 to-rose-600",
     },
     {
       id: 6,
       title: "Trading IA Dashboard",
       subtitle: "Prédiction de marché",
-      image: "/placeholder.svg?height=400&width=600&text=Trading+AI+Dashboard",
+      image: predictia,
       technologies: ["REACT", "TAILWINDCSS", "RECHARTS"],
       category: "Finance",
-      status: "En cours",
+      status: "Demos Frontend",
       description:
         "Dashboard intelligent pour l'analyse et la prédiction des tendances de marché avec algorithmes d'IA avancés. Solution complète pour les traders professionnels.",
       features: [
@@ -159,7 +150,7 @@ const Projects = () => {
         "Backtesting",
         "Alertes personnalisées",
       ],
-      icon: <TrendingUp className="w-6 h-6" />,
+      icon: <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-yellow-600 to-orange-600",
     },
   ]
@@ -260,7 +251,6 @@ const Projects = () => {
         setCurrentIndex((prev) => (prev + 1) % projects.length)
       }, 5000)
     }
-
     return () => {
       if (autoPlayRef.current) {
         clearInterval(autoPlayRef.current)
@@ -279,7 +269,7 @@ const Projects = () => {
   const goToProject = (index) => {
     setCurrentIndex(index)
     setIsAutoPlay(false)
-    setTimeout(() => setIsAutoPlay(true), 10000) // Reprendre l'auto-play après 10s
+    setTimeout(() => setIsAutoPlay(true), 10000)
   }
 
   const nextProject = () => {
@@ -294,107 +284,112 @@ const Projects = () => {
     setTimeout(() => setIsAutoPlay(true), 10000)
   }
 
-  const ProjectCard = ({ project, index, isMobile = false }) => (
-    <div
-      className={`group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 ${
-        !isMobile ? "hover:-translate-y-2" : ""
-      }`}
-    >
-      {/* Effet de brillance au survol */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
+  const ProjectCard = ({ project, index, isMobile = false }) => {
+    return (
+      <div
+        className={`group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 ${
+          !isMobile ? "hover:-translate-y-2" : ""
+        }`}
+      >
+        {/* Effet de brillance au survol */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12"></div>
 
-      {/* Image du projet */}
-      <div className="relative h-48 md:h-56 overflow-hidden">
-        <img
-          src={project.image || "/placeholder.svg"}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+        {/* Image du projet */}
+        <div className="relative h-40 sm:h-48 md:h-56 overflow-hidden">
+          <img
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
 
-        {/* Badge de statut */}
-        <div className="absolute top-4 left-4">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
-            {project.status}
-          </span>
-        </div>
+          {/* Badge de statut */}
+          <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
+            <span
+              className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}
+            >
+              {project.status}
+            </span>
+          </div>
 
-        {/* Bouton d'agrandissement */}
-        <button
-          onClick={() => openImage(project.image)}
-          className="absolute top-4 right-4 bg-black/50 hover:bg-purple-600 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
-        >
-          <Eye className="w-4 h-4" />
-        </button>
-
-        {/* Icône de catégorie */}
-        <div className="absolute bottom-4 left-4">
-          <div
-            className={`w-12 h-12 rounded-xl bg-gradient-to-r ${project.color} flex items-center justify-center shadow-lg`}
+          {/* Bouton d'agrandissement */}
+          <button
+            onClick={() => openImage(project.image)}
+            className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-black/50 hover:bg-purple-600 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110"
           >
-            {project.icon}
+            <Eye className="w-3 h-3 sm:w-4 sm:h-4" />
+          </button>
+
+          {/* Icône de catégorie */}
+          <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+            <div
+              className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl bg-gradient-to-r ${project.color} flex items-center justify-center shadow-lg`}
+            >
+              {project.icon}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Contenu de la carte */}
-      <div className="p-6 relative z-10">
-        <div className="mb-4">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">
-              {project.title}
-            </h3>
-            <span className="text-xs text-purple-300 bg-purple-600/20 px-2 py-1 rounded-full">{project.category}</span>
+        {/* Contenu de la carte */}
+        <div className="p-4 sm:p-5 lg:p-6 relative z-10">
+          <div className="mb-3 sm:mb-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+              <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300 leading-tight">
+                {project.title}
+              </h3>
+              <span className="self-start text-xs text-purple-300 bg-purple-600/20 px-2 py-1 rounded-full flex-shrink-0">
+                {project.category}
+              </span>
+            </div>
+            <p className="text-purple-300 text-xs sm:text-sm font-medium">{project.subtitle}</p>
           </div>
-          <p className="text-purple-300 text-sm font-medium">{project.subtitle}</p>
-        </div>
 
-        <p className="text-gray-300 mb-4 leading-relaxed text-sm line-clamp-3">{project.description}</p>
+          <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
+            {project.description}
+          </p>
 
-        {/* Fonctionnalités clés */}
-        <div className="mb-4">
-          <h4 className="text-xs font-semibold text-white mb-2 opacity-80">Fonctionnalités clés :</h4>
-          <div className="grid grid-cols-2 gap-1 text-xs text-gray-400">
-            {project.features.slice(0, 4).map((feature, idx) => (
-              <div key={idx} className="flex items-center gap-1">
-                <div className="w-1 h-1 bg-purple-400 rounded-full"></div>
-                <span className="truncate">{feature}</span>
-              </div>
+          {/* Fonctionnalités clés */}
+          <div className="mb-3 sm:mb-4">
+            <h4 className="text-xs font-semibold text-white mb-2 opacity-80">Fonctionnalités clés :</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs text-gray-400">
+              {project.features.slice(0, 4).map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-1">
+                  <div className="w-1 h-1 bg-purple-400 rounded-full flex-shrink-0"></div>
+                  <span className="truncate">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Technologies */}
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
+            {project.technologies.map((tech, idx) => (
+              <span
+                key={idx}
+                className="bg-gray-700/50 text-gray-300 px-2 py-1 rounded-full text-xs border border-gray-600/50 hover:bg-purple-600/20 hover:text-purple-300 transition-all duration-200"
+              >
+                {tech}
+              </span>
             ))}
           </div>
-        </div>
 
-        {/* Technologies */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.map((tech, idx) => (
-            <span
-              key={idx}
-              className="bg-gray-700/50 text-gray-300 px-2 py-1 rounded-full text-xs border border-gray-600/50 hover:bg-purple-600/20 hover:text-purple-300 transition-all duration-200"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {/* Actions */}
-        <div className="flex gap-2">
-          <button className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-purple-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2">
-            <Play className="w-4 h-4" />
-            Démo
-          </button>
-          <button className="bg-gray-700/50 text-gray-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-600/50 transition-all duration-300 flex items-center justify-center">
-            <Github className="w-4 h-4" />
-          </button>
-          <button className="bg-gray-700/50 text-gray-300 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-600/50 transition-all duration-300 flex items-center justify-center">
-            <ExternalLink className="w-4 h-4" />
-          </button>
+          {/* Actions */}
+          <div className="flex gap-2">
+            <button className="flex-1 bg-gray-700/50 text-gray-300 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-600/50 transition-all duration-300 flex items-center justify-center">
+              <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="ml-2 hidden sm:inline">Code</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   return (
-    <div ref={containerRef} className="bg-gray-900 min-h-screen px-4 py-16 w-full relative overflow-hidden">
+    <div
+      ref={containerRef}
+      className="bg-gray-900 min-h-screen px-3 sm:px-4 lg:px-6 py-8 sm:py-12 lg:py-16 w-full relative overflow-hidden"
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20"></div>
@@ -403,22 +398,24 @@ const Projects = () => {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Titre principal */}
-        <div ref={titleRef} className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
-              <Folder className="w-6 h-6 text-white" />
+        <div ref={titleRef} className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+              <Folder className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
             </div>
-            <h2 className="text-5xl md:text-6xl font-black text-white tracking-tight">MES PROJETS</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white tracking-tight">
+              MES PROJETS
+            </h2>
           </div>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
             Découvrez mes réalisations techniques et créatives
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mt-6 rounded-full"></div>
+          <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
 
         {/* Grille desktop */}
-        <div ref={gridRef} className="hidden lg:block mb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={gridRef} className="hidden lg:block mb-8 sm:mb-12 lg:mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {projects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
@@ -426,33 +423,33 @@ const Projects = () => {
         </div>
 
         {/* Carrousel mobile */}
-        <div ref={carouselRef} className="lg:hidden mb-16">
+        <div ref={carouselRef} className="lg:hidden mb-8 sm:mb-12 lg:mb-16">
           <div className="relative">
             {/* Carte principale */}
-            <div className="flex justify-center mb-6">
-              <div className="w-full max-w-md">
+            <div className="flex justify-center mb-4 sm:mb-6">
+              <div className="w-full max-w-sm sm:max-w-md">
                 <ProjectCard project={projects[currentIndex]} index={0} isMobile={true} />
               </div>
             </div>
 
             {/* Contrôles du carrousel */}
-            <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
               <button
                 onClick={prevProject}
-                className="bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 text-white p-3 rounded-full hover:border-purple-500/50 transition-all duration-300 hover:bg-purple-600/20"
+                className="bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 text-white p-2 sm:p-3 rounded-full hover:border-purple-500/50 transition-all duration-300 hover:bg-purple-600/20"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               {/* Indicateurs de navigation */}
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2">
                 {projects.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToProject(index)}
                     className={`transition-all duration-300 hover:scale-110 ${
                       currentIndex === index
-                        ? "w-8 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full"
+                        ? "w-6 sm:w-8 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full"
                         : "w-2 h-2 bg-gray-600 hover:bg-gray-500 rounded-full"
                     }`}
                   />
@@ -461,21 +458,21 @@ const Projects = () => {
 
               <button
                 onClick={nextProject}
-                className="bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 text-white p-3 rounded-full hover:border-purple-500/50 transition-all duration-300 hover:bg-purple-600/20"
+                className="bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 text-white p-2 sm:p-3 rounded-full hover:border-purple-500/50 transition-all duration-300 hover:bg-purple-600/20"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
 
             {/* Compteur et contrôle auto-play */}
-            <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+            <div className="flex items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
               <span>
                 <span className="text-purple-400 font-bold">{currentIndex + 1}</span> sur{" "}
                 <span className="text-purple-400 font-bold">{projects.length}</span> projets
               </span>
               <button
                 onClick={() => setIsAutoPlay(!isAutoPlay)}
-                className={`px-3 py-1 rounded-full text-xs transition-all duration-300 ${
+                className={`px-2 sm:px-3 py-1 rounded-full text-xs transition-all duration-300 ${
                   isAutoPlay
                     ? "bg-purple-600/20 text-purple-400 border border-purple-500/30"
                     : "bg-gray-700/50 text-gray-400 border border-gray-600/50"
@@ -488,57 +485,57 @@ const Projects = () => {
         </div>
 
         {/* Statistiques des projets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
-                <Folder className="w-5 h-5 text-white" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center flex-shrink-0">
+                <Folder className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">{projects.length}</div>
-                <div className="text-sm text-gray-400">Projets</div>
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">{projects.length}</div>
+                <div className="text-xs sm:text-sm text-gray-400">Projets</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {projects.filter((p) => p.status === "Terminé").length}
                 </div>
-                <div className="text-sm text-gray-400">Terminés</div>
+                <div className="text-xs sm:text-sm text-gray-400">Terminés</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center">
-                <Zap className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center flex-shrink-0">
+                <Zap className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {projects.filter((p) => p.status === "En cours").length}
                 </div>
-                <div className="text-sm text-gray-400">En cours</div>
+                <div className="text-xs sm:text-sm text-gray-400">En cours</div>
               </div>
             </div>
           </div>
 
-          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1">
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-600 to-orange-600 flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
+          <div className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg bg-gradient-to-r from-yellow-600 to-orange-600 flex items-center justify-center flex-shrink-0">
+                <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
-              <div>
-                <div className="text-3xl font-black text-white">
+              <div className="text-center sm:text-left">
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {new Set(projects.flatMap((p) => p.technologies)).size}
                 </div>
-                <div className="text-sm text-gray-400">Technologies</div>
+                <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
               </div>
             </div>
           </div>
@@ -553,15 +550,15 @@ const Projects = () => {
         >
           <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
             <button
-              className="absolute -top-12 right-0 bg-gray-800/80 hover:bg-red-600 text-white p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
+              className="absolute -top-8 sm:-top-12 right-0 bg-gray-800/80 hover:bg-red-600 text-white p-2 sm:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
               onClick={closeImage}
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <img
               src={selectedImage || "/placeholder.svg"}
               alt="Projet agrandi"
-              className="w-full h-auto rounded-2xl shadow-2xl ring-2 ring-purple-400/50"
+              className="w-full h-auto rounded-xl sm:rounded-2xl shadow-2xl ring-2 ring-purple-400/50"
             />
           </div>
         </div>

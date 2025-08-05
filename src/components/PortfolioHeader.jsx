@@ -2,12 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { FaLinkedin, FaGithub, FaEnvelope, FaDownload } from "react-icons/fa"
-
-// Simuler l'import du CV - remplacez par votre vrai chemin
-const cvFile = "/cv/Nandrianintsoa_CV.pdf"
+import { cvFile } from "../../public/images"
 
 const PortfolioHeader = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -17,14 +16,24 @@ const PortfolioHeader = () => {
       })
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767)
+    }
+
     window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    window.addEventListener("resize", handleResize)
+    handleResize() // Initial check
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   const handleDownloadCV = () => {
     try {
       const link = document.createElement("a")
-      link.href = cvFile
+      link.href = cvFile // Use the imported CV file
       link.download = "Nandrianintsoa_CV.pdf"
       document.body.appendChild(link)
       link.click()
@@ -32,7 +41,6 @@ const PortfolioHeader = () => {
       console.log("Téléchargement du CV initié avec succès")
     } catch (error) {
       console.error("Erreur lors du téléchargement du CV:", error)
-      window.open(cvFile, "_blank")
     }
   }
 
@@ -44,11 +52,12 @@ const PortfolioHeader = () => {
           
           * {
             font-family: 'Sora', sans-serif;
+            box-sizing: border-box;
           }
 
           .portfolio-header {
             position: relative;
-            min-height: 100vh;
+            min-height: 80vh;
             background: #111827;
             overflow: hidden;
           }
@@ -62,46 +71,67 @@ const PortfolioHeader = () => {
             background-image: 
               linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-size: clamp(20px, 4vw, 40px) clamp(20px, 4vw, 40px);
             z-index: 1;
           }
 
           .content-wrapper {
             position: relative;
             z-index: 10;
-            padding: 4rem 2rem;
-            max-width: 1200px;
+            padding: clamp(1rem, 5vw, 4rem) clamp(1rem, 5vw, 2rem);
+            max-width: 1400px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
           }
 
           .hero-content {
             width: 100%;
-            max-width: 800px;
-          }
-
-          .text-content {
-            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: clamp(1rem, 3vw, 2rem);
             text-align: left;
           }
 
+          .greeting-section {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+            margin-top: 4rem;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+          }
+
           .greeting {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: 500;
             color: #ec4899;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateX(-50px);
-            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+            margin: 0;
+          }
+
+          .online-indicator-inline {
+            width: clamp(8px, 1.5vw, 12px);
+            height: clamp(8px, 1.5vw, 12px);
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            flex-shrink: 0;
+          }
+
+          .title-content {
+            flex: 1;
           }
 
           .main-title {
-            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-size: clamp(3rem, 10vw, 10rem);
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0;
             color: #a855f7;
             opacity: 0;
             transform: translateY(80px);
@@ -119,40 +149,41 @@ const PortfolioHeader = () => {
           }
 
           .subtitle {
-            font-size: 1.8rem;
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
             font-weight: 600;
             color: #f472b6;
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1rem, 3vw, 2rem);
             opacity: 0;
             transform: translateX(-50px);
-            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s forwards;
+            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
             position: relative;
+            text-align: left;
           }
 
           .subtitle::before {
             content: '';
             position: absolute;
-            left: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 40px;
+            left: 0;
+            bottom: -8px;
+            width: clamp(40px, 10vw, 60px);
+            height: 3px;
             background: linear-gradient(135deg, #ec4899, #a855f7);
             border-radius: 2px;
             opacity: 0;
-            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+            animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
           }
 
           .description {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             line-height: 1.8;
             color: #e2e8f0;
-            margin-bottom: 3rem;
-            max-width: 700px;
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+            max-width: 90%;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
             font-weight: 400;
+            text-align: left;
           }
 
           .description .highlight {
@@ -168,23 +199,23 @@ const PortfolioHeader = () => {
           .cta-section {
             display: flex;
             justify-content: flex-start;
-            margin-bottom: 3rem;
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
           }
 
           .download-btn {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1.3rem 2.8rem;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            padding: clamp(0.8rem, 2vw, 1.3rem) clamp(1.5rem, 3vw, 2.8rem);
             background: linear-gradient(135deg, #ec4899, #a855f7);
             color: white;
             border: none;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
             cursor: pointer;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             position: relative;
@@ -216,6 +247,8 @@ const PortfolioHeader = () => {
 
           .download-btn svg {
             transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: clamp(16px, 2vw, 20px);
+            height: clamp(16px, 2vw, 20px);
           }
 
           .download-btn:hover svg {
@@ -224,19 +257,20 @@ const PortfolioHeader = () => {
 
           .social-links {
             display: flex;
-            gap: 1.5rem;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
             justify-content: flex-start;
+            flex-wrap: wrap;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s forwards;
+            animation: fadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.4s forwards;
           }
 
           .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 65px;
-            height: 65px;
+            width: clamp(45px, 8vw, 65px);
+            height: clamp(45px, 8vw, 65px);
             background: rgba(255, 255, 255, 0.08);
             border: 2px solid rgba(236, 72, 153, 0.2);
             border-radius: 16px;
@@ -283,7 +317,23 @@ const PortfolioHeader = () => {
             box-shadow: 0 15px 40px rgba(244, 114, 182, 0.3);
           }
 
-          /* GSAP-style Animations */
+          .social-link svg {
+            width: clamp(18px, 3vw, 24px);
+            height: clamp(18px, 3vw, 24px);
+          }
+
+          /* Animations */
+          @keyframes fadeInDown {
+            from {
+              opacity: 0;
+              transform: translateY(-30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
           @keyframes slideInLeft {
             from {
               opacity: 0;
@@ -326,18 +376,30 @@ const PortfolioHeader = () => {
             }
           }
 
+          @keyframes pulse {
+            0% {
+              box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+            70% {
+              box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+              box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+          }
+
           .mouse-follower {
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: clamp(150px, 20vw, 300px);
+            height: clamp(150px, 20vw, 300px);
             background: radial-gradient(circle, rgba(236, 72, 153, 0.06) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 2;
             transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: ${isMobile ? 'none' : 'block'};
           }
 
-          /* Floating elements */
           .floating-elements {
             position: absolute;
             top: 0;
@@ -350,8 +412,8 @@ const PortfolioHeader = () => {
 
           .floating-dot {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: clamp(6px, 1vw, 8px);
+            height: clamp(6px, 1vw, 8px);
             background: linear-gradient(45deg, #ec4899, #a855f7);
             border-radius: 50%;
             opacity: 0.6;
@@ -393,72 +455,257 @@ const PortfolioHeader = () => {
             }
           }
 
-          @media (max-width: 768px) {
+          /* Responsive Design */
+          @media (min-width: 1400px) {
             .content-wrapper {
-              padding: 2rem 1rem;
+              padding: 5rem 3rem;
             }
-            
-            .download-btn {
-              width: 100%;
-              justify-content: center;
-              padding: 1.2rem 2rem;
+            .main-title {
+              font-size: clamp(6rem, 12vw, 12rem);
             }
-            
+          }
+
+          @media (max-width: 1199px) and (min-width: 992px) {
+            .content-wrapper {
+              padding: 3rem 2rem;
+            }
+            .hero-content {
+              gap: 1.5rem;
+              max-width: 900px;
+            }
             .social-links {
-              gap: 1rem;
-              justify-content: center;
+              gap: 1.2rem;
             }
-            
+            .download-btn {
+              padding: 1.2rem 2.4rem;
+              font-size: 1rem;
+            }
+            .social-link {
+              width: 60px;
+              height: 60px;
+            }
+          }
+
+          @media (max-width: 991px) and (min-width: 768px) {
+            .content-wrapper {
+              padding: 2.5rem 1.8rem;
+            }
+            .hero-content {
+              gap: 1.2rem;
+              max-width: 700px;
+            }
+            .main-title {
+              font-size: clamp(4rem, 8vw, 8rem);
+            }
+            .subtitle {
+              font-size: 1.4rem;
+            }
+            .description {
+              font-size: 1rem;
+              max-width: 80%;
+            }
+            .download-btn {
+              padding: 1rem 2rem;
+            }
             .social-link {
               width: 55px;
               height: 55px;
             }
-            
-            .description {
-              font-size: 1.1rem;
-              margin-bottom: 2rem;
-            }
-            
-            .subtitle {
-              font-size: 1.4rem;
-            }
+          }
 
+          @media (max-width: 767px) {
+            .grid-background {
+              background-size: clamp(30px, 6vw, 60px) clamp(30px, 6vw, 60px); /* Carreaux plus grands */
+            }
+            .content-wrapper {
+              padding: 2rem 1.5rem;
+              justify-content: center;
+              min-height: auto;
+            }
+            .hero-content {
+              align-items: flex-start;
+              text-align: left;
+              gap: 1rem;
+            }
+            .title-content {
+              text-align: left;
+            }
+            .subtitle {
+              text-align: left;
+              font-size: 1.3rem;
+            }
             .subtitle::before {
-              left: -15px;
-              height: 30px;
+              left: 0;
+              transform: none; /* Supprime translateX(-50%) pour alignement à gauche */
+              width: 40px;
+            }
+            .description {
+              text-align: left;
+              margin-left: 0;
+              margin-right: auto;
+              max-width: 95%;
+            }
+            .cta-section {
+              justify-content: flex-start;
+            }
+            .social-links {
+              justify-content: flex-start;
+              gap: 1rem;
+            }
+            .greeting-section {
+              justify-content: flex-start;
+              gap: 1rem;
+            }
+            .download-btn {
+              width: 100%;
+              max-width: 280px;
+              justify-content: center;
+              padding: 1rem 1.8rem;
+              font-size: 0.95rem;
+            }
+            .social-link {
+              width: 50px;
+              height: 50px;
+            }
+            .social-link svg {
+              width: 20px;
+              height: 20px;
             }
           }
 
-          @media (max-width: 480px) {
+          @media (max-width: 479px) {
+            .content-wrapper {
+              padding: 1.5rem 1rem;
+            }
+            .hero-content {
+              gap: 0.8rem;
+            }
+            .greeting-section {
+              gap: 0.8rem;
+            }
             .greeting {
-              font-size: 1.1rem;
-            }
-            
-            .subtitle {
-              font-size: 1.2rem;
-            }
-            
-            .description {
               font-size: 1rem;
             }
-
-            .text-content {
-              text-align: center;
+            .main-title {
+              font-size: clamp(2.5rem, 8vw, 4rem);
             }
-
-            .cta-section {
-              justify-content: center;
+            .subtitle {
+              font-size: 1.1rem;
+              margin-bottom: 1.2rem;
             }
-
             .subtitle::before {
+              width: 30px;
+              height: 2px;
+            }
+            .description {
+              font-size: 0.9rem;
+              margin-bottom: 1.2rem;
+            }
+            .download-btn {
+              padding: 0.9rem 1.5rem;
+              font-size: 0.9rem;
+              gap: 0.6rem;
+            }
+            .social-links {
+              gap: 0.8rem;
+            }
+            .social-link {
+              width: 45px;
+              height: 45px;
+            }
+            .social-link svg {
+              width: 18px;
+              height: 18px;
+            }
+          }
+
+          @media (max-width: 374px) {
+            .content-wrapper {
+              padding: 1rem 0.8rem;
+            }
+            .main-title {
+              font-size: clamp(2rem, 7vw, 3.5rem);
+            }
+            .download-btn {
+              padding: 0.8rem 1.2rem;
+              font-size: 0.85rem;
+            }
+            .social-link {
+              width: 40px;
+              height: 40px;
+            }
+            .social-link svg {
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          @media (max-height: 500px) and (orientation: landscape) {
+            .content-wrapper {
+              padding: 1rem;
+              min-height: auto;
+            }
+            .hero-content {
+              gap: 0.5rem;
+            }
+            .main-title {
+              font-size: clamp(2rem, 6vw, 4rem);
+              margin-bottom: 0.5rem;
+            }
+            .subtitle {
+              font-size: 1rem;
+              margin-bottom: 0.8rem;
+            }
+            .description {
+              font-size: 0.9rem;
+              margin-bottom: 0.8rem;
+            }
+            .download-btn {
+              padding: 0.8rem 1.5rem;
+            }
+          }
+
+          @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .grid-background {
+              background-size: clamp(15px, 3vw, 30px) clamp(15px, 3vw, 30px);
+            }
+            .download-btn, .social-link {
+              border-radius: 14px;
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            * {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+            }
+            .mouse-follower, .floating-elements {
               display: none;
+            }
+          }
+
+          @media (prefers-contrast: high) {
+            .portfolio-header {
+              background: #000;
+            }
+            .greeting, .main-title, .subtitle, .description {
+              color: #fff;
+            }
+            .download-btn {
+              background: #fff;
+              color: #000;
+            }
+            .social-link {
+              background: rgba(255, 255, 255, 0.2);
+              border-color: #fff;
+              color: #fff;
             }
           }
         `}
       </style>
 
       <section className="portfolio-header">
-        {/* Background Effects */}
         <div className="grid-background"></div>
 
         <div className="floating-elements">
@@ -468,63 +715,66 @@ const PortfolioHeader = () => {
           <div className="floating-dot"></div>
         </div>
 
-        {/* Mouse Follower */}
-        <div
-          className="mouse-follower"
-          style={{
-            transform: `translate(${mousePosition.x - 150}px, ${mousePosition.y - 150}px)`,
-          }}
-        ></div>
+        {!isMobile && (
+          <div
+            className="mouse-follower"
+            style={{
+              transform: `translate(${mousePosition.x - (isMobile ? 75 : 150)}px, ${mousePosition.y - (isMobile ? 75 : 150)}px)`,
+            }}
+          ></div>
+        )}
 
         <div className="content-wrapper">
           <div className="hero-content">
-            <div className="text-content">
+            <div className="greeting-section">
               <div className="greeting">Bonjour, je suis Nandrianintsoa</div>
+              <div className="online-indicator-inline"></div>
+            </div>
 
+            <div className="title-content">
               <h1 className="main-title">
                 <span className="highlight">FullStack, AI & BI</span>
-                <br />Developer
-                
+                <br /> Developer
               </h1>
+            </div>
 
-              <h2 className="subtitle">Je conçois des expériences numériques exceptionnelles</h2>
+            <h2 className="subtitle">Je conçois des expériences numériques exceptionnelles</h2>
 
-              <p className="description">
-                Développeur <span className="highlight">Fullstack, AI & Business Intelligence</span> passionné par les
-                interfaces modernes et les solutions intelligentes. Spécialisé dans la création d'applications web
-                performantes, l'intelligence artificielle et l'analyse de données pour des insights métier stratégiques.
-              </p>
+            <p className="description">
+              Développeur <span className="highlight">Fullstack, AI & Business Intelligence</span> passionné par les
+              interfaces modernes et les solutions intelligentes. Spécialisé dans la création d'applications web
+              performantes, l'intelligence artificielle et l'analyse de données pour des insights métier stratégiques.
+            </p>
 
-              <div className="cta-section">
-                <button onClick={handleDownloadCV} className="download-btn" aria-label="Télécharger CV">
-                  <FaDownload />
-                  Télécharger CV
-                </button>
-              </div>
+            <div className="cta-section">
+              <button onClick={handleDownloadCV} className="download-btn" aria-label="Télécharger CV">
+                <FaDownload />
+                Télécharger CV
+              </button>
+            </div>
 
-              <div className="social-links">
-                <a
-                  href="https://github.com/Seven4dr"
-                  className="social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                >
-                  <FaGithub size={24} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326"
-                  className="social-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin size={24} />
-                </a>
-                <a href="mailto:adrnandrianinstoa272@gmail.com" className="social-link" aria-label="Email">
-                  <FaEnvelope size={24} />
-                </a>
-              </div>
+            <div className="social-links">
+              <a
+                href="https://github.com/Seven4dr"
+                className="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <FaGithub />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/nandrianintsoa-andrianirina-618724326"
+                className="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin />
+              </a>
+              <a href="mailto:adrnandrianinstoa272@gmail.com" className="social-link" aria-label="Email">
+                <FaEnvelope />
+              </a>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ const Marquee = () => {
 
   const marqueeContent1 = (
     <>
-     <span className="mx-8 text-white font-extrabold">NANDRIANINTSOA</span>
+      <span className="mx-8 text-white font-extrabold">NANDRIANINTSOA</span>
       <span className="mx-8 text-white font-extrabold">@NANDRIANINTSOA</span>
       <span className="mx-6 text-4xl text-white font-extrabold">•</span>
       <span className="mx-8 text-white font-extrabold">OPEN TO OPPORTUNITIES</span>
@@ -27,13 +27,13 @@ const Marquee = () => {
 
   const marqueeContent2 = (
     <>
-        <span className="mx-8 text-white font-extrabold">FULLSTACK DEVELOPER</span>
-        <span className="mx-8 text-white font-extrabold">JAVASCRIPT & PYTHON</span>
-        <span className="mx-6 text-4xl text-white font-extrabold">•</span>
-        <span className="mx-8 text-white font-extrabold">AI SOLUTIONS</span>
-        <span className="mx-8 text-white font-extrabold">BUSINESS INTELLIGENCE</span>
-        <span className="mx-8 font-extrabold text-white">WEB PERFORMANCE</span>
-        <span className="mx-6 text-4xl text-white font-extrabold">•</span>
+      <span className="mx-8 text-white font-extrabold">FULLSTACK DEVELOPER</span>
+      <span className="mx-8 text-white font-extrabold">JAVASCRIPT & PYTHON</span>
+      <span className="mx-6 text-4xl text-white font-extrabold">•</span>
+      <span className="mx-8 text-white font-extrabold">AI SOLUTIONS</span>
+      <span className="mx-8 text-white font-extrabold">BUSINESS INTELLIGENCE</span>
+      <span className="mx-8 font-extrabold text-white">WEB PERFORMANCE</span>
+      <span className="mx-6 text-4xl text-white font-extrabold">•</span>
     </>
   )
 
@@ -53,8 +53,8 @@ const Marquee = () => {
           
           .marquee-container {
             position: absolute;
-            width: 120vw;
-            height: 120px;
+            width: 97vw;
+            height: 100px;
             display: flex;
             overflow: hidden;
             z-index: 10;
@@ -111,11 +111,11 @@ const Marquee = () => {
           /* Mobile - Extra Small */
           @media (max-width: 480px) {
             .marquee-container {
-              height: 45px;
-              width: 130vw;
+              height: 80px;
+              width: 100vw;
             }
             .marquee-content {
-              font-size: 0.875rem;
+              font-size: 2rem;
               padding: 0 0.5rem;
               letter-spacing: 0.02em;
             }
@@ -124,11 +124,11 @@ const Marquee = () => {
           /* Mobile - Small */
           @media (min-width: 481px) and (max-width: 640px) {
             .marquee-container {
-              height: 55px;
-              width: 125vw;
+              height: 80px;
+              width: 50vw;
             }
             .marquee-content {
-              font-size: 1rem;
+              font-size: 2rem;
               padding: 0 0.75rem;
               letter-spacing: 0.03em;
             }
@@ -137,11 +137,11 @@ const Marquee = () => {
           /* Tablet - Small */
           @media (min-width: 641px) and (max-width: 768px) {
             .marquee-container {
-              height: 70px;
-              width: 120vw;
+              height: 80px;
+              width: 100vw;
             }
             .marquee-content {
-              font-size: 1.5rem;
+              font-size: 2rem;
               padding: 0 1rem;
               letter-spacing: 0.04em;
             }
@@ -150,11 +150,11 @@ const Marquee = () => {
           /* Tablet - Large */
           @media (min-width: 769px) and (max-width: 1024px) {
             .marquee-container {
-              height: 85px;
-              width: 120vw;
+              height: 80px;
+              width: 100vw;
             }
             .marquee-content {
-              font-size: 1.75rem;
+              font-size: 2rem;
               padding: 0 1.25rem;
               letter-spacing: 0.05em;
             }
@@ -163,8 +163,8 @@ const Marquee = () => {
           /* Desktop - Small */
           @media (min-width: 1025px) and (max-width: 1280px) {
             .marquee-container {
-              height: 100px;
-              width: 120vw;
+              height: 120px;
+              width: 100vw;
             }
             .marquee-content {
               font-size: 2rem;
@@ -177,7 +177,7 @@ const Marquee = () => {
           @media (min-width: 1281px) {
             .marquee-container {
               height: 120px;
-              width: 120vw;
+              width: 100vw;
             }
             .marquee-content {
               font-size: 2.5rem;
@@ -192,7 +192,7 @@ const Marquee = () => {
       <div
         className="marquee-container"
         style={{
-          left: "-10%",
+          left: "0",
           transform: "rotate(3deg)",
         }}
       >
@@ -209,7 +209,7 @@ const Marquee = () => {
       <div
         className="marquee-container"
         style={{
-          left: "-10%",
+          left: "0",
           transform: "rotate(-3deg)",
         }}
       >
