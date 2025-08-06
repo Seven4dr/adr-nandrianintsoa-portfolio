@@ -9,10 +9,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 const Competences = () => {
   const [selectedCategory, setSelectedCategory] = useState("Frontend")
+  const [clickedSkills, setClickedSkills] = useState(new Set())
   const containerRef = useRef(null)
   const titleRef = useRef(null)
   const filtersRef = useRef(null)
   const skillsRef = useRef(null)
+  const skillRefs = useRef([])
 
   const skillCategories = [
     {
@@ -102,6 +104,50 @@ const Competences = () => {
     }
   }
 
+  const handleSkillClick = (skillIndex, skillName) => {
+    const skillId = `${selectedCategory}-${skillName}`
+    const skillCard = skillRefs.current[skillIndex]
+    const glareElement = skillCard?.querySelector('.glare-overlay')
+
+    if (skillCard && glareElement) {
+      // Toggle clicked state
+      setClickedSkills(prev => {
+        const newSet = new Set(prev)
+        if (newSet.has(skillId)) {
+          newSet.delete(skillId)
+        } else {
+          newSet.add(skillId)
+        }
+        return newSet
+      })
+
+      // Glare animation
+      gsap.set(glareElement, {
+        x: '-100%',
+        opacity: 1,
+        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)'
+      })
+
+      gsap.to(glareElement, {
+        x: '100%',
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.set(glareElement, { opacity: 0 })
+        }
+      })
+
+      // Card bounce effect
+      gsap.to(skillCard, {
+        scale: 0.95,
+        duration: 0.1,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut"
+      })
+    }
+  }
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Animation du titre principal
@@ -176,6 +222,9 @@ const Competences = () => {
         },
       )
     }
+    
+    // Clear clicked skills when category changes
+    setClickedSkills(new Set())
   }, [selectedCategory])
 
   const handleCategoryChange = (category) => {
@@ -250,81 +299,118 @@ const Competences = () => {
 
         {/* Grille des compétences */}
         <div ref={skillsRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {displayedSkills.map((skill, skillIndex) => (
-            <div
-              key={skillIndex}
-              className="group relative bg-gray-800/60 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:border-purple-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-purple-500/10 hover:-translate-y-1"
-            >
-              {/* Effet de brillance au survol */}
-              <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 group-hover:animate-pulse"></div>
+          {displayedSkills.map((skill, skillIndex) => {
+            const skillId = `${selectedCategory}-${skill.name}`
+            const isClicked = clickedSkills.has(skillId)
+            
+            return (
+              <div
+                key={skillIndex}
+                ref={el => skillRefs.current[skillIndex] = el}
+                className={`group relative cursor-pointer select-none transition-all duration-500 hover:-translate-y-1 ${
+                  isClicked 
+                    ? 'bg-gradient-to-br from-purple-800/80 to-blue-800/80 border-purple-400/70 shadow-xl shadow-purple-500/25' 
+                    : 'bg-gray-800/60 border-gray-700/50 hover:border-purple-500/50'
+                } backdrop-blur-sm border rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:shadow-xl hover:shadow-purple-500/10 overflow-hidden`}
+                onClick={() => handleSkillClick(skillIndex, skill.name)}
+              >
+                {/* Glare overlay */}
+                <div className="glare-overlay absolute inset-0 w-full h-full opacity-0 pointer-events-none z-20"></div>
 
-              <div className="relative z-10">
-                {/* En-tête de la carte */}
-                <div className="flex items-center justify-between mb-3 sm:mb-4">
-                  <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                    <div
-                      className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${skill.color} flex items-center justify-center shadow-lg flex-shrink-0`}
-                    >
-                      <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-bold text-white text-sm sm:text-base lg:text-lg truncate">{skill.name}</h3>
-                      <div className="flex items-center gap-1 text-xs sm:text-sm text-gray-400">
-                        {getLevelIcon(skill.level)}
-                        <span className="truncate">{skill.level}</span>
+                {/* Effet de brillance au survol */}
+                <div className={`absolute inset-0 rounded-xl sm:rounded-2xl transition-opacity duration-500 ${
+                  isClicked 
+                    ? 'bg-gradient-to-r from-transparent via-purple-200/10 to-transparent opacity-100 animate-pulse'
+                    : 'bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse'
+                }`}></div>
+
+                <div className="relative z-10">
+                  {/* En-tête de la carte */}
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+                      <div
+                        className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${skill.color} flex items-center justify-center shadow-lg flex-shrink-0 ${
+                          isClicked ? 'animate-pulse' : ''
+                        }`}
+                      >
+                        <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h3 className={`font-bold text-sm sm:text-base lg:text-lg truncate ${
+                          isClicked ? 'text-purple-100' : 'text-white'
+                        }`}>{skill.name}</h3>
+                        <div className={`flex items-center gap-1 text-xs sm:text-sm ${
+                          isClicked ? 'text-purple-200' : 'text-gray-400'
+                        }`}>
+                          {getLevelIcon(skill.level)}
+                          <span className="truncate">{skill.level}</span>
+                        </div>
                       </div>
                     </div>
+                    <div className="text-right flex-shrink-0">
+                      <div className={`text-lg sm:text-xl lg:text-2xl font-black ${
+                        isClicked ? 'text-purple-100' : 'text-white'
+                      }`}>{skill.progress}%</div>
+                    </div>
                   </div>
-                  <div className="text-right flex-shrink-0">
-                    <div className="text-lg sm:text-xl lg:text-2xl font-black text-white">{skill.progress}%</div>
+
+                  {/* Barre de progression */}
+                  <div className="relative">
+                    <div className="w-full h-2.5 sm:h-3 bg-gray-700/50 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
+                          isClicked ? 'animate-pulse' : ''
+                        }`}
+                        style={{ width: `${skill.progress}%` }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+                      </div>
+                    </div>
+                    <div
+                      className={`absolute -top-0.5 sm:-top-1 -bottom-0.5 sm:-bottom-1 rounded-full blur-sm transition-opacity duration-300 ${
+                        isClicked 
+                          ? 'bg-gradient-to-r from-purple-400/30 to-blue-400/30 opacity-100'
+                          : 'bg-gradient-to-r from-purple-500/15 to-blue-500/15 opacity-0 group-hover:opacity-100'
+                      }`}
+                      style={{ width: `${skill.progress}%` }}
+                    ></div>
                   </div>
                 </div>
 
-                {/* Barre de progression */}
-                <div className="relative">
-                  <div className="w-full h-2.5 sm:h-3 bg-gray-700/50 rounded-full overflow-hidden">
-                    <div
-                      className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden`}
-                      style={{ width: `${skill.progress}%` }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                    </div>
-                  </div>
-                  <div
-                    className="absolute -top-0.5 sm:-top-1 -bottom-0.5 sm:-bottom-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{ width: `${skill.progress}%` }}
-                  ></div>
-                </div>
+                {/* Click indicator */}
+                {isClicked && (
+                  <div className="absolute top-2 right-2 w-3 h-3 bg-purple-400 rounded-full animate-ping"></div>
+                )}
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Statistiques de la catégorie */}
-      <div className="mt-8 sm:mt-12 lg:mt-16 px-2 flex justify-center items-center">
-      <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 w-full max-w-md sm:max-w-none mx-auto">
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-            {displayedSkills.length}
+        <div className="mt-8 sm:mt-12 lg:mt-16 px-2 flex justify-center items-center">
+          <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 w-full max-w-md sm:max-w-none mx-auto">
+            <div className="flex flex-col items-center justify-center">
+              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
+                {displayedSkills.length}
+              </div>
+              <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
+            </div>
+            <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
+            <div className="flex flex-col items-center justify-center">
+              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
+                {Math.round(displayedSkills.reduce((acc, skill) => acc + skill.progress, 0) / displayedSkills.length)}%
+              </div>
+              <div className="text-xs sm:text-sm text-gray-400">Moyenne</div>
+            </div>
+            <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
+            <div className="flex flex-col items-center justify-center">
+              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
+                {displayedSkills.filter((skill) => skill.level === "Expert").length}
+              </div>
+              <div className="text-xs sm:text-sm text-gray-400">Expert</div>
+            </div>
           </div>
-          <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
         </div>
-        <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-            {Math.round(displayedSkills.reduce((acc, skill) => acc + skill.progress, 0) / displayedSkills.length)}%
-          </div>
-          <div className="text-xs sm:text-sm text-gray-400">Moyenne</div>
-        </div>
-        <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-            {displayedSkills.filter((skill) => skill.level === "Expert").length}
-          </div>
-          <div className="text-xs sm:text-sm text-gray-400">Expert</div>
-        </div>
-      </div>
-    </div>
       </div>
     </div>
   )
