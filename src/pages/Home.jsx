@@ -182,26 +182,27 @@ const Home = () => {
             </section>
 
             {/* Section Marquee */}
+{/* Section Marquee */}
+{/* Section Marquee */}
           <section
-          id="marquee"
-          className="min-h-[170px] w-full z-15 relative opacity-0 translate-y-5 
-                    animate-[fadeInUp_0.6s_ease-out_0.2s_forwards] 
-                    mt-4 mb-4  sm:mt-2 sm:mb-2"
-          data-aos="fade-up"
-          data-aos-duration="600"
-        >
-          <Marquee />
-        </section>
+            id="marquee"
+            className="min-h-[120px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-[170px] w-full z-15 relative opacity-0 translate-y-5 
+                      animate-[fadeInUp_0.6s_ease-out_0.2s_forwards] 
+                      mt-1 mb-0 sm:mt-0 sm:mb-0 md:mt-1 md:mb-0 lg:mt-2 lg:mb-1"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
+            <Marquee />
+          </section>
 
-
-            <section
-              id="competences"
-              className="opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_0.4s_forwards]"
-              data-aos="fade-up"
-              data-aos-duration="600"
-            >
-              <Competences />
-            </section>
+          <section
+            id="competences"
+            className="mt-0 opacity-0 translate-y-5 animate-[fadeInUp_0.6s_ease-out_0.4s_forwards]"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
+            <Competences />
+          </section>
 
             <section
               id="experience"

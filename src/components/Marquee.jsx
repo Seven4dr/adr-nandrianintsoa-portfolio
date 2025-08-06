@@ -100,10 +100,10 @@ const Marquee = () => {
             position: absolute;
             width: 100%;
             height: 200px;
-            background: radial-gradient(ellipse at center, 
-              rgba(255, 0, 255, 0.15) 0%, 
-              rgba(138, 43, 226, 0.1) 30%, 
-              transparent 70%);
+            // background: radial-gradient(ellipse at center, 
+            //   rgba(255, 0, 255, 0.15) 0%, 
+            //   rgba(138, 43, 226, 0.1) 30%, 
+            //   transparent 70%);
             pointer-events: none;
             z-index: 5;
           }
