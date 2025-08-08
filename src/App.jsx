@@ -1,6 +1,6 @@
 import Home from './pages/Home'
 
-const H = () => {
+const App = () => {
   return (
     <div>
       <Home/>
@@ -8,4 +8,4 @@ const H = () => {
   )
 }
 
-export default H
+export default App

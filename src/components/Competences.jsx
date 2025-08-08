@@ -1,11 +1,8 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import CountUp from "react-countup"
 import { Code2, Database, Server, Wrench, ChevronRight, Star, TrendingUp } from "lucide-react"
-
-gsap.registerPlugin(ScrollTrigger)
 
 const Competences = () => {
   const [selectedCategory, setSelectedCategory] = useState("Frontend")
@@ -107,9 +104,8 @@ const Competences = () => {
   const handleSkillClick = (skillIndex, skillName) => {
     const skillId = `${selectedCategory}-${skillName}`
     const skillCard = skillRefs.current[skillIndex]
-    const glareElement = skillCard?.querySelector('.glare-overlay')
 
-    if (skillCard && glareElement) {
+    if (skillCard) {
       // Toggle clicked state
       setClickedSkills(prev => {
         const newSet = new Set(prev)
@@ -120,128 +116,101 @@ const Competences = () => {
         }
         return newSet
       })
-
-      // Glare animation
-      gsap.set(glareElement, {
-        x: '-100%',
-        opacity: 1,
-        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)'
-      })
-
-      gsap.to(glareElement, {
-        x: '100%',
-        duration: 0.8,
-        ease: "power2.out",
-        onComplete: () => {
-          gsap.set(glareElement, { opacity: 0 })
-        }
-      })
-
-      // Card bounce effect
-      gsap.to(skillCard, {
-        scale: 0.95,
-        duration: 0.1,
-        yoyo: true,
-        repeat: 1,
-        ease: "power2.inOut"
-      })
     }
   }
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animation du titre principal
-      gsap.fromTo(
-        titleRef.current,
-        {
-          y: 50,
-          opacity: 0,
-          scale: 0.9,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      )
-
-      // Animation des filtres
-      gsap.fromTo(
-        filtersRef.current.children,
-        {
-          y: 30,
-          opacity: 0,
-          scale: 0.8,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
-          scrollTrigger: {
-            trigger: filtersRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      )
-    }, containerRef)
-
-    return () => ctx.revert()
-  }, [])
-
-  useEffect(() => {
-    // Animation des cartes de compétences lors du changement de catégorie
-    if (skillsRef.current) {
-      gsap.fromTo(
-        skillsRef.current.children,
-        {
-          y: 40,
-          opacity: 0,
-          scale: 0.9,
-          rotationX: 15,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          rotationX: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
-        },
-      )
-    }
-    
-    // Clear clicked skills when category changes
-    setClickedSkills(new Set())
-  }, [selectedCategory])
 
   const handleCategoryChange = (category) => {
     if (category !== selectedCategory) {
-      // Animation de sortie
-      gsap.to(skillsRef.current.children, {
-        y: -20,
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-          setSelectedCategory(category)
-        },
-      })
+      setSelectedCategory(category)
     }
   }
+
+  // Composant pour les cartes de compétences
+  const SkillCard = ({ skill, skillIndex, isClicked, onSkillClick }) => {
+    return (
+      <div
+        ref={el => skillRefs.current[skillIndex] = el}
+        className={`group relative cursor-pointer select-none transition-all duration-500 hover:-translate-y-1 ${
+          isClicked 
+            ? 'bg-gradient-to-br from-purple-800/80 to-blue-800/80 border-purple-400/70 shadow-xl shadow-purple-500/25' 
+            : 'bg-gray-800/60 border-gray-700/50 hover:border-purple-500/50'
+        } backdrop-blur-sm border rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:shadow-xl hover:shadow-purple-500/10 overflow-hidden`}
+        onClick={onSkillClick}
+      >
+        {/* Effet de brillance au survol */}
+        <div className={`absolute inset-0 rounded-xl sm:rounded-2xl transition-opacity duration-500 ${
+          isClicked 
+            ? 'bg-gradient-to-r from-transparent via-purple-200/10 to-transparent opacity-100 animate-pulse'
+            : 'bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse'
+        }`}></div>
+
+        <div className="relative z-10">
+          {/* En-tête de la carte */}
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <div
+                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${skill.color} flex items-center justify-center shadow-lg flex-shrink-0 ${
+                  isClicked ? 'animate-pulse' : ''
+                }`}
+              >
+                <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className={`font-bold text-sm sm:text-base lg:text-lg truncate ${
+                  isClicked ? 'text-purple-100' : 'text-white'
+                }`}>{skill.name}</h3>
+                <div className={`flex items-center gap-1 text-xs sm:text-sm ${
+                  isClicked ? 'text-purple-200' : 'text-gray-400'
+                }`}>
+                  {getLevelIcon(skill.level)}
+                  <span className="truncate">{skill.level}</span>
+                </div>
+              </div>
+            </div>
+            <div className="text-right flex-shrink-0">
+              <div className={`text-lg sm:text-xl lg:text-2xl font-black ${
+                isClicked ? 'text-purple-100' : 'text-white'
+              }`}>
+                {skill.progress}%
+              </div>
+            </div>
+          </div>
+
+          {/* Barre de progression */}
+          <div className="relative">
+            <div className="w-full h-2.5 sm:h-3 bg-gray-700/50 rounded-full overflow-hidden">
+              <div
+                className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
+                  isClicked ? 'animate-pulse' : ''
+                }`}
+                style={{ width: `${skill.progress}%` }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+              </div>
+            </div>
+            <div
+              className={`absolute -top-0.5 sm:-top-1 -bottom-0.5 sm:-bottom-1 rounded-full blur-sm transition-opacity duration-300 ${
+                isClicked 
+                  ? 'bg-gradient-to-r from-purple-400/30 to-blue-400/30 opacity-100'
+                  : 'bg-gradient-to-r from-purple-500/15 to-blue-500/15 opacity-0 group-hover:opacity-100'
+              }`}
+              style={{ width: `${skill.progress}%` }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Click indicator */}
+        {isClicked && (
+          <div className="absolute top-2 right-2 w-3 h-3 bg-purple-400 rounded-full animate-ping"></div>
+        )}
+      </div>
+    )
+  }
+
+  useEffect(() => {
+    // Clear clicked skills when category changes
+    setClickedSkills(new Set())
+  }, [selectedCategory])
 
   return (
     <div
@@ -304,84 +273,13 @@ const Competences = () => {
             const isClicked = clickedSkills.has(skillId)
             
             return (
-              <div
-                key={skillIndex}
-                ref={el => skillRefs.current[skillIndex] = el}
-                className={`group relative cursor-pointer select-none transition-all duration-500 hover:-translate-y-1 ${
-                  isClicked 
-                    ? 'bg-gradient-to-br from-purple-800/80 to-blue-800/80 border-purple-400/70 shadow-xl shadow-purple-500/25' 
-                    : 'bg-gray-800/60 border-gray-700/50 hover:border-purple-500/50'
-                } backdrop-blur-sm border rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:shadow-xl hover:shadow-purple-500/10 overflow-hidden`}
-                onClick={() => handleSkillClick(skillIndex, skill.name)}
-              >
-                {/* Glare overlay */}
-                <div className="glare-overlay absolute inset-0 w-full h-full opacity-0 pointer-events-none z-20"></div>
-
-                {/* Effet de brillance au survol */}
-                <div className={`absolute inset-0 rounded-xl sm:rounded-2xl transition-opacity duration-500 ${
-                  isClicked 
-                    ? 'bg-gradient-to-r from-transparent via-purple-200/10 to-transparent opacity-100 animate-pulse'
-                    : 'bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse'
-                }`}></div>
-
-                <div className="relative z-10">
-                  {/* En-tête de la carte */}
-                  <div className="flex items-center justify-between mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-                      <div
-                        className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${skill.color} flex items-center justify-center shadow-lg flex-shrink-0 ${
-                          isClicked ? 'animate-pulse' : ''
-                        }`}
-                      >
-                        <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h3 className={`font-bold text-sm sm:text-base lg:text-lg truncate ${
-                          isClicked ? 'text-purple-100' : 'text-white'
-                        }`}>{skill.name}</h3>
-                        <div className={`flex items-center gap-1 text-xs sm:text-sm ${
-                          isClicked ? 'text-purple-200' : 'text-gray-400'
-                        }`}>
-                          {getLevelIcon(skill.level)}
-                          <span className="truncate">{skill.level}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right flex-shrink-0">
-                      <div className={`text-lg sm:text-xl lg:text-2xl font-black ${
-                        isClicked ? 'text-purple-100' : 'text-white'
-                      }`}>{skill.progress}%</div>
-                    </div>
-                  </div>
-
-                  {/* Barre de progression */}
-                  <div className="relative">
-                    <div className="w-full h-2.5 sm:h-3 bg-gray-700/50 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
-                          isClicked ? 'animate-pulse' : ''
-                        }`}
-                        style={{ width: `${skill.progress}%` }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                      </div>
-                    </div>
-                    <div
-                      className={`absolute -top-0.5 sm:-top-1 -bottom-0.5 sm:-bottom-1 rounded-full blur-sm transition-opacity duration-300 ${
-                        isClicked 
-                          ? 'bg-gradient-to-r from-purple-400/30 to-blue-400/30 opacity-100'
-                          : 'bg-gradient-to-r from-purple-500/15 to-blue-500/15 opacity-0 group-hover:opacity-100'
-                      }`}
-                      style={{ width: `${skill.progress}%` }}
-                    ></div>
-                  </div>
-                </div>
-
-                {/* Click indicator */}
-                {isClicked && (
-                  <div className="absolute top-2 right-2 w-3 h-3 bg-purple-400 rounded-full animate-ping"></div>
-                )}
-              </div>
+              <SkillCard
+                key={`${selectedCategory}-${skillIndex}`}
+                skill={skill}
+                skillIndex={skillIndex}
+                isClicked={isClicked}
+                onSkillClick={() => handleSkillClick(skillIndex, skill.name)}
+              />
             )
           })}
         </div>
@@ -390,23 +288,33 @@ const Competences = () => {
         <div className="mt-8 sm:mt-12 lg:mt-16 px-2 flex justify-center items-center">
           <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 bg-gray-800/40 backdrop-blur-sm border border-gray-700/50 rounded-xl sm:rounded-2xl px-4 sm:px-6 lg:px-8 py-4 sm:py-5 lg:py-6 w-full max-w-md sm:max-w-none mx-auto">
             <div className="flex flex-col items-center justify-center">
-              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-                {displayedSkills.length}
-              </div>
+              <CountUp
+                end={displayedSkills.length}
+                duration={1.5}
+                delay={0.2}
+                className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1"
+              />
               <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
             </div>
             <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
             <div className="flex flex-col items-center justify-center">
-              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-                {Math.round(displayedSkills.reduce((acc, skill) => acc + skill.progress, 0) / displayedSkills.length)}%
-              </div>
+              <CountUp
+                end={Math.round(displayedSkills.reduce((acc, skill) => acc + skill.progress, 0) / displayedSkills.length)}
+                duration={2}
+                delay={0.4}
+                suffix="%"
+                className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1"
+              />
               <div className="text-xs sm:text-sm text-gray-400">Moyenne</div>
             </div>
             <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
             <div className="flex flex-col items-center justify-center">
-              <div className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1">
-                {displayedSkills.filter((skill) => skill.level === "Expert").length}
-              </div>
+              <CountUp
+                end={displayedSkills.filter((skill) => skill.level === "Expert").length}
+                duration={1.8}
+                delay={0.6}
+                className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1"
+              />
               <div className="text-xs sm:text-sm text-gray-400">Expert</div>
             </div>
           </div>
