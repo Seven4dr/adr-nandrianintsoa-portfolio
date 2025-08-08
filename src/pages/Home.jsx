@@ -13,6 +13,7 @@ import Marquee from "../components/Marquee"
 import { SmoothCursor } from "../components/SmoothCursor"
 import "./header-styles.css"
 import Background from "./Backgound"
+import { naLogo } from "../../public/images"
 
 // Composant pour l'icône de localisation
 const LocationIcon = () => (
@@ -105,7 +106,7 @@ const Home = () => {
                     {/* Icône "na" avec design moderne */}
                     <div className="logo-icon logo-icon-glow">
                       <span className="logo-text">
-                        <img src="/na.png" alt="Logo" className="w-full h-full object-cover rounded-xl" />
+                        <img src={naLogo} alt="Logo" className="w-full h-full object-cover rounded-xl" />
                       </span>
                     </div>
                     <h1 className="logo-text logo-text-glow">Nandrianintsoa</h1>

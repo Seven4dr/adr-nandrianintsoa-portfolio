@@ -27,6 +27,7 @@ import predictia from './predictia.jpg'; // Added missing import statement
 import robo from './robo.png';
 import Robo3D from './Robo3D.gif' // Added missing import statement
 import bi from './bi.svg' // Added missing import statement
+import naLogo from './na.png' // Added missing import statement
 
 
 export {
@@ -58,6 +59,7 @@ export {
     predictia,
     robo,
     Robo3D,
-    bi
+    bi,
+    naLogo,
 
 };
