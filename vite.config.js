@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/adr-nandrianintsoa.github.io/',
+  // Pour un déploiement à la racine du domaine (user/organization page)
+  base: '/',
 })
