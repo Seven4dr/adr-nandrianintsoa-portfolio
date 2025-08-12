@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Eye,
   X,
@@ -19,20 +19,27 @@ import {
   TrendingUp,
   Monitor,
   Bell,
-} from "lucide-react"
-import { alarm2, epi4, home, mobile, predictia, produits } from "../../public/images"
+} from "lucide-react";
+import {
+  alarm2,
+  epi4,
+  home,
+  mobile,
+  predictia,
+  produits,
+} from "../../public/images";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  const [selectedImage, setSelectedImage] = useState(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
-  const containerRef = useRef(null)
-  const titleRef = useRef(null)
-  const gridRef = useRef(null)
-  const carouselRef = useRef(null)
-  const autoPlayRef = useRef(null)
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const gridRef = useRef(null);
+  const carouselRef = useRef(null);
+  const autoPlayRef = useRef(null);
 
   const projects = [
     {
@@ -55,6 +62,7 @@ const Projects = () => {
       ],
       icon: <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-blue-600 to-cyan-600",
+      isPrivate: true,
     },
     {
       id: 2,
@@ -75,6 +83,7 @@ const Projects = () => {
       ],
       icon: <Database className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-green-600 to-emerald-600",
+      isPrivate: true,
     },
     {
       id: 3,
@@ -107,7 +116,12 @@ const Projects = () => {
       status: "Terminé",
       description:
         "Application mobile d'alarme avec interface moderne et fonctionnalités avancées de personnalisation. Solution complète pour la gestion des alarmes et rappels.",
-      features: ["Alarmes multiples", "Interface moderne", "Personnalisation avancée", "Notifications push"],
+      features: [
+        "Alarmes multiples",
+        "Interface moderne",
+        "Personnalisation avancée",
+        "Notifications push",
+      ],
       icon: <Bell className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-orange-600 to-red-600",
     },
@@ -153,18 +167,18 @@ const Projects = () => {
       icon: <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />,
       color: "from-yellow-600 to-orange-600",
     },
-  ]
+  ];
 
   const getStatusColor = (status) => {
     switch (status) {
       case "Terminé":
-        return "bg-green-500/20 text-green-400 border-green-500/30"
+        return "bg-green-500/20 text-green-400 border-green-500/30";
       case "En cours":
-        return "bg-blue-500/20 text-blue-400 border-blue-500/30"
+        return "bg-blue-500/20 text-blue-400 border-blue-500/30";
       default:
-        return "bg-gray-500/20 text-gray-400 border-gray-500/30"
+        return "bg-gray-500/20 text-gray-400 border-gray-500/30";
     }
-  }
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -188,8 +202,8 @@ const Projects = () => {
             end: "bottom 20%",
             toggleActions: "play none none reverse",
           },
-        },
-      )
+        }
+      );
 
       // Animation de la grille desktop
       if (gridRef.current) {
@@ -214,8 +228,8 @@ const Projects = () => {
               start: "top 80%",
               toggleActions: "play none none reverse",
             },
-          },
-        )
+          }
+        );
       }
 
       // Animation du carrousel mobile
@@ -236,53 +250,53 @@ const Projects = () => {
               start: "top 80%",
               toggleActions: "play none none reverse",
             },
-          },
-        )
+          }
+        );
       }
-    }, containerRef)
+    }, containerRef);
 
-    return () => ctx.revert()
-  }, [])
+    return () => ctx.revert();
+  }, []);
 
   // Auto-play pour le carrousel
   useEffect(() => {
     if (isAutoPlay && window.innerWidth < 1024) {
       autoPlayRef.current = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % projects.length)
-      }, 5000)
+        setCurrentIndex((prev) => (prev + 1) % projects.length);
+      }, 5000);
     }
     return () => {
       if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current)
+        clearInterval(autoPlayRef.current);
       }
-    }
-  }, [isAutoPlay, projects.length])
+    };
+  }, [isAutoPlay, projects.length]);
 
   const openImage = (imageSrc) => {
-    setSelectedImage(imageSrc)
-  }
+    setSelectedImage(imageSrc);
+  };
 
   const closeImage = () => {
-    setSelectedImage(null)
-  }
+    setSelectedImage(null);
+  };
 
   const goToProject = (index) => {
-    setCurrentIndex(index)
-    setIsAutoPlay(false)
-    setTimeout(() => setIsAutoPlay(true), 10000)
-  }
+    setCurrentIndex(index);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
 
   const nextProject = () => {
-    setCurrentIndex((prev) => (prev + 1) % projects.length)
-    setIsAutoPlay(false)
-    setTimeout(() => setIsAutoPlay(true), 10000)
-  }
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
 
   const prevProject = () => {
-    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length)
-    setIsAutoPlay(false)
-    setTimeout(() => setIsAutoPlay(true), 10000)
-  }
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setIsAutoPlay(false);
+    setTimeout(() => setIsAutoPlay(true), 10000);
+  };
 
   const ProjectCard = ({ project, index, isMobile = false }) => {
     return (
@@ -306,7 +320,9 @@ const Projects = () => {
           {/* Badge de statut */}
           <div className="absolute top-3 sm:top-4 left-3 sm:left-4">
             <span
-              className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}
+              className={`px-2 sm:px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(
+                project.status
+              )}`}
             >
               {project.status}
             </span>
@@ -341,7 +357,9 @@ const Projects = () => {
                 {project.category}
               </span>
             </div>
-            <p className="text-purple-300 text-xs sm:text-sm font-medium">{project.subtitle}</p>
+            <p className="text-purple-300 text-xs sm:text-sm font-medium">
+              {project.subtitle}
+            </p>
           </div>
 
           <p className="text-gray-300 mb-3 sm:mb-4 leading-relaxed text-xs sm:text-sm line-clamp-3">
@@ -350,7 +368,9 @@ const Projects = () => {
 
           {/* Fonctionnalités clés */}
           <div className="mb-3 sm:mb-4">
-            <h4 className="text-xs font-semibold text-white mb-2 opacity-80">Fonctionnalités clés :</h4>
+            <h4 className="text-xs font-semibold text-white mb-2 opacity-80">
+              Fonctionnalités clés :
+            </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs text-gray-400">
               {project.features.slice(0, 4).map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-1">
@@ -376,14 +396,23 @@ const Projects = () => {
           {/* Actions */}
           <div className="flex gap-2">
             <button className="flex-1 bg-gray-700/50 text-gray-300 px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-gray-600/50 transition-all duration-300 flex items-center justify-center">
-              <Github className="w-3 h-3 sm:w-4 sm:h-4" />
-              <span className="ml-2 hidden sm:inline">Code</span>
+              {project.isPrivate ? (
+                <>
+                  <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="ml-2 hidden sm:inline">Privé</span>
+                </>
+              ) : (
+                <>
+                  <Github className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="ml-2 hidden sm:inline">Code</span>
+                </>
+              )}
             </button>
           </div>
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div
@@ -428,7 +457,11 @@ const Projects = () => {
             {/* Carte principale */}
             <div className="flex justify-center mb-4 sm:mb-6">
               <div className="w-full max-w-sm sm:max-w-md">
-                <ProjectCard project={projects[currentIndex]} index={0} isMobile={true} />
+                <ProjectCard
+                  project={projects[currentIndex]}
+                  index={0}
+                  isMobile={true}
+                />
               </div>
             </div>
 
@@ -467,8 +500,14 @@ const Projects = () => {
             {/* Compteur et contrôle auto-play */}
             <div className="flex items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-400">
               <span>
-                <span className="text-purple-400 font-bold">{currentIndex + 1}</span> sur{" "}
-                <span className="text-purple-400 font-bold">{projects.length}</span> projets
+                <span className="text-purple-400 font-bold">
+                  {currentIndex + 1}
+                </span>{" "}
+                sur{" "}
+                <span className="text-purple-400 font-bold">
+                  {projects.length}
+                </span>{" "}
+                projets
               </span>
               <button
                 onClick={() => setIsAutoPlay(!isAutoPlay)}
@@ -492,7 +531,9 @@ const Projects = () => {
                 <Folder className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
               <div className="text-center sm:text-left">
-                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">{projects.length}</div>
+                <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
+                  {projects.length}
+                </div>
                 <div className="text-xs sm:text-sm text-gray-400">Projets</div>
               </div>
             </div>
@@ -535,7 +576,9 @@ const Projects = () => {
                 <div className="text-xl sm:text-2xl lg:text-3xl font-black text-white">
                   {new Set(projects.flatMap((p) => p.technologies)).size}
                 </div>
-                <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
+                <div className="text-xs sm:text-sm text-gray-400">
+                  Technologies
+                </div>
               </div>
             </div>
           </div>
@@ -548,7 +591,10 @@ const Projects = () => {
           className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50 p-4"
           onClick={closeImage}
         >
-          <div className="relative max-w-4xl w-full" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative max-w-4xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className="absolute -top-8 sm:-top-12 right-0 bg-gray-800/80 hover:bg-red-600 text-white p-2 sm:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
               onClick={closeImage}
@@ -564,7 +610,7 @@ const Projects = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;

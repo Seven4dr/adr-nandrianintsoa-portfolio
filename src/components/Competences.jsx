@@ -1,17 +1,25 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef } from "react"
-import CountUp from "react-countup"
-import { Code2, Database, Server, Wrench, ChevronRight, Star, TrendingUp } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import CountUp from "react-countup";
+import {
+  Code2,
+  Database,
+  Server,
+  Wrench,
+  ChevronRight,
+  Star,
+  TrendingUp,
+} from "lucide-react";
 
 const Competences = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Frontend")
-  const [clickedSkills, setClickedSkills] = useState(new Set())
-  const containerRef = useRef(null)
-  const titleRef = useRef(null)
-  const filtersRef = useRef(null)
-  const skillsRef = useRef(null)
-  const skillRefs = useRef([])
+  const [selectedCategory, setSelectedCategory] = useState("Frontend");
+  const [clickedSkills, setClickedSkills] = useState(new Set());
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const filtersRef = useRef(null);
+  const skillsRef = useRef(null);
+  const skillRefs = useRef([]);
 
   const skillCategories = [
     {
@@ -20,11 +28,30 @@ const Competences = () => {
       icon: <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />,
       color: "from-blue-600 to-purple-600",
       skills: [
-        { name: "React", progress: 90, level: "Expert", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
-        { name: "Angular", progress: 60, level: "Intermédiaire", color: "bg-gradient-to-r from-red-500 to-red-600" },
-        { name: "Next.js", progress: 50, level: "Intermédiaire", color: "bg-gradient-to-r from-gray-700 to-gray-800" },
-        { name: "Flutter", progress: 50, level: "Intermédiaire", color: "bg-gradient-to-r from-blue-400 to-blue-500" },
-        { name: "Tailwind CSS", progress: 85, level: "Expert", color: "bg-gradient-to-r from-teal-400 to-teal-500" },
+        {
+          name: "React",
+          progress: 90,
+          level: "Expert",
+          color: "bg-gradient-to-r from-blue-500 to-blue-600",
+        },
+        {
+          name: "Angular",
+          progress: 60,
+          level: "Intermédiaire",
+          color: "bg-gradient-to-r from-red-500 to-red-600",
+        },
+        {
+          name: "Flutter",
+          progress: 50,
+          level: "Intermédiaire",
+          color: "bg-gradient-to-r from-blue-400 to-blue-500",
+        },
+        {
+          name: "Tailwind CSS",
+          progress: 85,
+          level: "Expert",
+          color: "bg-gradient-to-r from-teal-400 to-teal-500",
+        },
         {
           name: "TypeScript",
           progress: 50,
@@ -45,18 +72,42 @@ const Competences = () => {
       icon: <Server className="w-4 h-4 sm:w-5 sm:h-5" />,
       color: "from-green-600 to-emerald-600",
       skills: [
-        { name: "Node.js", progress: 75, level: "Avancé", color: "bg-gradient-to-r from-green-500 to-green-600" },
-        { name: "NestJS", progress: 80, level: "Avancé", color: "bg-gradient-to-r from-red-500 to-red-600" },
-        { name: "Express", progress: 70, level: "Avancé", color: "bg-gradient-to-r from-gray-600 to-gray-700" },
-        { name: "Laravel", progress: 50, level: "Intermédiaire", color: "bg-gradient-to-r from-red-600 to-red-700" },
+        {
+          name: "Node.js",
+          progress: 75,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-green-500 to-green-600",
+        },
+        {
+          name: "NestJS",
+          progress: 80,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-red-500 to-red-600",
+        },
+        {
+          name: "Express",
+          progress: 70,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-gray-600 to-gray-700",
+        },
+        {
+          name: "Laravel",
+          progress: 50,
+          level: "Intermédiaire",
+          color: "bg-gradient-to-r from-red-600 to-red-700",
+        },
         {
           name: "FastAPI",
           progress: 60,
           level: "Intermédiaire",
           color: "bg-gradient-to-r from-green-600 to-green-700",
         },
-        { name: "Python", progress: 70, level: "Avancé", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
-        { name: "Java", progress: 80, level: "Avancé", color: "bg-gradient-to-r from-orange-500 to-orange-600" },
+        {
+          name: "Python",
+          progress: 70,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-blue-500 to-blue-600",
+        },
       ],
     },
     {
@@ -65,8 +116,18 @@ const Competences = () => {
       icon: <Database className="w-4 h-4 sm:w-5 sm:h-5" />,
       color: "from-purple-600 to-indigo-600",
       skills: [
-        { name: "PostgreSQL", progress: 80, level: "Avancé", color: "bg-gradient-to-r from-blue-600 to-blue-700" },
-        { name: "MySQL", progress: 75, level: "Avancé", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
+        {
+          name: "PostgreSQL",
+          progress: 80,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-blue-600 to-blue-700",
+        },
+        {
+          name: "MySQL",
+          progress: 75,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-blue-500 to-blue-600",
+        },
       ],
     },
     {
@@ -81,96 +142,128 @@ const Competences = () => {
           level: "Intermédiaire",
           color: "bg-gradient-to-r from-yellow-500 to-yellow-600",
         },
-        { name: "NumPy", progress: 50, level: "Intermédiaire", color: "bg-gradient-to-r from-blue-400 to-blue-500" },
-        { name: "Git", progress: 70, level: "Avancé", color: "bg-gradient-to-r from-orange-500 to-orange-600" },
+        {
+          name: "NumPy",
+          progress: 50,
+          level: "Intermédiaire",
+          color: "bg-gradient-to-r from-blue-400 to-blue-500",
+        },
+        {
+          name: "Excel",
+          progress: 50,
+          level: "Intermédiaire",
+          color: "bg-gradient-to-r from-green-400 to-green-500",
+        },
+        {
+          name: "Git",
+          progress: 70,
+          level: "Avancé",
+          color: "bg-gradient-to-r from-orange-500 to-orange-600",
+        },
       ],
     },
-  ]
+  ];
 
-  const currentCategory = skillCategories.find((cat) => cat.shortTitle === selectedCategory)
-  const displayedSkills = currentCategory?.skills || []
+  const currentCategory = skillCategories.find(
+    (cat) => cat.shortTitle === selectedCategory
+  );
+  const displayedSkills = currentCategory?.skills || [];
 
   const getLevelIcon = (level) => {
     switch (level) {
       case "Expert":
-        return <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+        return (
+          <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400 fill-current" />
+        );
       case "Avancé":
-        return <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />
+        return <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-green-400" />;
       default:
-        return <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />
+        return <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />;
     }
-  }
+  };
 
   const handleSkillClick = (skillIndex, skillName) => {
-    const skillId = `${selectedCategory}-${skillName}`
-    const skillCard = skillRefs.current[skillIndex]
+    const skillId = `${selectedCategory}-${skillName}`;
+    const skillCard = skillRefs.current[skillIndex];
 
     if (skillCard) {
       // Toggle clicked state
-      setClickedSkills(prev => {
-        const newSet = new Set(prev)
+      setClickedSkills((prev) => {
+        const newSet = new Set(prev);
         if (newSet.has(skillId)) {
-          newSet.delete(skillId)
+          newSet.delete(skillId);
         } else {
-          newSet.add(skillId)
+          newSet.add(skillId);
         }
-        return newSet
-      })
+        return newSet;
+      });
     }
-  }
+  };
 
   const handleCategoryChange = (category) => {
     if (category !== selectedCategory) {
-      setSelectedCategory(category)
+      setSelectedCategory(category);
     }
-  }
+  };
 
   // Composant pour les cartes de compétences
   const SkillCard = ({ skill, skillIndex, isClicked, onSkillClick }) => {
     return (
       <div
-        ref={el => skillRefs.current[skillIndex] = el}
+        ref={(el) => (skillRefs.current[skillIndex] = el)}
         className={`group relative cursor-pointer select-none transition-all duration-500 hover:-translate-y-1 ${
-          isClicked 
-            ? 'bg-gradient-to-br from-purple-800/80 to-blue-800/80 border-purple-400/70 shadow-xl shadow-purple-500/25' 
-            : 'bg-gray-800/60 border-gray-700/50 hover:border-purple-500/50'
+          isClicked
+            ? "bg-gradient-to-br from-purple-800/80 to-blue-800/80 border-purple-400/70 shadow-xl shadow-purple-500/25"
+            : "bg-gray-800/60 border-gray-700/50 hover:border-purple-500/50"
         } backdrop-blur-sm border rounded-xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 hover:shadow-xl hover:shadow-purple-500/10 overflow-hidden`}
         onClick={onSkillClick}
       >
         {/* Effet de brillance au survol */}
-        <div className={`absolute inset-0 rounded-xl sm:rounded-2xl transition-opacity duration-500 ${
-          isClicked 
-            ? 'bg-gradient-to-r from-transparent via-purple-200/10 to-transparent opacity-100 animate-pulse'
-            : 'bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse'
-        }`}></div>
+        <div
+          className={`absolute inset-0 rounded-xl sm:rounded-2xl transition-opacity duration-500 ${
+            isClicked
+              ? "bg-gradient-to-r from-transparent via-purple-200/10 to-transparent opacity-100 animate-pulse"
+              : "bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse"
+          }`}
+        ></div>
 
         <div className="relative z-10">
           {/* En-tête de la carte */}
           <div className="flex items-center justify-between mb-3 sm:mb-4">
             <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
               <div
-                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${skill.color} flex items-center justify-center shadow-lg flex-shrink-0 ${
-                  isClicked ? 'animate-pulse' : ''
+                className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg ${
+                  skill.color
+                } flex items-center justify-center shadow-lg flex-shrink-0 ${
+                  isClicked ? "animate-pulse" : ""
                 }`}
               >
                 <Code2 className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-5 lg:h-5 text-white" />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className={`font-bold text-sm sm:text-base lg:text-lg truncate ${
-                  isClicked ? 'text-purple-100' : 'text-white'
-                }`}>{skill.name}</h3>
-                <div className={`flex items-center gap-1 text-xs sm:text-sm ${
-                  isClicked ? 'text-purple-200' : 'text-gray-400'
-                }`}>
+                <h3
+                  className={`font-bold text-sm sm:text-base lg:text-lg truncate ${
+                    isClicked ? "text-purple-100" : "text-white"
+                  }`}
+                >
+                  {skill.name}
+                </h3>
+                <div
+                  className={`flex items-center gap-1 text-xs sm:text-sm ${
+                    isClicked ? "text-purple-200" : "text-gray-400"
+                  }`}
+                >
                   {getLevelIcon(skill.level)}
                   <span className="truncate">{skill.level}</span>
                 </div>
               </div>
             </div>
             <div className="text-right flex-shrink-0">
-              <div className={`text-lg sm:text-xl lg:text-2xl font-black ${
-                isClicked ? 'text-purple-100' : 'text-white'
-              }`}>
+              <div
+                className={`text-lg sm:text-xl lg:text-2xl font-black ${
+                  isClicked ? "text-purple-100" : "text-white"
+                }`}
+              >
                 {skill.progress}%
               </div>
             </div>
@@ -180,8 +273,10 @@ const Competences = () => {
           <div className="relative">
             <div className="w-full h-2.5 sm:h-3 bg-gray-700/50 rounded-full overflow-hidden">
               <div
-                className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
-                  isClicked ? 'animate-pulse' : ''
+                className={`h-full ${
+                  skill.color
+                } rounded-full transition-all duration-1000 ease-out relative overflow-hidden ${
+                  isClicked ? "animate-pulse" : ""
                 }`}
                 style={{ width: `${skill.progress}%` }}
               >
@@ -190,9 +285,9 @@ const Competences = () => {
             </div>
             <div
               className={`absolute -top-0.5 sm:-top-1 -bottom-0.5 sm:-bottom-1 rounded-full blur-sm transition-opacity duration-300 ${
-                isClicked 
-                  ? 'bg-gradient-to-r from-purple-400/30 to-blue-400/30 opacity-100'
-                  : 'bg-gradient-to-r from-purple-500/15 to-blue-500/15 opacity-0 group-hover:opacity-100'
+                isClicked
+                  ? "bg-gradient-to-r from-purple-400/30 to-blue-400/30 opacity-100"
+                  : "bg-gradient-to-r from-purple-500/15 to-blue-500/15 opacity-0 group-hover:opacity-100"
               }`}
               style={{ width: `${skill.progress}%` }}
             ></div>
@@ -204,13 +299,13 @@ const Competences = () => {
           <div className="absolute top-2 right-2 w-3 h-3 bg-purple-400 rounded-full animate-ping"></div>
         )}
       </div>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     // Clear clicked skills when category changes
-    setClickedSkills(new Set())
-  }, [selectedCategory])
+    setClickedSkills(new Set());
+  }, [selectedCategory]);
 
   return (
     <div
@@ -235,7 +330,8 @@ const Competences = () => {
             </h2>
           </div>
           <p className="text-sm sm:text-base lg:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-            Découvrez mon expertise technique à travers différents domaines de développement
+            Découvrez mon expertise technique à travers différents domaines de
+            développement
           </p>
           <div className="w-16 sm:w-20 lg:w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-600 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
@@ -267,11 +363,14 @@ const Competences = () => {
         </div>
 
         {/* Grille des compétences */}
-        <div ref={skillsRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+        <div
+          ref={skillsRef}
+          className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5 lg:gap-6"
+        >
           {displayedSkills.map((skill, skillIndex) => {
-            const skillId = `${selectedCategory}-${skill.name}`
-            const isClicked = clickedSkills.has(skillId)
-            
+            const skillId = `${selectedCategory}-${skill.name}`;
+            const isClicked = clickedSkills.has(skillId);
+
             return (
               <SkillCard
                 key={`${selectedCategory}-${skillIndex}`}
@@ -280,7 +379,7 @@ const Competences = () => {
                 isClicked={isClicked}
                 onSkillClick={() => handleSkillClick(skillIndex, skill.name)}
               />
-            )
+            );
           })}
         </div>
 
@@ -294,12 +393,19 @@ const Competences = () => {
                 delay={0.2}
                 className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1"
               />
-              <div className="text-xs sm:text-sm text-gray-400">Technologies</div>
+              <div className="text-xs sm:text-sm text-gray-400">
+                Technologies
+              </div>
             </div>
             <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
             <div className="flex flex-col items-center justify-center">
               <CountUp
-                end={Math.round(displayedSkills.reduce((acc, skill) => acc + skill.progress, 0) / displayedSkills.length)}
+                end={Math.round(
+                  displayedSkills.reduce(
+                    (acc, skill) => acc + skill.progress,
+                    0
+                  ) / displayedSkills.length
+                )}
                 duration={2}
                 delay={0.4}
                 suffix="%"
@@ -310,7 +416,10 @@ const Competences = () => {
             <div className="w-full h-px sm:w-px sm:h-8 lg:h-12 bg-gray-600"></div>
             <div className="flex flex-col items-center justify-center">
               <CountUp
-                end={displayedSkills.filter((skill) => skill.level === "Expert").length}
+                end={
+                  displayedSkills.filter((skill) => skill.level === "Expert")
+                    .length
+                }
                 duration={1.8}
                 delay={0.6}
                 className="text-2xl sm:text-2xl lg:text-3xl font-black text-white mb-1"
@@ -321,7 +430,7 @@ const Competences = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Competences
+export default Competences;
